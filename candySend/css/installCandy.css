@@ -1,0 +1,23 @@
+html{
+    font-size: 10px;
+}
+nav{
+    height:6rem; 
+    background: #2e91db;
+}
+.formLogo{
+    margin-top: 5rem;
+}
+.formRow{
+    margin-top: 4rem;
+}
+.formRow .checkbox{
+    font-size: 1rem;
+    line-height: 2.1rem;
+}
+.formRow .checkbox a{
+    color: #2e91db;
+}
+.formRow .getErr{
+    display: none;
+}
