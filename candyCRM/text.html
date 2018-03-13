@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+    <link rel="stylesheet" type="text/css" href="css/zeroModal.css">
+    <style type="text/css">
+        .box{
+            width: 100px;
+            height: 100px;
+            background: red;
+        }
+    </style>
+</head>
+
+
+
+<body>
+	<div class="box"></div>
+	
+		
+<script src="assets/plugins/Vue/vue.js"></script>
+<script src="assets/plugins/Vue/vue-resource.js "></script>
+<script src="assets/plugins/jquery/jquery.min.js"></script>
+<script src="js/zeroModal.min.js"></script>
+
+<script type="text/javascript">
+	 	$(function(){
+            
+
+
+            //读取Cookie
+            function getCookie(name){
+                // Cookie本质是字符串"name=zhufan; name=zhufan; ; age=22"
+                // 可以把字符串里的"；"号分割开来
+                // 数组方法split() 分割字符串
+                var arr = document.cookie.split('; ') //注意是分号和空格！
+                // 字符串分割后 数组格式如下
+                //arr => ['name=zhufan','name=zhufan']
+                //console.log(arr) [ "age=22", "name=zhufan" ]
+                for (var i = 0; i < arr.length; i++) {
+                    // arr[0] = [ "age=22" ]
+                    var arr2 = arr[i].split('=');
+                    // 比如：arr2 = arr[0].split('=');
+                    // 那么: arr2 = ['age','22']
+                    if (arr2[0]==name) {
+                        return arr2[1];
+                    }
+                }
+                return "不存在该值"
+            }
+
+            alert(getCookie('name'))
+        })
+</script>
+</body>
+</html>
