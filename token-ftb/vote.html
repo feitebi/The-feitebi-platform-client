@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <title>飞特币 -- 代币轻钱包</title>
+        <meta name="description" content="社交化加密币投顾平台" />
+        <meta name="keywords" content="比特币, 飞特币, 飞特币, 以太坊, 虚拟币, 加密币，量子链, 区块链, 钱包, 跨链" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimal-ui" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+            
+            <!-- for ios 7 style, multi-resolution icon of 152x152 -->
+            <meta name="apple-mobile-web-app-capable" content="yes">
+                <meta name="apple-mobile-web-app-status-barstyle" content="black-translucent">
+                    <link rel="apple-touch-icon" href="../assets/images/logo.png">
+                        <meta name="apple-mobile-web-app-title" content="Feitebi">
+                            <!-- for Chrome on Android, multi-resolution icon of 196x196 -->
+                            <meta name="mobile-web-app-capable" content="yes">
+                                <link rel="shortcut icon" sizes="196x196" href="../assets/images/logo.png">
+                                    
+                                    <!-- style -->
+                                    <link rel="stylesheet" href="../assets/animate.css/animate.min.css" type="text/css" />
+                                    <link rel="stylesheet" href="../assets/glyphicons/glyphicons.css" type="text/css" />
+                                    <link rel="stylesheet" href="../assets/font-awesome/css/font-awesome.min.css" type="text/css" />
+                                    <link rel="stylesheet" href="../assets/material-design-icons/material-design-icons.css" type="text/css" />
+                                    
+                                    <link rel="stylesheet" href="../assets/bootstrap/dist/css/bootstrap.min.css" type="text/css" />
+                                    <!-- build:css ../assets/styles/app.min.css -->
+                                    <link rel="stylesheet" href="../assets/styles/app.css" type="text/css" />
+                                    <!-- endbuild -->
+                                    <link rel="stylesheet" href="../assets/styles/font.css" type="text/css" />
+    </head>
+    <body>
+        <div class="app" id="app">
+            
+            <!-- ############ LAYOUT START-->
+            <div class="center-block w-xxl w-auto-xs p-y-md">
+                <div class="navbar">
+                    <div class="pull-center">
+                        <a class="navbar-brand">
+                            <img src="../assets/images/logo.png" alt=".">
+                                <span class="hidden-folded inline">飞特币</span>
+                                </a>
+                    </div>
+                </div>
+                <div class="p-a-md box-color r box-shadow-z1 text-color m-a">
+                    <div class="m-b text-md">
+                        投票神器
+                    </div>
+                    <form name="form">
+                        <br/>请输入点心：<br/><br/>
+                        <input type="text" class="md-input" required id='cookies' name='cookies' placeholder="请输入点心">
+                        <br/><br/>
+                        <br/>您的评语：<br/><br/>
+                        <input type="text" class="md-input" required id='comments' name='comments' placeholder="请输入评语" value='价值币'>
+                        <br/><br/>
+                        <button type="button" id='loginBtn' onclick="javascript:vote();" class="btn btn-primary btn-block p-x-md">立即开始</button>
+                        <br/>
+                        <p>已投：<span id='count'>0</span> 票</p>
+                    </form>
+                </div>
+                
+            </div>
+            
+            <!-- ############ LAYOUT END-->
+            <div class="modal fade tipsDlg" id="tipsDlg" tabindex="-1" role="dialog">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-body">
+                            <p class='text-center h4' id='dlgTips'></p>
+                        </div>
+                        <div class="modal-footer mfooter">
+                            <button type="button" class="btn btn-white btn-block" data-dismiss="modal">确定</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+        <!-- jQuery -->
+        <script src="../libs/jquery/jquery/dist/jquery.js"></script>
+        <!-- Bootstrap -->
+        <script src="../libs/jquery/tether/dist/js/tether.min.js"></script>
+        <script src="../libs/jquery/bootstrap/dist/js/bootstrap.js"></script>
+        <script src="./scripts/common.js?v=1.0.0.162"></script>
+        
+        <script type="text/javascript">
+            var cookies =$('#cookies').val();
+            var count = 1000;
+               
+            var timer;
+            function vote() {
+                timer = window.setInterval("voteSubmit()",1900);
+            }
+            
+            function voteSubmit() {
+                if(count<=0){
+                    window.clearInterval(timer);
+                    return false;
+                }
+                if($('#cookies').val() =='' || $('#comments').val()=='' ){
+                    $('#dlgTips').html('请检查输入点心和评语！');
+                    $('#tipsDlg').modal('show');
+                    return;
+                }
+                
+                $.ajax({
+                       type: 'POST',
+                       url: '/rest/vote/go',
+                       data: {
+                       cookies: $('#cookies').val(),
+                       comments: $('#comments').val()
+                       },
+                       dataType: 'json',
+                       success: function(data) {
+                         count--;
+                         $('#count').html((1000-count));
+                       }
+                   });
+            }
+        </script>
+        <!-- endbuild -->
+    </body>
+</html>
+

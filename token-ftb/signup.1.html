@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>飞特币 -- 代币轻钱包</title>
+  <meta name="description" content="社交化加密币投顾平台" />
+  <meta name="keywords" content="比特币, 飞特币, 飞特币, 以太坊, 虚拟币, 加密币，量子链, 区块链, 钱包, 跨链" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimal-ui" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+  <!-- for ios 7 style, multi-resolution icon of 152x152 -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-barstyle" content="black-translucent">
+  <link rel="apple-touch-icon" href="../assets/images/logo-ff.png">
+  <meta name="apple-mobile-web-app-title" content="Bitdash">
+  <!-- for Chrome on Android, multi-resolution icon of 196x196 -->
+  <meta name="mobile-web-app-capable" content="yes">
+  <link rel="shortcut icon" sizes="196x196" href="../assets/images/logo.png">
+  
+  <!-- style -->
+  <link rel="stylesheet" href="../assets/animate.css/animate.min.css" type="text/css" />
+  <link rel="stylesheet" href="../assets/glyphicons/glyphicons.css" type="text/css" />
+  <link rel="stylesheet" href="../assets/font-awesome/css/font-awesome.min.css" type="text/css" />
+  <link rel="stylesheet" href="../assets/material-design-icons/material-design-icons.css" type="text/css" />
+
+  <link rel="stylesheet" href="../assets/bootstrap/dist/css/bootstrap.min.css" type="text/css" />
+  <!-- build:css ../assets/styles/app.min.css -->
+  <link rel="stylesheet" href="../assets/styles/app.css" type="text/css" />
+  <!-- endbuild -->
+  <link rel="stylesheet" href="../assets/styles/font.css" type="text/css" />
+  <link rel="stylesheet" href="../assets/styles/slide-unlock.css" type="text/css" />
+</head>
+<body>
+  <div class="app" id="app">
+
+    <!-- ############ LAYOUT START-->
+    <div class="center-block w-xxl w-auto-xs p-y-md">
+      <div class="navbar">
+        <div class="pull-center">
+          <a class="navbar-brand">
+            <img src="../assets/images/logo.png" alt=".">
+            <span class="hidden-folded inline">飞特币</span>
+          </a>
+        </div>
+      </div>
+
+      <div class="p-a-md box-color r box-shadow-z1 text-color m-a">
+        <div class="m-b text-md">
+          注册新用户
+        </div>
+        <form name="form" onsubmit="register()">
+          <div class="md-form-group">
+            <input type="phone" class="md-input" required id="phone" name='phone' placeholder="手机号码">
+          </div>
+          <div class="md-form-group" style='height: 45px;padding-top: 0px;margin-top: 10px;margin-bottom: 10px'>
+              <div id="slider" class='hide' style='padding-top: 0px;margin-top: 0px'>
+                  <div id="slider_bg"></div>
+                  <span id="label"><i class='fa fa-fw fa-angle-double-right'></i></span><span id="labelTip">拖动滑块验证</span>
+              </div>
+          </div>
+          <div class="md-form-group">
+             <div class="input-group">
+              <input type="text" class="md-input" placeholder="验证码" required id="phoneValidCode" name='phoneValidCode'>
+              <span class="input-group-btn">
+               <button type="button" id='codeBtn' disabled='true' onclick="javascript:sendCode();" class="btn btn-sm btn-grey p-x-md">发送</button>
+              </span>
+            </div>
+          </div>
+          <div class="md-form-group">
+            <input type="password" class="md-input" required id="pwd" name='pwd' placeholder="至少6位密码">
+          </div>
+          <div class="m-b-md text-xs">
+              注册代表您接受 <a href="terms.html" class='text-info'>用户条款与协议</a>
+          </div>
+          <button type="button" id="registerBtn" disabled='true' onclick="javascript:register();" class="btn btn-grey btn-block p-x-md">立即注册</button>
+          <input type='hidden' id='vcode' value=''/>
+        </form>
+      </div>
+
+      <div class="p-v-lg text-center text-md">
+        <div>已经注册过？ <a ui-sref="access.signin" href="login.html" class="text-info _800">立即登录</a></div>
+      </div>
+    </div>
+
+    <!-- ############ LAYOUT END-->
+  <div class="modal fade tipsDlg" id="tipsDlg" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-body">
+        <p class='text-center h4' id='dlgTips'></p>
+      </div>
+      <div class="modal-footer mfooter">
+      <button type="button" class="btn btn-white btn-block" data-dismiss="modal">确定</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+  </div>
+<!-- jQuery -->
+<script src="../libs/jquery/jquery/dist/jquery.js"></script>
+<!-- Bootstrap -->
+<script src="../libs/jquery/tether/dist/js/tether.min.js"></script>
+<script src="../libs/jquery/bootstrap/dist/js/bootstrap.js"></script>
+<script src="./scripts/jquery.slideunlock.js"></script>
+<script src="./scripts/common.js?v=1.0.0.157"></script>
+
+<script type="text/javascript">
+  $(".md-input").bind("propertychange input",function(){
+       checkInputChange();
+  });
+
+  function checkInputChange() {
+        var phone =$('#phone').val();
+        var pwd =$('#pwd').val();
+        var code =$('#phoneValidCode').val();
+        var vcode = $('#vcode').val();
+
+        if(vcode!='' && phone!='' && phone.length==11 && pwd!='' && pwd.length>=6 && code!='' && code.length>=4){
+          $('#registerBtn').removeClass('btn-grey').addClass('info');
+          $('#registerBtn').removeAttr("disabled");
+        }else{
+          $('#registerBtn').removeClass('info').addClass('btn-grey');
+          $('#registerBtn').attr("disabled",'true');
+        }
+
+        if(phone!='' && phone.length==11){
+           $('#slider').removeClass("hide");
+        }else{
+           $('#slider').addClass("hide");
+        }
+
+        if(vcode!='' && phone!='' && phone.length==11){
+            $('#codeBtn').removeClass('btn-grey').addClass('info');
+            $('#codeBtn').removeAttr("disabled");
+        }else{
+            //$('#codeBtn').removeClass('info').addClass('btn-grey');
+            $('#codeBtn').attr("disabled",'true');
+        }
+  }
+
+  $(function () {
+        var slider = new SliderUnlock("#slider",{ successLabelTip: "验证成功" }, function(){
+              robotRefuse();
+        });
+       slider.init();
+  })
+</script>
+  <!-- endbuild -->
+</body>
+</html>

@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="utf-8" />
+  <title>飞特币－钱包</title>
+  <meta name="description" content="社交化加密币投顾平台" />
+  <meta name="keywords" content="比特币, 飞特币, 飞特币, 以太坊, 虚拟币, 加密币，量子链, 区块链, 钱包, 跨链" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimal-ui" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+  <!-- for ios 7 style, multi-resolution icon of 152x152 -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-barstyle" content="black-translucent">
+  <link rel="apple-touch-icon" href="../assets/images/logo.png">
+  <meta name="apple-mobile-web-app-title" content="Feitebi">
+  <!-- for Chrome on Android, multi-resolution icon of 196x196 -->
+  <meta name="mobile-web-app-capable" content="yes">
+  <link rel="shortcut icon" sizes="196x196" href="../assets/images/logo.png">
+  
+  <!-- style -->
+  <link rel="stylesheet" href="../assets/animate.css/animate.min.css" type="text/css" />
+  <link rel="stylesheet" href="../assets/glyphicons/glyphicons.css" type="text/css" />
+  <link rel="stylesheet" href="../assets/font-awesome/css/font-awesome.min.css" type="text/css" />
+  <link rel="stylesheet" href="../assets/material-design-icons/material-design-icons.css" type="text/css" />
+
+  <link rel="stylesheet" href="../assets/bootstrap/dist/css/bootstrap.min.css" type="text/css" />
+  <!-- build:css ../assets/styles/app.min.css -->
+  <link rel="stylesheet" href="../assets/styles/app.css" type="text/css" />
+  <!-- endbuild -->
+  <link rel="stylesheet" href="../assets/styles/font.css" type="text/css" />
+  <style>
+    span.logo{font-size: 16px;font-weight: 400}.paddingTop10{padding-top: 8px}.navbar-brand{font-weight: 200}
+    .wh120{width: 120px;height: 120px}.wh64{width: 64px;height: 64px}
+  </style>
+</head>
+<body>
+  <div class="app" id="app">
+
+<!-- ############ LAYOUT START-->
+  <div class="center-block w-xxl w-auto-sm p-y-sm">
+
+    <div class="p-a-md box-color r box-shadow-z1 text-color m-a">
+      <div class="m-b text-md">
+        导入飞特币钱包
+      </div>
+      <form name="form">
+        <div class="md-form-group float-label">
+          <textarea class="md-input" id='sSeed' rows="4" required></textarea>
+          <label>输入种子密语(通常12个单词）</label>
+        </div>
+        <button type="button" id='restoreBtn' disabled='true' onclick='restoreWalletBySeed()' class="btn btn-grey btn-block p-x-md">导入钱包</button>
+      </form>
+    </div>
+
+    <div class="p-v-lg text-center">
+        <div class="m-b p-a"><a ui-sref="access.signup" href="javascript:void()" onclick="createNewAddress()" class="btn-outline b-info p-l-md p-r-md text-info rounded btn">注册新钱包</a></div>
+        <div>已有飞特币钱包，请用<a ui-sref="access.forgot-password" href="signin.html" class="text-danger"> 私钥登录</a></div>
+        <p class='text-muted'><br/><br/>注意：当前处在测试网络，仅作测试体验用途。</p>
+    </div>
+  </div>
+
+<!-- ############ LAYOUT END-->
+
+  </div>
+
+<!-- build:js scripts/app.html.js -->
+<!-- jQuery -->
+  <script src="../libs/jquery/jquery/dist/jquery.js"></script>
+<!-- Bootstrap -->
+  <script src="../libs/jquery/tether/dist/js/tether.min.js"></script>
+  <script src="../libs/jquery/bootstrap/dist/js/bootstrap.js"></script>
+  <script src="scripts/common.js?v=1.0.1"></script>
+  <script type="text/javascript">
+    $("#sSeed").bind("propertychange input",function() {
+       setBtnState();
+    });
+
+    $("#sSeed").change(function(){
+      setBtnState();
+    });
+    
+    function setBtnState() {
+        var sSeed = $('#sSeed').val().split(' ');
+         if(sSeed.length==10){
+            $('#restoreBtn').addClass('info');
+            $('#restoreBtn').removeAttr("disabled");
+         } else {
+            $('#restoreBtn').attr('disabled',"true");
+            $('#restoreBtn').removeClass('info');
+        }
+    }
+    
+  </script>
+<!-- core -->
+  
+<!-- endbuild -->
+</body>
+</html>

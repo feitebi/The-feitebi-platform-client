@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="utf-8" />
+  <title>飞特币－钱包</title>
+  <meta name="description" content="" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimal-ui" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+  <!-- for ios 7 style, multi-resolution icon of 152x152 -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-barstyle" content="black-translucent">
+  <link rel="apple-touch-icon" href="../assets/images/logo.png">
+  <meta name="apple-mobile-web-app-title" content="unionchain">
+  <!-- for Chrome on Android, multi-resolution icon of 196x196 -->
+  <meta name="mobile-web-app-capable" content="yes">
+  <link rel="shortcut icon" sizes="196x196" href="../assets/images/logo.png">
+  
+  <!-- style -->
+  <link rel="stylesheet" href="../assets/animate.css/animate.min.css" type="text/css" />
+  <link rel="stylesheet" href="../assets/glyphicons/glyphicons.css" type="text/css" />
+  <link rel="stylesheet" href="../assets/font-awesome/css/font-awesome.min.css" type="text/css" />
+  <link rel="stylesheet" href="../assets/material-design-icons/material-design-icons.css" type="text/css" />
+
+  <link rel="stylesheet" href="../assets/bootstrap/dist/css/bootstrap.min.css" type="text/css" />
+  <!-- build:css ../assets/styles/app.min.css -->
+  <link rel="stylesheet" href="../assets/styles/app.css" type="text/css" />
+  <!-- endbuild -->
+  <link rel="stylesheet" href="../assets/styles/font.css" type="text/css" />
+  <style>
+    span.logo{font-size: 16px;font-weight: 400}.paddingTop10{padding-top: 8px}.navbar-brand{font-weight: 200}
+    .wh120{width: 120px;height: 120px}.wh64{width: 64px;height: 64px}
+  </style>
+</head>
+<body>
+  <div class="app" id="app">
+    
+<!-- ############ LAYOUT START-->
+
+  
+  <!-- content -->
+  <div id="content" class="app-content box-shadow-z0" role="main">
+    <div class="app-header blue-700">
+        <div class="navbar">
+            
+           <div class="navbar-item text-center h5" ng-bind="$state.current.data.title" id="pageTitle">安卓钱包</div>
+        </div>
+    </div>
+    
+    <div ui-view class="app-body" id="view">
+        <p class='m-l-md m-r-md'>
+        <div class="modal-content m-a-sm" >
+          <div class="modal-header">
+            <h6 class="modal-title">飞特币钱包 <span class='pull-right'>v1.0.2</span></h6>
+          </div>
+        
+           <div style="margin-top:15px" class='p-a-md'>
+              <p  class='text-muted' id="Googlemsg" style="text-align:center;margin:0px auto;">
+                    <h5>本版本主要改进和修复</h5>
+                    <p class='p-t-md'>1. 新增节点连接显示</p>
+                    <p>2. 修正需要密码才能删除钱包</p>
+                    <p>3. 修改其他小BUG</p>
+              </p>
+          </div>
+          <div class="modal-footer text-center">
+            <a href='https://feitebi.com/FTB_WALLET_v1.0.2.apk' class="btn btn-info p-x-lg" >立即下载</a>
+          </div>
+        </div>
+        </p>
+
+    </div>
+  </div>
+  <!-- / -->
+
+  </div>
+
+<!-- build:js scripts/app.html.js -->
+<!-- jQuery -->
+  <script src="../libs/jquery/jquery/dist/jquery.js"></script>
+<!-- Bootstrap -->
+  <script src="../libs/jquery/tether/dist/js/tether.min.js"></script>
+  <script src="../libs/jquery/bootstrap/dist/js/bootstrap.js"></script>
+  <script src="scripts/clipboard.min.js"></script>
+  <script src='scripts/jquery.qrcode.min.js'></script>
+ <!-- core -->
+  
+<!-- endbuild -->
+</body>
+</html>

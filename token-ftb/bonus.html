@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="utf-8" />
+  <title>飞特币－早鸟众售</title>
+  <meta name="description" content="社交化加密币投顾平台" />
+  <meta name="keywords" content="比特币, 飞特币, 飞特币, 以太坊, 虚拟币, 加密币，量子链, 区块链, 钱包, 跨链" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimal-ui" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+  <!-- for ios 7 style, multi-resolution icon of 152x152 -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-barstyle" content="black-translucent">
+  <link rel="apple-touch-icon" href="../assets/images/logo.png">
+  <meta name="apple-mobile-web-app-title" content="Feitebi">
+  <!-- for Chrome on Android, multi-resolution icon of 196x196 -->
+  <meta name="mobile-web-app-capable" content="yes">
+  <link rel="shortcut icon" sizes="196x196" href="../assets/images/logo.png">
+  
+  <!-- style -->
+  <link rel="stylesheet" href="../assets/animate.css/animate.min.css" type="text/css" />
+  <link rel="stylesheet" href="../assets/glyphicons/glyphicons.css" type="text/css" />
+  <link rel="stylesheet" href="../assets/font-awesome/css/font-awesome.min.css" type="text/css" />
+  <link rel="stylesheet" href="../assets/material-design-icons/material-design-icons.css" type="text/css" />
+
+  <link rel="stylesheet" href="../assets/bootstrap/dist/css/bootstrap.min.css" type="text/css" />
+  <!-- build:css ../assets/styles/app.min.css -->
+  <link rel="stylesheet" href="../assets/styles/app.css" type="text/css" />
+  <!-- endbuild -->
+  <link rel="stylesheet" href="../assets/styles/font.css" type="text/css" />
+  <style>
+    span.logo{font-size: 16px;font-weight: 400}.paddingTop10{padding-top: 8px}.navbar-brand{font-weight: 200}
+    .wh120{width: 120px;height: 120px}.wh64{width: 64px;height: 64px}
+  </style>
+</head>
+<body>
+  <div class="app" id="app">
+    
+<!-- ############ LAYOUT START-->
+
+  <!-- aside -->
+  <div id="aside" class="app-aside modal fade nav-dropdown">
+  	<!-- fluid app aside -->
+    <div class="left navside dark dk" layout="column">
+  	  <div class="navbar no-radius">
+        <!-- brand -->
+        <a class="navbar-brand">
+            <img src='./images/logo-c.png'/> 飞特币
+        </a>
+        <!-- / brand -->
+      </div>
+      <div flex class="hide-scroll">
+          <nav class="scroll nav-light">
+             <ul class="nav" ui-nav>
+                <li>
+                  <a href="wallet.html" >
+                    <span class="nav-icon">
+                      <i class="material-icons">&#xe850;
+                        <span ui-include="'../assets/images/i_0.svg'"></span>
+                      </i>
+                    </span>
+                    <span class="nav-text">代币</span>
+                  </a>
+                </li>
+                <li class=''>
+                  <a href="index.html" >
+                    <span class="nav-icon">
+                      <i class="material-icons">&#xe7fc;
+                        <span ui-include="'../assets/images/i_3.svg'"></span>
+                      </i>
+                    </span>
+                    <span class="nav-text">钱包</span>
+                  </a>
+                </li>
+                <li class=''>
+                  <a href="send.html" >
+                    <span class="nav-icon">
+                      <i class="material-icons">&#xe2c6;
+                        <span ui-include="'../assets/images/i_3.svg'"></span>
+                      </i>
+                    </span>
+                    <span class="nav-text">发送</span>
+                  </a>
+                </li>
+                <li>
+                  <a href="settings.html" >
+                    <span class="nav-icon">
+                      <i class="material-icons">&#xe8b9;
+                        <span ui-include="'../assets/images/i_3.svg'"></span>
+                      </i>
+                    </span>
+                    <span class="nav-text">设置</span>
+                  </a>
+                </li> 
+              </ul>
+          </nav>
+      </div>
+       <div flex-no-shrink>
+        <nav ui-nav>
+            <ul class="nav">
+              <li><div class="b-b b m-t-sm"></div></li>
+              <li class="no-bg">
+                <a href="javascript:void()" onclick="logout()">
+                  <span class="nav-icon">
+                   <i class="material-icons">&#xe8ac;</i>
+                  </span>
+                  <span class="nav-text">退出</span>
+                </a>
+              </li>
+            </ul>
+          </nav>
+      </div>
+    </div>
+  </div>
+  <!-- / -->
+  
+  <!-- content -->
+  <div id="content" class="app-content box-shadow-z0" role="main">
+    <div class="app-header blue-700">
+        <div class="navbar">
+            <!-- Open side - Naviation on mobile -->
+            <a data-toggle="modal" data-target="#aside" class="navbar-item pull-left hidden-lg-up">
+              <i class="material-icons">&#xe5d2;</i>
+            </a>
+            <!-- / -->
+        
+            <!-- Page title - Bind to $state's title -->
+            <a class="navbar-item pull-right hidden-lg-up" href='settings.html'>
+              <i class="material-icons">&#xe8b8;</i>
+            </a>
+           <div class="navbar-item text-center h5" ng-bind="$state.current.data.title" id="pageTitle">推荐奖励</div>
+        </div>
+    </div>
+    <div class='app-footer'>
+      <nav class="navbar white navbar-fixed-bottom hide" style='height: 70px'>
+        <div class="container">
+          <div class="row text-center p-t-sm text-md">
+            <div class="col-md-4 col-xs-4"><a href='receive.html'><i class="material-icons text-lg">&#xe2c4;</i><br/>接收</a></div>
+            <div class="col-md-4 col-xs-4"><a href='index.html'><i class="material-icons text-lg">&#xe84f;</i><br/>飞特币</a></div>
+            <div class="col-md-4 col-xs-4"><a href='send.html'><i class="material-icons text-lg">&#xe2c6;</i><br/>发送</a></div>
+          </div>
+        </div>
+      </nav>
+    </div>
+    <div ui-view class="app-body" id="view">
+        <div class="p-t-sm text-center">
+            <div class="p-y text-center">
+              <a class="inline p-x b-r text-center">
+                <span class="h5 block m-a-0" id='totalRegisterCount'>0</span>
+                <small class="text-xs text-muted">注册数量</small>
+              </a>
+              <a class="inline p-x b-r text-center">
+                <span class="h5 block m-a-0" id='totalBoughtTokenAmount'>0</span>
+                <small class="text-xs text-muted">推荐众售量</small>
+              </a>
+              <a class="inline p-x b-r text-center">
+                <span class="h5 block m-a-0" id='totalBonusAmount'>0</span>
+                <small class="text-xs text-muted">奖励代币数</small>
+              </a>
+              <a class="inline p-x text-center">
+                <span class="h5 block m-a-0" id='sentBonusAmount'>0</span>
+                <small class="text-xs text-muted">已发放奖励</small>
+              </a>
+            </div>
+        </div>
+        <hr/>
+        <div class='clearfix'></div>
+        <div class="text-center">
+            <p class='p-a-md text-warning paddding'>复制以下链接，推荐给好友，获得对方兑换数量5%的代币奖励。</p>
+
+            <p>&nbsp;</p>
+            <p><span id='refLink' class='text-info'></a></p>
+            <p>&nbsp;</p>
+            <p class='p-a-md text-xs'><strong>提示:</strong>&nbsp;&nbsp;由于兑换代币需区块确认，您的奖励数据可能有延迟，请谅解。</p>
+
+          </div>
+        <!-- ############ PAGE END-->
+    </div>
+  </div>
+  <!-- / -->
+
+<div class="modal fade tipsDlg" id="tipsDlg" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-body">
+        <p class='text-center h4' id='dlgTips'></p>
+      </div>
+      <div class="modal-footer mfooter">
+	       <button type="button" class="btn btn-white btn-block" data-dismiss="modal">确定</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="waitDlg" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-body">
+        <p class='text-center h4' id='dlgTips'>加载中...</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+  </div>
+
+  <script src="../libs/jquery/jquery/dist/jquery.js"></script>
+
+  <script src="../libs/jquery/tether/dist/js/tether.min.js"></script>
+  <script src="../libs/jquery/bootstrap/dist/js/bootstrap.js"></script>
+  <script src="scripts/common.js?v=1.0.0.287"></script>
+  <script type="text/javascript">
+   $(document).ready(function() {
+      if(!isLogin()) {
+          var ref = getUrlParameter('ref');
+          if (typeof ref == 'undefined' || ref == null) {
+            ref ="";
+          }
+          //window.location.href='signin.html?ref='+ref;
+      } else {
+          var addr = getStorageJson(WALLET_ADDR_TAG);
+          $("#refLink").text('https://feitebi.com/token/signup.html?ref='+addr);
+
+          getReferSummary();
+      }
+   });
+  </script>
+  
+</body>
+</html>
