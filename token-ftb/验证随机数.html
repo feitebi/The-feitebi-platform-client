@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+		/*验证码区域样式*/
+		#code{  
+                font-family:Arial;  
+                font-style:italic;  
+                font-weight:bold;  
+                border:0;  
+                letter-spacing:2px;  
+                color:blue;  
+            }
+	</style>
+</head>
+<body>
+	<div>  
+        <input type = "text" id = "input" value="" />  
+        <input type = "button" id="code" onclick="createCode()"/>  
+        <input type = "button" value = "验证" onclick = "validate()"/>  
+    </div> 
+    <script type="text/javascript">
+    	
+
+    	//设置一个全局的变量，便于保存验证码
+    	var code;
+    	
+    	function createCode(){
+    		//首先默认code为空字符串
+        	code = '';
+
+        	//设置长度，这里看需求，我这里设置了6
+        	var codeLength = 6;
+        	var codeV = document.getElementById('code');
+
+        	//设置随机字符
+	        var random = new Array(0,1,2,3,4,5,6,7,8,9);
+	        // console.log(random.length) 10
+	        
+	        //循环codeLength 我设置的6就是循环6次
+	        for(var i = 0; i < codeLength; i++){
+	            //设置随机数范围,这设置为0 ~ 10
+             	var index = Math.floor(Math.random()*random.length);
+
+             	//字符串拼接 将每次随机的字符 进行拼接
+             	code += random[index]; 
+	        }
+	        //console.log(code) //231112
+
+	        //将拼接好的字符串赋值给展示的Value
+        	codeV.value = code;
+
+	    	}
+
+	    //下面就是判断是否== 的代码，无需解释
+	    function validate(){
+	    	//var oValue = document.getElementById('input').value.toUpperCase(); 
+	    	//如果存在字母验证码 则可以自动转为大写
+	    	//var oValue = document.getElementById('input').value;
+	    	var oValue = document.getElementById('input');
+
+	    	if(oValue.value ==0){   
+	            alert('请输入验证码');
+	        }else if(oValue.value != code){
+	            alert('验证码不正确，请重新输入');
+	            
+	            oValue.value = '';
+	            createCode(); //当验证码错误是 重新更新验证码
+	        }else{
+	            window.open('http://www.baidu.com','_self');
+	        }
+	    }
+
+	    //设置此处的原因是每次进入界面展示一个随机的验证码，不设置则无法显示验证码
+	    window.onload = function (){
+
+	        createCode();
+	    }
+    </script>
+</body>
+</html>
