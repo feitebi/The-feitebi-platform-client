@@ -227,47 +227,7 @@
   <script src="../libs/jquery/bootstrap/dist/js/bootstrap.js"></script>
   <script src="scripts/common.js?v=1.0.0.2892"></script>
 
-  <script type="text/javascript">
-   
-			var USER_TAG = "USER_DATA";
-          var user = getStorageJson(USER_TAG);
-          var uid ="";
-          if (typeof user != 'undefined' && user != null) {
-            uid= user.id;
-          }
-          $.ajax({
-                 type: 'POST',
-                 url: '/withdraw/list',
-                 data: {
-                 userId: uid
-                 },
-                 dataType: 'json',
-                 success: function(data) {
-                 var json = data.entity;
-                 if (json.userId != '0') {
-                 	$("#address").html(json.walletAddr);
-                 	$("#secretKey").html(json.walletKey);
-                 	for (var i=0;i<json.withdrawList.length;i++) {
-                 			var tabletr = $("#withdrawtab").append(document.createElement("tr"));
-                 			var tabletd1 = tabletr.append(document.createElement("td"));
-                 			var tabletd2 = tabletr.append(document.createElement("td"));
-                 			var tabletd3 = tabletr.append(document.createElement("td"));
-                 			var tabletd4 = tabletr.append(document.createElement("td"));
-                 			tabletd1.innerHTML = i+1;
-                 			tabletd2.innerHTML = json.withdrawList[i].amount;
-                 			tabletd3.innerHTML = json.withdrawList[i].toAddr;
-                 			if(json.withdrawList[i].withdrawFlag==1){
-                 				tabletd4.innerHTML = "待领取";
-                 			}else{
-                 				tabletd4.innerHTML = "已领取";
-                 			}
-                 	}
-                 	console.log(json);
-                 		}
-                 }
-              });
-   
-  </script>
+  
   
 </body>
 </html>
