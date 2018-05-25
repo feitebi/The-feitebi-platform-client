@@ -1,0 +1,621 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>飞特币 -- 社交化加密币投顾平台</title>
+  <meta name="description" content="Admin, Dashboard, Bootstrap, Bootstrap 4, Angular, AngularJS" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimal-ui" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+  <!-- for ios 7 style, multi-resolution icon of 152x152 -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-barstyle" content="black-translucent">
+  
+  <!-- for Chrome on Android, multi-resolution icon of 196x196 -->
+  <meta name="mobile-web-app-capable" content="yes">
+  <link rel="apple-touch-icon" href="./logo/logo.png">
+  <meta name="apple-mobile-web-app-title" content="Flatkit">
+  <link rel="shortcut icon" sizes="196x196" href="./logo/logo.png">
+  
+  <!-- style -->
+  <link rel="stylesheet" href="../assets/animate.css/animate.min.css" type="text/css" />
+  <link rel="stylesheet" href="../assets/glyphicons/glyphicons.css" type="text/css" />
+  <link rel="stylesheet" href="../assets/font-awesome/css/font-awesome.min.css" type="text/css" />
+  <link rel="stylesheet" href="../assets/material-design-icons/material-design-icons.css" type="text/css" />
+
+  <link rel="stylesheet" href="../assets/bootstrap/dist/css/bootstrap.min.css" type="text/css" />
+  <!-- build:css ../assets/styles/app.min.css -->
+  <link rel="stylesheet" href="../assets/styles/app.css" type="text/css" />
+  <!-- endbuild -->
+  <link rel="stylesheet" href="../assets/styles/font.css" type="text/css" />
+  <style>
+    .topTable tbody {
+      display:block;
+      height:685px;
+      overflow-y:scroll;
+    }
+    
+    .topTable thead, .topTable tbody tr {
+      display:table;
+      width:100%;
+      table-layout:fixed;
+   
+      
+    }
+    .topTable tbody tr:hover{
+      cursor: pointer;
+      background: #f9f9f9;
+      color: #555;
+    }
+    
+    .topTable thead {
+      width: calc( 100% - 1em )
+    }
+    #sellDlg .input-group-addon, #buyDlg .input-group-addon{
+      min-width: 80px;
+    }
+    .coinSpan{
+      min-width: 55px;
+    }
+    .lsp2{
+      letter-spacing: 1px;
+    }
+    .dashBorderBot{
+      border-bottom:1px dashed #555;
+    }
+    .lineBorderBot{
+      border-bottom:1px solid #555;
+    }
+    /*********app.css customize***********/
+    .success {
+      background-color: #2BDE73;
+    }
+    .b-success {
+      border-color: #2BDE73; }
+      .text-success,
+      .text-success-hover a:hover {
+        color: #2BDE73 !important; }
+    .text-xs,.text-xs tr td{
+          font-size: 0.3rem !important;
+        }
+    	.listTips{
+    				margin-top: 80px;
+            list-style: none;
+        }
+      #tbl{
+      	margin-top: 58px;
+      }
+      .finger{
+            cursor: pointer;
+        }
+      </style>
+    </head>
+    <body >
+      <div class="app" id="app">
+        <!-- ############ LAYOUT START-->
+
+        <!-- aside -->
+        <div id="aside" class="app-aside modal navside folded show-text w-xs">
+         <!-- fluid app aside -->
+         <div class="left navside dark" layout="column">
+           <div class="navbar no-radius">
+            <!-- brand -->
+            <a class="navbar-brand">
+             <img src="./logo/logo.png" alt=".">
+             
+           </a>
+           <!-- / brand -->
+         </div>
+         <div flex class="hide-scroll">
+          <nav class="scroll nav-light">
+
+            <ul class="nav" ui-nav>
+              <li class="nav-header hidden-folded">
+                <small class="text-muted">主要</small>
+              </li>
+
+              <li>
+                <a href="index.html" >
+                  <span class="nav-icon">
+                    <i class="material-icons">&#xe24b;
+                      <span ui-include="'../assets/images/i_0.svg'"></span>
+                    </i>
+                  </span>
+                  <span class="nav-text">资产</span>
+                </a>
+              </li>
+               <li>
+                <a href="trade.html" >
+                  <span class="nav-icon">
+                    <i class="material-icons">&#xe24b;
+                      <span ui-include="'../assets/images/i_0.svg'"></span>
+                    </i>
+                  </span>
+                  <span class="nav-text">行情</span>
+                </a>
+              </li>  
+			   			<li class="primary">
+                <a href="exchange.html" >
+                  <span class="nav-icon">
+                    <i class="material-icons">&#xe24b;
+                      <span ui-include="'../assets/images/i_0.svg'"></span>
+                    </i>
+                  </span>
+                  <span class="nav-text">币币兑换</span>
+                </a>
+              </li>
+               <li >
+                <a href="my.api.html" >
+                  <span class="nav-icon">
+                    <i class="material-icons">&#xe84f;
+                      <span ui-include="'../assets/images/i_0.svg'"></span>
+                    </i>
+                  </span>
+                  <span class="nav-text">交易所</span>
+                </a>
+              </li>
+              <li>
+                <a href="master.html" >
+                  <span class="nav-icon">
+                    <i class="material-icons">&#xe7fc;
+                      <span ui-include="'../assets/images/i_0.svg'"></span>
+                    </i>
+                  </span>
+                  <span class="nav-text">大师</span>
+                </a>
+              </li>
+               <li>
+                <a href="smartOrder.html">
+                  <span class="nav-caret">
+                    <i class="fa fa-caret-down"></i>
+                  </span>
+                  <span class="nav-label">
+                    <b class="label rounded label-sm primary"></b>
+                  </span>
+                  <span class="nav-icon">
+                    <i class="material-icons">&#xe896;
+                      <span ui-include="'../assets/images/i_1.svg'"></span>
+                    </i>
+                  </span>
+                  <span class="nav-text">订单</span>
+                </a>
+                <ul class="nav-sub">
+                  <li>
+                    <a>
+                      <span class="nav-text">自动买卖</span>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="order.history.html" >
+                      <span class="nav-text">订单历史</span>
+                    </a>
+                  </li>
+
+                </ul>
+              </li>
+              <li>
+                <a href="my.account.html" >
+                  <span class="nav-icon">
+                    <i class="material-icons">&#xe8e8;
+                      <span ui-include="'../assets/images/i_0.svg'"></span>
+                    </i>
+                  </span>
+                  <span class="nav-text">帐户</span>
+                </a>
+              </li>
+
+              <li>
+                <a href="#" >
+                 <span class="nav-icon">
+                  <i class="material-icons">&#xe8fd;
+                    <span ui-include="'../assets/images/i_0.svg'"></span>
+                  </i>
+                </span>
+                <span class="nav-text">帮助</span>
+              </a>
+            </li>
+
+          </ul>
+        </nav>
+      </div>
+      <div flex-no-shrink class="b-t">
+        <div class="nav-fold">
+         <a onclick="logOut()" >
+           <span class="nav-icon">
+            <i class="material-icons">&#xe8ac;
+              <span ui-include="'../assets/images/i_0.svg'"></span>
+            </i>
+          </span>
+          <span class="nav-text">退出</span>
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- / -->
+
+<!-- content -->
+<div id="content" class="app-content box-shadow-z0" role="main">
+  <div class="app-header white box-shadow ">
+    <div class="navbar">
+      <!-- Open side - Naviation on mobile -->
+      <a data-toggle="modal" data-target="#aside" class="navbar-item pull-left hidden-lg-up">
+        <i class="material-icons">&#xe5d2;</i>
+      </a>
+      <!-- / -->
+      
+      <!-- Page title - Bind to $state's title -->
+      <div class="navbar-item pull-left h5 p-l-sm hidden-folded hidden-lg-down text-muted" ng-bind="$state.current.data.title" id="pageTitle">币币兑换</div>
+      <div class="text-right finger" style="padding-top:1rem;"><a href="exchangelist.html">兑换列表</a></div>
+      <!-- / navbar collapse -->
+    </div>
+  </div>
+   <div class="row">
+    <div class="col-12">
+    	<table id="tbl" class="table toggle-circle" data-page-size="7">
+	        <thead>
+	            <tr>
+	                <th class="text-center" colspan="3">
+	                    <h3>请点击图标切换币种</h3>
+	                </th>
+	            </tr>
+	            <tr>
+	                <td class="text-center">存入</td>
+	                <td></td>
+	                <td class="text-center">兑换</td>
+	            </tr>
+	        </thead>
+	        <tbody class="supportCoin">
+	            <tr class="text-center">
+	                <td>
+	                    <img id="ex1" data-toggle="modal" data-target="#myModal" src="https://shapeshift.io/images/coins/basicattentiontoken.png" class="finger">
+	                </td>
+	                <td>
+	                    <img src="logo/exchange.png"></i>
+	                </td>       
+	                <td>
+	                    <img id="ex2" data-toggle="modal" data-target="#myModal2" src="https://shapeshift.io/images/coins/aragon.png" class="finger">
+	                </td>  
+	            </tr>
+	            <tr>
+	                <td class="text-center">
+	                    <span id="mycount">1</span>
+	                    <span id="mysymbol">BAT</span>
+	                </td>
+	                <td class="text-center">
+	                    	<img src="logo/equal.png" />
+	                </td>
+	                <td class="text-center">
+	                    <span id="exchangecount"></span>
+	                    <span id="exchangesymbol">ANT</span>
+	                </td>
+	            </tr>
+	            <tr>
+	                <td></td>
+	                <td class="text-center">
+	                    <button id="Next" class="btn btn-info">下一步</button>
+	                </td>
+	                <td></td>
+	            </tr>
+	        </tbody>
+	    </table>
+	    <ul class="listTips">
+	        <li>提示:币币兑换流程</li>
+	        <li>第一步:选择币,查看兑换汇率</li>
+	        <li>第二步:输入接收地址,失败退币地址</li>
+	        <li>第三步:存入币到指定地址,等待自动兑换</li>
+	    </ul>
+  	</div>
+  </div>
+  <div class="app-footer">
+    <div class="p-a text-sm">
+      <div class="pull-right text-muted">
+        &copy; Copyright <strong>飞特币</strong> <span class="hidden-xs-down">v0.1.1</span>
+        <a ui-scroll-to="content"><i class="fa fa-long-arrow-up p-x-sm"></i></a>
+      </div>
+      <div class="nav p-l-sm">
+        <a class="nav-link" href="about.html">关于我们</a> 
+        <a class="nav-link p-l-sm" href="contact.html">在线客服</a>
+      </div>
+    </div>
+  </div>
+<!-- / -->
+<!-- small modal -->
+<div id="msgDlg" class="modal" data-backdrop="true">
+  <div class="row-col h-v">
+    <div class="row-cell v-m">
+      <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+          <div class="modal-header">
+          	<h5 class="modal-title">提示</h5>
+          </div>
+          <div class="modal-body text-center p-lg">
+            <p id='msgTips'></p>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn info p-x-md" data-dismiss="modal">OK</button>
+          </div>
+        </div><!-- /.modal-content -->
+      </div>
+    </div>
+  </div>
+</div>
+
+	<!-- 模态框（Modal） -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+					&times;
+				</button>
+				<h4 class="modal-title" id="myModalLabel">
+					请选择要兑换的币种
+				</h4>
+			</div>
+				<div class="row">
+    			<div id="allCoin" class="col-12 text-center">
+    				
+    			</div>
+    		</div>
+			</div>
+		</div><!-- /.modal-content -->
+	</div><!-- /.modal -->
+</div>
+
+
+<div class="modal fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+					&times;
+				</button>
+				<h4 class="modal-title" id="myModalLabel">
+					请选择要兑换的币种
+				</h4>
+			</div>
+				<div class="row">
+    			<div id="allCoin2" class="col-12 text-center">
+    				
+    			</div>
+    		</div>
+			</div>
+		</div><!-- /.modal-content -->
+	</div><!-- /.modal -->
+</div>
+
+</div>
+
+<!-- build:js ././scripts/app.html.js -->
+<!-- jQuery -->
+  <script src="../libs/jquery/jquery/dist/jquery.js"></script>
+  <!-- Bootstrap -->
+  <script src="../libs/jquery/tether/dist/js/tether.min.js"></script>
+  <script src="../libs/jquery/bootstrap/dist/js/bootstrap.js"></script>
+
+  
+  <script src="../libs/jquery/jQuery-Storage-API/jquery.storageapi.min.js"></script>
+  <script src="../libs/jquery/PACE/pace.min.js"></script>
+
+  <script src="scripts/config.lazyload.js"></script>
+
+  <script src="scripts/palette.js"></script>
+  <script src="scripts/ui-load.js"></script>
+  <script src="scripts/ui-jp.js"></script>
+  
+  <script src="scripts/ui-device.js"></script>
+  <script src="scripts/ui-form.js"></script>
+  <script src="scripts/ui-nav.js"></script>
+  <script src="scripts/ui-screenfull.js"></script>
+  <script src="scripts/ui-scroll-to.js"></script>
+  <script src="scripts/ui-toggle-class.js"></script>
+ 
+  <!-- ajax -->
+  <script src="../libs/jquery/jquery-pjax/jquery.pjax.js"></script>
+  <script src="scripts/ajax.js"></script>
+  <script src="./scripts/index.js"></script>
+  <script src="./scripts/common.js"></script>
+<script type="text/javascript">
+/*   $(document).ready(function() {
+
+    var pf = getStorageJson(PLATFORM);
+    $('.nav-link').removeClass('active');
+    $('.'+pf).addClass('active');
+
+    if (isLogin()) {
+
+      returnCompleteBalances();
+
+      setInterval(returnTicker, 2000);
+
+      setTimeout(returnMyTradeHistory,1200);
+
+      //setInterval(returnExchanges, 20000);
+    } else {
+      window.location.href='signin.html';
+    }
+
+    if(isMobile.any()) {
+     $('.hidden-md-down').empty();
+     $('#tikerList tbody').css('height:350px');
+   }
+
+ });
+   */
+ $("#Next").click(function(){
+ 	var ex1Address = $("#ex1").attr("src");
+ 	var ex2Address = $("#ex2").attr("src");
+ 	localStorage.setItem("mycoin",ex1Address);
+ 	localStorage.setItem("excoin",ex2Address);
+  	window.location.href="exchangeTwo.html";
+  });
+  
+  function setSellQty() {
+   $('#sellAmt').val($('#mySellCoinQty').text());
+   var rate = parseFloat($('#sellRate').val());
+   var amt = parseFloat($('#sellAmt').val());
+   
+   $("#sellTotalQty").val((rate*amt).toFixed(8));
+   calcuSellProfit();
+ }
+ 
+ function setBuyQty() {
+  $('#buyTotalQty').val($('#myBuyBtcQty').text());
+  var qty = parseFloat($('#buyTotalQty').val());
+  var rate = parseFloat($("#buyRate").val());
+  
+  $("#buyAmt").val((qty/rate).toFixed(8));
+}
+
+function setBuyRate() {
+  $('#buyRate').val($('#buyPriceRate').text());
+  var rate = parseFloat($('#buyRate').val());
+  var amt = parseFloat($("#buyAmt").val());
+  
+  $("#buyTotalQty").val(rate*amt);
+}
+
+function setSellRate() {
+  $('#sellRate').val($('#sellPriceRate').text());
+  var rate = parseFloat($('#sellRate').val());
+  var amt = parseFloat($("#sellAmt").val());
+  
+  $("#sellTotalQty").val((rate*amt).toFixed(8));
+  
+  calcuSellProfit();
+}
+
+$("#buyRate").bind("propertychange input",function(){
+  var rate = parseFloat($(this).val());
+  var amt = parseFloat($("#buyAmt").val());
+  
+  $("#buyTotalQty").val((rate*amt).toFixed(8));
+});
+
+$("#buyTotalQty").bind("propertychange input",function(){
+  var qty = parseFloat($(this).val());
+  var rate = parseFloat($("#buyRate").val());
+  
+  $("#buyAmt").val((qty/rate).toFixed(8));
+});
+
+$("#buyAmt").bind("propertychange input",function(){
+  var rate = parseFloat($('#buyRate').val());
+  var amt = parseFloat($(this).val());
+  
+  $("#buyTotalQty").val((rate*amt).toFixed(8));
+});
+
+$("#sellRate").bind("propertychange input",function(){
+  var rate = parseFloat($(this).val());
+  var amt = parseFloat($("#sellAmt").val());
+  
+  $("#sellTotalQty").val((rate*amt).toFixed(8));
+  
+  calcuSellProfit();
+});
+
+$("#sellTotalQty").bind("propertychange input",function(){
+  var qty = parseFloat($(this).val());
+  var rate = parseFloat($('#sellRate').val());
+  
+  $("#sellAmt").val((qty/rate).toFixed(8));
+  
+  calcuSellProfit();
+});
+
+$("#sellAmt").bind("propertychange input",function(){
+  var rate = parseFloat($('#sellRate').val());
+  var amt = parseFloat($(this).val());
+  
+  $("#sellTotalQty").val((rate*amt).toFixed(8));
+  
+  calcuSellProfit();
+});
+
+$(".sellInput").change(function(){
+  calcuSellProfit();
+});
+
+function calcuSellProfit() {
+  var boughtAvgPrice = $('#BTC_'+$('#sellCoinName').text()+'_vrate').text();
+  var sellRate = parseFloat($('#sellRate').val());
+  var sellQty = $("#sellAmt").val();
+  sellQty = sellQty==''?'0':sellQty;
+  boughtAvgPrice = parseFloat(boughtAvgPrice).toFixed(8);
+  sellQty = parseFloat(sellQty).toFixed(8);
+
+  var profit = ((sellRate-boughtAvgPrice)*sellQty).toFixed(8);
+  $('#sellProfit').html(profit);
+  if (profit>0) {
+    $('#sellProfit').addClass('text-success').removeClass('text-danger');
+  }else if (profit<0){
+    $('#sellProfit').addClass('text-danger').removeClass('text-success');
+  }else{
+   $('#sellProfit').removeClass('text-danger').removeClass('text-success');
+ }
+}
+
+function getSrcandSymbol(data){
+	var src = $(data).attr("src");
+	var symbol = $(data).attr("id");
+	$("#ex1").attr('src',src);
+	$("#mysymbol").html(symbol);
+	getRate();
+	$("#myModal").modal("hide");
+}
+
+function getSrcandSymbol2(data){
+	var src = $(data).attr("src");
+	var symbol = $(data).attr("id");
+	$("#ex2").attr('src',src);
+	$("#exchangesymbol").html(symbol);
+	getRate();
+	$("#myModal2").modal("hide");
+}
+
+$.ajax({
+	type:"get",
+	url:"https://cors.shapeshift.io/getcoins",
+	data:{},
+	dataType:'jsonp',
+	success:function(data){
+		var json = new Array();
+		for(index in data){
+			json.push(data[index]);
+		}
+		for (var i=0;i<json.length;i++) {
+		var html = "<div class='text-center' style='padding:1rem;display:inline-block;'><img class='finger' onclick='getSrcandSymbol(this)' style='display:block;width:5rem;height:5rem;' src='"+json[i].image+"'id='"+json[i].symbol+"'/>"+json[i].symbol+"</div>";
+		var html2 = "<div class='text-center' style='padding:1rem;display:inline-block;'><img class='finger' onclick='getSrcandSymbol2(this)' style='display:block;width:5rem;height:5rem;' src='"+json[i].image+"'id='"+json[i].symbol+"'/>"+json[i].symbol+"</div>";
+		$("#allCoin").append(html);
+		$("#allCoin2").append(html2);
+		}
+		localStorage.setItem("supportCoin",JSON.stringify(data));
+	}
+});
+var exchangeCoin = $("#mysymbol").html()+"_"+$("#exchangesymbol").html();
+function getRate(){
+	var exchangeCoin = $("#mysymbol").html()+"_"+$("#exchangesymbol").html();
+		$.ajax({
+			type:"get",
+			url:"https://cors.shapeshift.io/rate/"+exchangeCoin,
+			data:{},
+			dataType:'json',
+			success:function(data){
+				if(data.error!=null){
+					$("#Next").attr("disabled",true);
+					$("#exchangecount").html("--/--")
+				}else{
+				$("#Next").removeAttr("disabled");
+				localStorage.setItem("exchangeCoin",JSON.stringify(data));
+				$("#exchangecount").html(data.rate);
+				}
+			}
+		});
+}
+getRate();
+</script>
+<!-- endbuild -->
+</body>
+</html>
