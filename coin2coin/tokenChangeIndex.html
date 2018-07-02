@@ -1,0 +1,685 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="utf-8"/>
+<title>飞特币－钱包</title>
+<meta name="description" content="社交化加密币投顾平台"/>
+<meta name="keywords" content="比特币, 飞特币, 飞特币, 以太坊, 虚拟币, 加密币，量子链, 区块链, 钱包, 跨链"/>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimal-ui"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<!-- for ios 7 style, multi-resolution icon of 152x152 -->
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-barstyle" content="black-translucent">
+<link rel="apple-touch-icon" href="../assets/images/logo.png">
+<meta name="apple-mobile-web-app-title" content="Feitebi">
+<!-- for Chrome on Android, multi-resolution icon of 196x196 -->
+<meta name="mobile-web-app-capable" content="yes">
+<link rel="shortcut icon" sizes="196x196" href="../assets/images/logo.png">
+<!-- style -->
+<link rel="stylesheet" href="../assets/animate.css/animate.min.css" type="text/css"/>
+<link rel="stylesheet" href="../assets/glyphicons/glyphicons.css" type="text/css"/>
+<link rel="stylesheet" href="../assets/font-awesome/css/font-awesome.min.css" type="text/css"/>
+<link rel="stylesheet" href="../assets/material-design-icons/material-design-icons.css" type="text/css"/>
+<link rel="stylesheet" href="../assets/bootstrap/dist/css/bootstrap.min.css" type="text/css"/>
+<!-- build:css ../assets/styles/app.min.css -->
+<link rel="stylesheet" href="../assets/styles/app.css" type="text/css"/>
+<!-- endbuild -->
+<link rel="stylesheet" href="../assets/styles/font.css" type="text/css"/>
+<style>
+    span.logo{font-size: 16px;font-weight: 400}.paddingTop10{padding-top: 8px}.navbar-brand{font-weight: 200}
+    .wh120{width: 120px;height: 120px}.wh64{width: 64px;height: 64px} @media (min-width: 769px) {.push-left-160 {padding-left:160px !important; } }
+
+    .fa-exchange:before{
+      font-size:25px;
+    }
+    
+    /*中间兑换图*/
+    #maddleExIconBox{
+        padding-top: 49px;
+    }
+    #ulBox{
+          height: 467px;
+        }
+    .padding{
+        padding-top: 6px;
+    }
+    @media screen and (max-width: 678px) {
+        #maddleExIcon{
+            width: 40px;
+            padding-top: 10px;
+        }
+        #ulBox{
+          height: 467px;
+        }
+    }
+</style>
+</head>
+<body>
+<div class="app" id="app">
+  <div id="aside" class="app-aside modal fade nav-dropdown">
+    <div class="left navside dark dk" layout="column">
+      <div class="navbar no-radius">
+        <!-- brand -->
+        <a class="navbar-brand">
+        <img src='./images/logo-c.png'/> 飞特币
+        </a>
+        <!-- / brand -->
+      </div>
+      <div flex class="hide-scroll">
+        <nav class="scroll nav-light">
+        <ul class="nav listLi" ui-nav>
+         <!--  <li>
+            <a href="asset.html" >
+              <span class="nav-icon">
+                <i class="material-icons">&#xe8b9;
+                  <span ui-include="'../assets/images/i_3.svg'"></span>
+                </i>
+              </span>
+              <span class="nav-text">资产查询</span>
+            </a>
+          </li> -->
+          <li>
+            <a href="./tokenChangeIndex.html">
+              <span class="nav-icon">
+                <i class="material-icons">&#xe850;
+                  <span ui-include="'../assets/images/i_0.svg'"></span>
+                </i>
+              </span>
+              <span class="nav-text">币币兑换</span>
+            </a>
+          </li>
+          
+        </ul>
+        </nav>
+      </div>
+      <div flex-no-shrink>
+        <nav ui-nav>
+       <!--  <ul class="nav">
+          <li>
+          <div class="b-b b m-t-sm">
+          </div>
+          </li>
+          <li class="no-bg">
+          <a href="javascript:void()" onclick="logout()">
+          <span class="nav-icon">
+          <i class="material-icons">&#xe8ac;</i>
+          </span>
+          <span class="nav-text">退出</span>
+          </a>
+          </li>
+        </ul> -->
+        </nav>
+      </div>
+    </div>
+  </div>
+  <!-- content -->
+  <div id="content" class="app-content box-shadow-z0" role="main">
+    <div class="app-header white box-shadow">
+      <div class="navbar" style="padding-right: 0">
+        <!-- Open side - Naviation on mobile -->
+        <a data-toggle="modal" data-target="#aside" class="navbar-item pull-left hidden-lg-up">
+        <i class="material-icons">&#xe5d2;</i>
+        </a>
+        <!-- / -->
+        
+        <div class="navbar-item h6" ng-bind="$state.current.data.title" id="pageTitle">
+             <div class="pull-left">币币兑换</div>
+             <div class="pull-right">
+               <span id="goList" style="font-size: 13px">
+               清单列表</span>
+             </div>
+        </div>
+      </div>
+    </div>
+    <div ui-view class="app-body" id="view">
+      <div class="padding">
+        <div class="container">
+          <div class="row">
+            <div class="col-xs-12 col-md-12 page-header text-center b-b">
+               <h6 class="p-t-md p-b-md">
+                  请选择要兑换的币种
+               </h6>
+            </div>
+            
+            <div class="col-xs-12 col-md-12">
+              <div class="col-xs-5 col-md-3 col-md-offset-2 text-center" id="selectLeft">
+                  <div class="form-group">
+                      <label for="single" class="p-t-md p-b-sm">现有</label>
+                      <select id="single" class="form-control select2 choose1" ui-jp="select2" ui-options="{theme: 'bootstrap'}">
+                          <option value=""></option>
+                          
+                      </select>
+                  </div>
+              </div>
+              <div class="col-xs-2 col-md-2 text-center">
+                  <div id="maddleExIconBox">
+                      <img src="logo/exchange.png" id="maddleExIcon"></i>
+                  </div>
+              </div>
+              <div class="col-xs-5 col-md-3 text-center" id="selectRight">
+                  <div class="form-group">
+                      <label for="single" class="p-t-md p-b-sm">换得</label>
+                      <select id="single" class="form-control select2 choose2" ui-jp="select2" ui-options="{theme: 'bootstrap'}">
+                          <option value=""></option>
+                      </select>
+                  </div>
+              </div>
+            </div>
+            <div class="col-xs-12 col-md-12 text-center p-t-md">
+                <button class="btn btn-fw btn-md grey-400" id="getRateNow" style="width: 150px;" disabled="disabled">获取汇率</button>
+            </div>
+          </div>
+         
+          
+          <!-- 币币兑换商 -->
+          <div class="row m-t-md">
+            <div class="col-md-8 col-md-offset-2 p-t-md">
+                <div class="box" id="ulBox" style="visibility: hidden;">
+
+                  <ul class="list inset m-a-0">
+                   
+                  </ul>
+                </div>
+            </div>
+          </div>
+          
+          <!-- 合作伙伴 -->
+          <div class="row p-t-lg" id="footer">
+              <div class="col-xs-12 col-md-12 text-center p-t-lg p-b-md">
+                <p class="h4">合作伙伴</p>
+              </div>
+              <div class="col-xs-6 col-md-2 col-md-offset-2 text-center">
+                  <img src="./svg/changelly.svg" style="width: 120px;">
+              </div>
+              <div class="col-xs-6 col-md-2 text-center">
+                 <img src="./svg/shapeshift.svg" style="width: 120px;">
+              </div>
+              <div class="col-xs-6 col-md-2 text-center" style="line-height: 90px;">
+                 <img src="./svg/apple-icon-180x180.png" style="height: 40px;">
+              </div>
+              <div class="col-xs-6 col-md-2 text-center" style="line-height: 90px;">
+                 <img src="./svg/changer.png" style="width: 120px;">
+              </div>
+          </div>
+          <div class="row">
+            <hr>
+            <div class="col-md-8 col-md-offset-2 text-center" style="color: grey;font-size: 10px;">
+                <p class="">币币兑换，是飞特平台的智能搬砖重要部分，旨在免费帮助用户挑选价格最高的承兑商，目前已经对接的知名承兑商，包括shapshift，changelly等，同时本应用是去中心化的Dapp，不会往服务器端发送/存储任何订单信息，也不会收取额外的手续费，如遇兑换超时或者失败，请记录您的订单号，与兑换商或官方客服联系。</p>
+                <p>特此声明：如果是用户自己输入错误的接收地址，或者发送到错误的兑币地址，导致币的丢失，责任自担！</p>
+            </div>
+          </div>
+        </div>
+        
+      </div>
+    </div>
+    
+  </div>
+  <!-- ############ LAYOUT END-->
+</div>
+
+<!-- small modal -->
+<div id="m-sm" class="modal" data-backdrop="true">
+  <div class="row-col h-v">
+    <div class="row-cell v-m">
+      <div class="modal-dialog modal-sm">
+        <div class="modal-content" style="width: 200px;margin: 0 auto;">
+          <div class="modal-header text-center">
+            <h5 class="modal-title">加载中....</h5>
+          </div>
+          
+        </div><!-- /.modal-content -->
+      </div>
+    </div>
+  </div>
+</div>
+<!-- / .modal -->
+
+<!-- build:js scripts/app.html.js --><!-- jQuery -->
+<script src="../libs/jquery/jquery/dist/jquery.js"></script>
+<!-- Bootstrap -->
+<script src="../libs/jquery/tether/dist/js/tether.min.js"></script>
+<script src="../libs/jquery/bootstrap/dist/js/bootstrap.js"></script>
+<script src="scripts/common.js?v=1.0.0.2892"></script>
+<!-- =========================框架文件===================== -->
+<!-- build:js scripts/app.html.js -->
+<!-- jQuery -->
+  <script src="../libs/jquery/jquery/dist/jquery.js"></script>
+<!-- Bootstrap -->
+  <script src="../libs/jquery/tether/dist/js/tether.min.js"></script>
+  <script src="../libs/jquery/bootstrap/dist/js/bootstrap.js"></script>
+<!-- core -->
+  <script src="../libs/jquery/underscore/underscore-min.js"></script>
+  <script src="../libs/jquery/jQuery-Storage-API/jquery.storageapi.min.js"></script>
+  <script src="../libs/jquery/PACE/pace.min.js"></script>
+
+  <script src="scripts/config.lazyload.js"></script>
+
+  <script src="scripts/palette.js"></script>
+  <script src="scripts/ui-load.js"></script>
+  <script src="scripts/ui-jp.js"></script>
+  <script src="scripts/ui-include.js"></script>
+  <script src="scripts/ui-device.js"></script>
+  <script src="scripts/ui-form.js"></script>
+  <script src="scripts/ui-nav.js"></script>
+  <script src="scripts/ui-screenfull.js"></script>
+  <script src="scripts/ui-scroll-to.js"></script>
+  <script src="scripts/ui-toggle-class.js"></script>
+
+  <script src="scripts/app.js"></script>
+
+  <!-- ajax -->
+  <script src="../libs/jquery/jquery-pjax/jquery.pjax.js"></script>
+
+
+<script type="text/javascript">
+
+//清单列表
+$('#goList').on('mouseover',function(){
+    $(this).css('cursor','pointer');
+});
+$('#goList').on('click',function(){
+    location.href = './tokenChangeIndexList.html';
+});
+
+var changellyArr1 = ["BTC","BCN","XDN","FCN","ETH","DASH","NXT","RADS","FCT","LSK","EXP","STEEM","STRAT","NLG","ZEC","ZCL","GAME","USDT","SWT","MLN","DGD","TIME","PIVX","EDG","WINGS","DAR","GUP","SYS","BAT","ANT","SNT","PAY","EOS","NEO","OMG","MCO","MTL","STORJ","CFI","HMQ","NMR","SALT","BTG","DCT","VIB","CL","ATL","TRX","STX","SNM","NGC","BNB","ZEN","IOST","WTC","ZIL","BTCP","LTC","XMR","QCN","DSH","DOGE","NBT","XRP","AEON","MAID","AMP","ETC","XEM","LBC","ARDR","REP","NAV","POT","GNT","WAVES","GOLOS","SNGLS","XAUR","TRST","RLC","GBYTE","GNO","DCR","STR","LUN","BNT","CVC","QTUM-I","BCH","1ST","ADX","ZRX","DCT","PTOY","TKN","FUN","MYST","XVG","DGB","RCN","POWR","VEN","PPT","CTR","KMD","XMO","WAX","BRD","DCN","NOAH","AE","AION","ELF","ARK","ARN"];
+var changellyArr2 = ["Bitcoin","Bytecoin","DigitalNote","Fantomcoin","Ethereum","Dash","Next","Radium","Factom","Lisk","Expanse","Steem","Stratis","Gulden","Zcash","Zclassic","GameCredits","Tether","Swarm","Melon","DIGIX","Time","PIVX","Edgeless","Wings","Dar","Gup","Syscoin","Bat","Aragon","Status","TenXPay","EOS","NEO","OMG","Monaco","Metal","Storj","CFI","Humaniq","Numeraire","Salt","Bitcoin","District0x","Viberate","Coinlancer","Atlant","Tron","Stox","SONM","NAGA","Binance","Zencash","IOStoken","Waltonchain","Zilliqa","Bitcoin","Litecoin","Monero","QuazarCoin","Dashcoin","Dogecoin","NuBits","Ripple","Aeon","Maid","Synereo","Ethereum","Nem","LBRY","ARDR","Augur","NAV","PotCoin","Golem","Waves","Golos","Sngls","Xaurum","Trust","RLC","Byteball","Gnosis","Decred","Stellar","Lunyr","Bancor","Civic","Qtum","Bitcoin","FirstBlood","AdEx","ZRXToken","Decent","Patientory","TokenCard","FunFair","Mysterium","Verge","DigiByte","Ripio","Power","VeChain","Populos","Centra","Komodo","Monero","WAX","Bread","Dentacoin","Noah","Aeternity","Aion","Aelf","Ark","Aeron"];
+
+//组合数组
+var changellyArr3 = [];
+for (var i = 0; i < changellyArr1.length; i++) {
+    var obj = {
+        "name":changellyArr1[i],
+        "FullName":changellyArr2[i],
+    }
+    changellyArr3.push(obj);
+}
+
+for (var i = 0; i < changellyArr1.length; i++) {
+    var option = $(`
+      <option value='${changellyArr1[i]}'>
+            ${changellyArr1[i]} - ${changellyArr2[i]}
+      </option>
+      `);
+    $(".choose1").append(option);
+}
+for (var i = 0; i < changellyArr1.length; i++) {
+    var option = $(`
+      <option value='${changellyArr1[i]}'>
+            ${changellyArr1[i]} - ${changellyArr2[i]}
+      </option>
+      `);
+    $(".choose2").append(option);
+}
+
+var choose1name = "";
+var choose2name = "";
+var choose1nameFull = "";
+var choose2nameFull = "";
+
+//判断下拉选择是否禁用
+$("#selectLeft #single").change(function(){
+    //左下拉
+    if ($(this).val()&&$("#selectRight #single").val()) {
+        $("#getRateNow").removeClass('grey-400');
+        $("#getRateNow").removeAttr('disabled')
+        $("#getRateNow").addClass('blue-600');
+    }else{
+        $("#getRateNow").removeClass('blue-600');
+        $("#getRateNow").attr('disabled');
+        $("#getRateNow").addClass('grey-400');
+    }
+})
+$("#selectRight #single").change(function(){
+    //右下拉
+    if ($(this).val()&&$("#selectLeft #single").val()) {
+        $("#getRateNow").removeClass('grey-400');
+        $("#getRateNow").removeAttr('disabled')
+        $("#getRateNow").addClass('blue-600');
+    }else{
+        $("#getRateNow").removeClass('blue-600');
+        $("#getRateNow").attr('disabled');
+        $("#getRateNow").addClass('grey-400');
+    }
+})
+
+
+
+//获取当前汇率币种
+$('#getRateNow').click(function(){
+
+    $("#ulBox .list-item").remove();//每次載入刪除之前的DOM
+    $("#m-sm").modal('show'); //模态框加载...
+    choose1name = $(".choose1").val();
+    choose2name = $(".choose2").val();
+    for (var i = 0; i < changellyArr3.length; i++) {
+        if (choose1name==changellyArr3[i].name) {
+          choose1nameFull = changellyArr3[i].FullName;
+        }
+        if (choose2name==changellyArr3[i].name) {
+          choose2nameFull = changellyArr3[i].FullName;
+        }
+    };
+
+    //ajax加载汇率
+    changellyAjax(choose1name,choose2name);
+    shapeshiftAjax(choose1name,choose2name);
+    
+
+        //排序 Best Rate
+        function compare(property){  //对象排序函数
+            return function(a,b){
+                var value1 = a[property];
+                var value2 = b[property];
+                return value2 - value1;
+            }
+        }
+
+
+        var RateArr = [];
+        var changellyObj = {
+            //sizes:localStorage.getItem("AjaxChangellyData"),//等同 changellyToNum
+            id:"changellyObj",
+            errorId:"ChangellyError",
+            nextId:"changellyNext",
+            exName:"Changelly",
+            exNameId:"ChangellyTitle",
+            From:"From",
+            To:"To",
+            FromImgId:"changellyFromImg",
+            ToImgId:"changellyToImg",
+            FromImg:"./tokenSvg/"+choose1name+".svg",
+            ToImg:"./tokenSvg/"+choose2name+".svg",
+            FromNum:1,
+            FromSymbolId:"changellyFromSymbol",
+            ToSymbolId:"changellyToSymbol",
+            FromSymbol:choose1name,
+            ToSymbol:choose2name,
+            FromFullname:choose1nameFull,
+            ToFullname:choose2nameFull,
+            rateNameId:"changellyRate"
+        };
+        var shapeshiftObj = {
+            //sizes:localStorage.getItem("AjaxShapeshiftData"),//等同 shapeshiftToNum
+            id:"shapeshiftObj",
+            errorId:"ShapeshiftError",
+            nextId:"shapeshiftNext",
+            exName:"Shapeshift",
+            exNameId:"ShapeshiftTitle",
+            From:"From",
+            To:"To",
+            FromImgId:"shapeshiftFromImg",
+            ToImgId:"shapeshiftToImg",
+            FromImg:"./tokenSvg/"+choose1name+".svg",
+            ToImg:"./tokenSvg/"+choose2name+".svg",
+            FromNum:1,
+            FromSymbolId:"shapeshiftFromSymbol",
+            ToSymbolId:"shapeshiftToSymbol",
+            FromSymbol:choose1name,
+            ToSymbol:choose2name,
+            FromFullname:choose1nameFull,
+            ToFullname:choose2nameFull,
+            rateNameId:"shapeshiftRate"
+        };
+        RateArr.push(changellyObj);
+        RateArr.push(shapeshiftObj);
+        RateArr.sort(compare('sizes')); //对象类数组排序
+
+
+        //排序后 加载html
+        for (var i = 0; i < RateArr.length; i++) {
+            if (i==0) {
+                var html = $(`
+                    <li href class="list-item p-b-md" id="${RateArr[i].id}">
+                          <div class="row">
+                              <div class="col-xs-12 col-md-12">
+                                  <div class="row">
+                                      <div class="col-xs-4 col-md-4"></div>
+                                      <div class="col-xs-4 col-md-4 text-center">
+                                        <div class="text-info">
+                                            <h4 id="${RateArr[i].exNameId}">${RateArr[i].exName}</h4>
+                                        </div>
+                                      </div>
+                                      <div class="col-xs-4 col-md-4">
+                                          <div class="pull-right text-danger">
+                                            <span>最优汇率</span>
+                                            <i class="fa fa-check-circle"></i>
+                                          </div>
+                                      </div>
+                                  </div>
+                              </div>
+
+                              <div class="col-xs-12 col-md-12 text-center">
+                                  <div class="p-t-sm">
+                                      <div class="col-xs-3 col-md-3">
+                                          现有
+                                      </div>
+                                      <div class="col-xs-6 col-md-6"></div>
+                                      <div class="col-xs-3 col-md-3">
+                                          换得
+                                      </div>
+                                  </div>
+                                  <div class="p-t-sm">
+                                      <div class="col-xs-3 col-md-3">
+                                          <img id="${RateArr[i].FromImgId}" src="${RateArr[i].FromImg}" width="50px;">
+                                      </div>
+                                      <div class="col-xs-6 col-md-6">
+                                          <span id="${RateArr[i].errorId}" class="text-warning">
+                                              
+                                          </span>
+                                      </div>
+                                      <div class="col-xs-3 col-md-3">
+                                          <img id="${RateArr[i].ToImgId}" src="${RateArr[i].ToImg}" width="50px;">
+                                      </div>
+                                  </div>
+                                  <div class="p-t-sm">
+                                      <div class="col-xs-3 col-md-3">
+                                          <span>${RateArr[i].FromNum}</span>
+                                          <span id="${RateArr[i].FromSymbolId}">${RateArr[i].FromSymbol}</span>
+                                      </div>
+                                      <div class="col-xs-6 col-md-6"></div>
+                                      <div class="col-xs-3 col-md-3">
+                                          <span id="${RateArr[i].rateNameId}"></span>
+                                          <span id="${RateArr[i].ToSymbolId}">${RateArr[i].ToSymbol}</span>
+                                      </div>
+                                  </div>
+                                  <div class="p-t-sm">
+                                      <div class="col-xs-3 col-md-3">
+                                          <span>${RateArr[i].FromFullname}</span>
+                                      </div>
+                                      <div class="col-xs-6 col-md-6"></div>
+                                      <div class="col-xs-3 col-md-3">
+                                          <span>${RateArr[i].ToFullname}</span>
+                                      </div>
+                                  </div>
+                                  <div class="p-t-sm">
+                                      <div class="col-xs-3 col-md-3"></div>
+                                      <div class="col-xs-6 col-md-6">
+                                          <button class="btn btn-fw info blue-600" id="${RateArr[i].nextId}">
+                                          兑换
+                                          </button>
+                                      </div>
+                                      <div class="col-xs-3 col-md-3"></div>
+                                  </div>
+                              </div>
+                          </div>
+                    </li>
+                  `);
+            }else{
+                var html = $(`
+                    <li href class="list-item p-b-md" id="${RateArr[i].id}" style="background-color: #e7e6e6;">
+                          <div class="row">
+                              <div class="col-xs-12 col-md-12">
+                                  <div class="p-t-sm">
+                                      <div class="col-xs-4 col-md-4"></div>
+                                      <div class="col-xs-4 col-md-4 text-center">
+                                        <div class="text-info">
+                                          <h4 id="${RateArr[i].exNameId}">${RateArr[i].exName}</h4>
+                                        </div>
+                                      </div>
+                                      <div class="col-xs-4 col-md-4">
+                                          
+                                      </div>
+                                  </div>
+                              </div>
+
+                              <div class="col-xs-12 col-md-12 text-center">
+                                  <div class="p-t-sm">
+                                      <div class="col-xs-3 col-md-3">
+                                          现有
+                                      </div>
+                                      <div class="col-xs-6 col-md-6"></div>
+                                      <div class="col-xs-3 col-md-3">
+                                          换得
+                                      </div>
+                                  </div>
+                                  <div class="p-t-sm">
+                                      <div class="col-xs-3 col-md-3">
+                                          <img id="${RateArr[i].FromImgId}" src="${RateArr[i].FromImg}" width="50px;">
+                                      </div>
+                                      <div class="col-xs-6 col-md-6">
+                                          <span id="${RateArr[i].errorId}" class="text-warning">
+                                              
+                                          </span>
+                                      </div>
+                                      <div class="col-xs-3 col-md-3">
+                                          <img id="${RateArr[i].ToImgId}" src="${RateArr[i].ToImg}" width="50px;">
+                                      </div>
+                                  </div>
+                                  <div class="p-t-sm">
+                                      <div class="col-xs-3 col-md-3">
+                                          <span>${RateArr[i].FromNum}</span>
+                                          <span id="${RateArr[i].FromSymbolId}">${RateArr[i].FromSymbol}</span>
+                                      </div>
+                                      <div class="col-xs-6 col-md-6"></div>
+                                      <div class="col-xs-3 col-md-3">
+                                          <span id="${RateArr[i].rateNameId}"></span>
+                                          <span id="${RateArr[i].ToSymbolId}">${RateArr[i].ToSymbol}</span>
+                                      </div>
+                                  </div>
+                                  <div class="">
+                                      <div class="col-xs-3 col-md-3">
+                                          <span>${RateArr[i].FromFullname}</span>
+                                      </div>
+                                      <div class="col-xs-6 col-md-6"></div>
+                                      <div class="col-xs-3 col-md-3">
+                                          <span>${RateArr[i].ToFullname}</span>
+                                      </div>
+                                  </div>
+                                  <div class="p-t-sm">
+                                      <div class="col-xs-3 col-md-3"></div>
+                                      <div class="col-xs-6 col-md-6">
+                                          <button class="btn btn-outline b-black text-black" style="width: 112px;" id="${RateArr[i].nextId}">
+                                          兑换
+                                          </button>
+                                      </div>
+                                      <div class="col-xs-3 col-md-3"></div>
+                                  </div>
+                              </div>
+                          </div>
+                    </li>
+                  `);
+            }
+            //判断是否需要显示 无法兑换币种提示
+            
+
+            //$("#m-sm").modal('hide');
+            $('#ulBox').append(html);
+
+        }
+
+        // changelly兑换商Next按钮
+        $('#changellyNext').click(function(){
+            //保存图片路径
+            localStorage.setItem("changellyFromSrc",$('#changellyFromImg').attr("src"));
+            localStorage.setItem("changellyToSrc",$('#changellyToImg').attr("src"));
+            //保存代币名称
+            localStorage.setItem("changellyFromName",$('#changellyFromSymbol').html());
+            localStorage.setItem("changellyToName",$('#changellyToSymbol').html());
+            //保存兑换商名称
+            localStorage.setItem("changellyExName",$('#ChangellyTitle').html());
+            //console.log($('#changellyFromSymbol').html());
+            //console.log($('#changellyToSymbol').html());
+            //console.log($('#changellyFromImg').attr("src"));
+            //console.log($('#changellyToImg').attr("src"));
+            location.href = './changellyIndex.html';
+        });
+
+        // shapeshift 兑换商Next按钮
+        $('#shapeshiftNext').click(function(){
+            //保存图片路径
+            localStorage.setItem("shapeshiftFromSrc",$('#shapeshiftFromImg').attr("src"));
+            localStorage.setItem("shapeshiftToSrc",$('#shapeshiftToImg').attr("src"));
+            //保存代币名称
+            localStorage.setItem("shapeshiftFromName",$('#shapeshiftFromSymbol').html());
+            localStorage.setItem("shapeshiftToName",$('#shapeshiftToSymbol').html());
+            //保存兑换商名称
+            localStorage.setItem("shapeshiftExName",$('#ShapeshiftTitle').html());
+            //console.log($('#shapeshiftFromSymbol').html());
+            //console.log($('#shapeshiftToSymbol').html());
+            //console.log($('#changellyFromImg').attr("src"));
+            //console.log($('#changellyToImg').attr("src"));
+            location.href = './shapeshiftIndex.html';
+        });
+
+        $("#ulBox").css("visibility","visible");
+
+});
+
+
+// changelly 兑换商接口
+function changellyAjax(choose1,choose2){
+    $.ajax({
+        async:true,
+        type:"GET",
+        url:"/api/changelly/RateIconRPC",
+        data:{
+          Coin1:choose1,
+          Coin2:choose2
+        },
+        success:function(result){
+            console.log(result);
+            if (result.error) {
+                $("#m-sm").modal('hide'); //模态框加载...
+                $("#changellyNext").attr('disabled',true);
+                $("#ChangellyError").html('该币种无法兑换！');
+                
+            }else{
+                $("#m-sm").modal('hide'); //模态框加载...
+                $("#changellyNext").removeAttr('disabled');
+                $("#changellyRate").html(Number(result.msgRate).toFixed(8));
+                localStorage.setItem("AjaxChangellyData",result.msgRate);
+            }
+            
+        }
+    });
+}
+
+
+
+//shapeshift 兑换商接口
+function shapeshiftAjax(choose1,choose2) {
+    $.ajax({
+        async:true,
+        type:"GET",
+        url:`https://cors.shapeshift.io/rate/${choose1}_${choose2}`,
+        data:{},
+        success:function(result){
+            console.log(result);
+            if (result.error) {
+                $("#m-sm").modal('hide'); //模态框加载...
+                $("#shapeshiftNext").attr('disabled',true);
+                $("#ShapeshiftError").html('该币种无法兑换！');
+            }else{
+                $("#m-sm").modal('hide'); //模态框加载...
+                $("#shapeshiftNext").removeAttr('disabled');
+                $('#shapeshiftRate').html(Number(result.rate).toFixed(8));
+                localStorage.setItem("AjaxShapeshiftData",result.rate);
+            }
+        }
+    });
+}
+
+
+</script>
+</body>
+</html>

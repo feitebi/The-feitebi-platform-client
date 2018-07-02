@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="utf-8"/>
+<title>币币兑换</title>
+<meta name="description" content="社交化加密币投顾平台"/>
+<meta name="keywords" content="比特币, 飞特币, 飞特币, 以太坊, 虚拟币, 加密币，量子链, 区块链, 钱包, 跨链"/>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimal-ui"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<!-- for ios 7 style, multi-resolution icon of 152x152 -->
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-barstyle" content="black-translucent">
+<link rel="apple-touch-icon" href="../assets/images/logo.png">
+<meta name="apple-mobile-web-app-title" content="Feitebi">
+<!-- for Chrome on Android, multi-resolution icon of 196x196 -->
+<meta name="mobile-web-app-capable" content="yes">
+<link rel="shortcut icon" sizes="196x196" href="../assets/images/logo.png">
+<!-- style -->
+<link rel="stylesheet" href="../assets/animate.css/animate.min.css" type="text/css"/>
+<link rel="stylesheet" href="../assets/glyphicons/glyphicons.css" type="text/css"/>
+<link rel="stylesheet" href="../assets/font-awesome/css/font-awesome.min.css" type="text/css"/>
+<link rel="stylesheet" href="../assets/material-design-icons/material-design-icons.css" type="text/css"/>
+<link rel="stylesheet" href="../assets/bootstrap/dist/css/bootstrap.min.css" type="text/css"/>
+<!-- build:css ../assets/styles/app.min.css -->
+<link rel="stylesheet" href="../assets/styles/app.css" type="text/css"/>
+<!-- endbuild -->
+<link rel="stylesheet" href="../assets/styles/font.css" type="text/css"/>
+<link rel="stylesheet" type="text/css" href="./myCss.css">
+<style>
+    span.logo{font-size: 16px;font-weight: 400}.paddingTop10{padding-top: 8px}.navbar-brand{font-weight: 200}
+    .wh120{width: 120px;height: 120px}.wh64{width: 64px;height: 64px} @media (min-width: 769px) {.push-left-160 {padding-left:160px !important; } }
+
+    #tbl{
+        table-layout:fixed;
+      }
+      .address{
+        width: 19rem;
+        display: inline-block;
+      }
+      #mycoin,#exCoin{
+        width: 2rem;
+        height: 2rem;;
+      }
+</style>
+</head>
+<body>
+<div class="app" id="app">
+  <div id="aside" class="app-aside modal fade nav-dropdown">
+    <div class="left navside dark dk" layout="column">
+      <div class="navbar no-radius">
+        <!-- brand -->
+        <a class="navbar-brand">
+        <img src='./images/logo-c.png'/> 飞特币
+        </a>
+        <!-- / brand -->
+      </div>
+      <div flex class="hide-scroll">
+        <nav class="scroll nav-light">
+        <ul class="nav listLi" ui-nav>
+         <!--  <li>
+            <a href="./asset.html" >
+              <span class="nav-icon">
+                <i class="material-icons">&#xe8b9;
+                  <span ui-include="'../assets/images/i_3.svg'"></span>
+                </i>
+              </span>
+              <span class="nav-text">资产查询</span>
+            </a>
+          </li> -->
+          <li>
+            <a href="./tokenChangeIndex.html">
+              <span class="nav-icon">
+                <i class="material-icons">&#xe850;
+                  <span ui-include="'../assets/images/i_0.svg'"></span>
+                </i>
+              </span>
+              <span class="nav-text">币币兑换</span>
+            </a>
+          </li>
+          
+        </ul>
+        </nav>
+      </div>
+      <div flex-no-shrink>
+        <nav ui-nav>
+        <!-- <ul class="nav">
+          <li>
+          <div class="b-b b m-t-sm">
+          </div>
+          </li>
+          <li class="no-bg">
+          <a href="javascript:void()" onclick="logout()">
+          <span class="nav-icon">
+          <i class="material-icons">&#xe8ac;</i>
+          </span>
+          <span class="nav-text">退出</span>
+          </a>
+          </li>
+        </ul> -->
+        </nav>
+      </div>
+    </div>
+  </div>
+  <!-- content -->
+  <div id="content" class="app-content box-shadow-z0" role="main">
+    <div class="app-header white box-shadow">
+      <div class="navbar">
+        <!-- Open side - Naviation on mobile -->
+        <a data-toggle="modal" data-target="#aside" class="navbar-item pull-left hidden-lg-up">
+        <i class="material-icons">&#xe5d2;</i>
+        </a>
+        <!-- / -->
+        
+        <div class="navbar-item h6" ng-bind="$state.current.data.title" id="pageTitle">
+             币币兑换
+        </div>
+      </div>
+    </div>
+    <div ui-view class="app-body" id="view">
+      <div class="padding">
+        <div class="row">
+            <div class="col-md-12 text-center p-t-md">
+                <p class="h4" id="Ptitle">当前汇率： 1<span id="oneCoin"></span> = <span id="twoCoin"></span><span id="threeCoin"></span>
+                </p>
+            </div>
+        </div>
+        <div class="row p-t-md">
+            <div class="col-xs-4 col-md-4 text-center">
+                <span>最高限额</span>
+            </div>
+            <div class="col-xs-4 col-md-4 text-center">
+                <span>最低限额</span>
+            </div>
+            <div class="col-xs-4 col-md-4 text-center">
+                <span>矿工费</span>
+            </div>
+        </div>
+        <div class="row p-t-sm p-b-md b-b">
+            <div class="col-xs-4 col-md-4 text-center">
+                <span id="maxLimit"></span>
+            </div>
+            <div class="col-xs-4 col-md-4 text-center">
+                <span id="minimum"></span>
+            </div>
+            <div class="col-xs-4 col-md-4 text-center">
+                <span id="minerFee"></span>
+            </div>
+        </div>
+        <div class="row p-t-md">
+            <div class="col-xs-12 col-md-12 text-center">
+                <span>兑换成功接收地址</span><span id="mysymbol"></span>
+            </div>
+            <div class="col-xs-12 col-md-12 text-center">
+                <img id="mycoin" src="">
+                <span id="receiveAddress"></span>
+            </div>
+        </div>
+        <div class="row p-t-md">
+            <div class="col-xs-12 col-md-12 text-center">
+                <span>兑换失败退回地址</span><span id="exsymbol"></span>
+            </div>
+            <div class="col-xs-12 col-md-12 text-center">
+                <img id="excoin" src="" width="32">
+                <span id="returnAddress"></span>
+            </div>
+        </div>
+        <div class="row p-t-lg text-center">
+            <div class="col-md-12">
+                <button id="Prev" class="btn btn-outline b-black text-black m-r-md">上一步</button>
+                <button id="Next" class="btn blue-600">下一步</button>
+            </div>
+        </div>
+      </div>
+    </div>
+    
+  </div>
+  <!-- ############ LAYOUT END-->
+</div>
+
+<!-- small modal -->
+<div id="m-sm" class="modal" data-backdrop="true">
+  <div class="row-col h-v">
+    <div class="row-cell v-m">
+      <div class="modal-dialog modal-sm">
+        <div class="modal-content" style="width: 200px;margin: 0 auto;">
+          <div class="modal-header text-center">
+            <h5 class="modal-title">加载中....</h5>
+          </div>
+          
+        </div><!-- /.modal-content -->
+      </div>
+    </div>
+  </div>
+</div>
+<!-- / .modal -->
+
+<!-- build:js scripts/app.html.js --><!-- jQuery -->
+<script src="../libs/jquery/jquery/dist/jquery.js"></script>
+<!-- Bootstrap -->
+<script src="../libs/jquery/tether/dist/js/tether.min.js"></script>
+<script src="../libs/jquery/bootstrap/dist/js/bootstrap.js"></script>
+<script src="scripts/common.js?v=1.0.0.2892"></script>
+<script type="text/javascript">
+//上一步
+$("#Prev").click(function(){
+  window.location.href="changellyStep2.html";
+});
+
+//加载标题
+$("#oneCoin").html(localStorage.getItem("changellyFromName"));
+$("#twoCoin").html(localStorage.getItem("exchangeRightCount"));
+$("#threeCoin").html(localStorage.getItem("changellyToName"));
+//加载最高 最低 旷工费
+$("#maxLimit").html(localStorage.getItem("max"));
+$("#minimum").html(localStorage.getItem("min"));
+$("#minerFee").html(localStorage.getItem("mineFree"));
+
+//加载兑换 退回地址 和图标
+$("#mysymbol").html(localStorage.getItem("changellyToName"));//兑换成功接收地址
+$("#mycoin").attr("src",localStorage.getItem("changellyToSrc"));//兑换成功接收地址图标
+$("#receiveAddress").html(localStorage.getItem("sendAddres"));
+$("#exsymbol").html(localStorage.getItem("changellyFromName"));//兑换失败退回地址
+$("#excoin").attr("src",localStorage.getItem("changellyFromSrc"));//兑换失败退回地址图标
+$("#returnAddress").html(localStorage.getItem("returnAddres"));
+
+//响应式布局
+if (window.screen.width<=768){
+    $('#Ptitle').css('font-size','1rem');
+    $('#mysymbolTD').css("padding",0);
+    $('#mysymbolTD').removeClass("text-left");
+    $('#mysymbolTD').addClass("text-center");
+    $('#exsymbolTD').css("padding",0);
+    $('#exsymbolTD').removeClass("text-left");
+    $('#exsymbolTD').addClass("text-center");
+    $('#Prev').width(100);
+    $('#Next').width(100);
+    $('#Prev').height(28);
+    $('#Next').height(28);
+    $('#receiveAddress').css('font-size','13px');
+    $('#returnAddress').css('font-size','13px');
+}else{
+    $('#Ptitle').css('font-size','1.25rem');
+};
+
+//下一步
+$("#Next").click(function(){
+  $('#m-sm').modal('show');//加载....
+  
+  $.ajax({
+    type:"get",
+    data:{
+      Form:localStorage.getItem("symbolForm"),
+      To:localStorage.getItem("symbolTo"),
+      address:$('#receiveAddress').html(),
+      amount:localStorage.getItem("exchangeLeftCount"),
+      refundAddress:$('#returnAddress').html()
+    },
+    url:"/api/changelly/urlRPC/",
+    success:function(result){
+      console.log(result)
+
+      //时间
+      function getNowFormatDate() {
+          var date = new Date();
+          var seperator1 = "-";
+          var seperator2 = ":";
+          var month = date.getMonth() + 1;
+          var strDate = date.getDate();
+          if (month >= 1 && month <= 9) {
+              month = "0" + month;
+          }
+          if (strDate >= 0 && strDate <= 9) {
+              strDate = "0" + strDate;
+          }
+          var minuts = date.getMinutes()<10?"0"+date.getMinutes():date.getMinutes();
+          var currentdate = date.getFullYear() + seperator1 + month + seperator1 + strDate
+              + " " + date.getHours() + seperator2 + minuts
+              + seperator2 + date.getSeconds();
+          return currentdate;
+      }
+      localStorage.setItem("time",getNowFormatDate());
+      localStorage.setItem("createTransaction",JSON.stringify(result.msg));
+      save()//封装所有的webstorage数据 到数组里
+      $('#m-sm').modal('hide');//加载....
+      window.location.href="changellyStep4.html";
+    }
+  });
+
+});
+
+
+function save(){
+  //封装所有的webstorage数据 到数组里
+  var allObj = {
+      createTransaction:localStorage.getItem("createTransaction"),
+      //exchangeCoin:localStorage.getItem("exchangeCoin"),
+      exchangeLeftCount:localStorage.getItem("exchangeLeftCount"),
+      exchangeRightCount:localStorage.getItem("exchangeRightCount"),
+      excoin:localStorage.getItem("excoin"), //右边兑换代币图片地址
+      mycoin:localStorage.getItem("mycoin"),  //左边兑换代币图片地址
+      max:localStorage.getItem("max"),
+      min:localStorage.getItem("min"),
+      mineFree:localStorage.getItem("mineFree"),//矿工费
+      receivedAddress:localStorage.getItem("sendAddres"), //右边兑换代币接受地址
+      returnAddress:localStorage.getItem("returnAddres"), //左边兑换代币退回地址
+      symbolForm:localStorage.getItem("symbolForm"), //左边兑换代币名称
+      symbolTo:localStorage.getItem("symbolTo"),     //右边兑换代币名称
+      time:localStorage.getItem("time"),      //订单提交时间
+      changellyExName:localStorage.getItem("changellyExName"),  //币币兑换商
+      changellyFromName:localStorage.getItem("changellyFromName"),  //左边兑换代币名称
+      changellyFromSrc:localStorage.getItem("changellyFromSrc"), //左边兑换代币图标地址
+      changellyToName:localStorage.getItem("changellyToName"), //右边兑换代币名称
+      changellyToSrc:localStorage.getItem("changellyToSrc") //右边兑换代币图标地址
+  };
+  var allArray = JSON.parse(localStorage.getItem('AllWebStorage'));
+
+  allArray.push(allObj);
+  localStorage.setItem("AllWebStorage",JSON.stringify(allArray));
+
+}
+</script>
+</body>
+</html>
