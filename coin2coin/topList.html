@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="utf-8"/>
+<title>飞特平台－数字行情</title>
+<meta name="description" content="社交化加密币投顾平台"/>
+<meta name="keywords" content="比特币, 飞特币, 飞特币, 以太坊, 虚拟币, 加密币，量子链, 区块链, 钱包, 跨链"/>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimal-ui"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<!-- for ios 7 style, multi-resolution icon of 152x152 -->
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-barstyle" content="black-translucent">
+<link rel="apple-touch-icon" href="../assets/images/logo.png">
+<meta name="apple-mobile-web-app-title" content="Feitebi">
+<!-- for Chrome on Android, multi-resolution icon of 196x196 -->
+<meta name="mobile-web-app-capable" content="yes">
+<link rel="shortcut icon" sizes="196x196" href="../assets/images/logo.png">
+<!-- style -->
+<link rel="stylesheet" href="../assets/animate.css/animate.min.css" type="text/css"/>
+<link rel="stylesheet" href="../assets/glyphicons/glyphicons.css" type="text/css"/>
+<link rel="stylesheet" href="../assets/font-awesome/css/font-awesome.min.css" type="text/css"/>
+<link rel="stylesheet" href="../assets/material-design-icons/material-design-icons.css" type="text/css"/>
+<link rel="stylesheet" href="../assets/bootstrap/dist/css/bootstrap.min.css" type="text/css"/>
+<!-- build:css ../assets/styles/app.min.css -->
+<link rel="stylesheet" href="../assets/styles/app.css" type="text/css"/>
+<!-- endbuild -->
+<link rel="stylesheet" href="../assets/styles/font.css" type="text/css"/>
+<style>
+    span.logo{font-size: 16px;font-weight: 400}.paddingTop10{padding-top: 8px}.navbar-brand{font-weight: 200}
+    .wh120{width: 120px;height: 120px}.wh64{width: 64px;height: 64px} @media (min-width: 769px) {.push-left-160 {padding-left:160px !important; } }
+
+    .fa-exchange:before{
+      font-size:25px;
+    }
+    
+</style>
+</head>
+<body>
+<div class="app" id="app">
+  <div id="aside" class="app-aside modal fade nav-dropdown">
+    <div class="left navside dark dk" layout="column">
+      <div class="navbar no-radius">
+        <!-- brand -->
+        <a class="navbar-brand">
+        <img src='./images/logo-c.png'/> 飞特平台
+        </a>
+        <!-- / brand -->
+      </div>
+      <div flex class="hide-scroll">
+        <nav class="scroll nav-light">
+        <ul class="nav listLi" ui-nav>
+          <li>
+            <a href="index.html" >
+              <span class="nav-icon">
+                <i class="material-icons">&#xe8b9;
+                  <span ui-include="'../assets/images/i_3.svg'"></span>
+                </i>
+              </span>
+              <span class="nav-text">数字行情</span>
+            </a>
+          </li>
+          <li>
+            <a href="./coin2coin.html">
+              <span class="nav-icon">
+                <i class="material-icons">&#xe850;
+                  <span ui-include="'../assets/images/i_0.svg'"></span>
+                </i>
+              </span>
+              <span class="nav-text">币币兑换</span>
+            </a>
+          </li>
+          <li>
+            <a href="./assetView.html">
+              <span class="nav-icon">
+                <i class="material-icons">&#xe850;
+                  <span ui-include="'../assets/images/i_1.svg'"></span>
+                </i>
+              </span>
+              <span class="nav-text">自选行情</span>
+            </a>
+          </li>
+          <li>
+            <a href="javascript:location.href='topList.html'">
+              <span class="nav-icon">
+                <i class="material-icons">&#xe850;
+                  <span ui-include="'../assets/images/i_1.svg'"></span>
+                </i>
+              </span>
+              <span class="nav-text">排行榜</span>
+            </a>
+          </li>
+          <li>
+            <a href="javascript:location.href='BE123.html'">
+              <span class="nav-icon">
+                <i class="material-icons">&#xe850;
+                  <span ui-include="'../assets/images/i_1.svg'"></span>
+                </i>
+              </span>
+              <span class="nav-text">区块链导航</span>
+            </a>
+          </li>
+        </ul>
+        </nav>
+      </div>
+    </div>
+  </div>
+  <!-- content -->
+  <div id="content" class="app-content box-shadow-z0" role="main">
+    <div class="app-header white box-shadow">
+      <div class="navbar" style="padding-right: 0">
+        <!-- Open side - Naviation on mobile -->
+        <a data-toggle="modal" data-target="#aside" class="navbar-item pull-left hidden-lg-up">
+        <i class="material-icons">&#xe5d2;</i>
+        </a>
+        <!-- / -->
+        <div class="navbar-item h6" ng-bind="$state.current.data.title" id="pageTitle">
+             <div class="pull-left">飞特平台 排行榜</div>
+        </div>
+      </div>
+    </div>
+    <div ui-view class="app-body" id="view">
+        <!-- ############ PAGE START-->
+        <div class="padding">
+            <div class="box">
+              <div class="box-header">
+                <h2>众筹价排行</h2>
+                <small>所有币种初始ICO的价格涨幅倍数</small>
+              </div>
+              <div class="box-body">
+                搜索: <input id="filter" type="text" class="form-control input-sm w-auto inline m-r"/>
+              </div>
+              <div>
+                <table class="table m-b-none" ui-jp="footable" data-filter="#filter" data-page-size="50">
+                  <thead>
+                    <tr>
+                        <th width="20%" data-toggle="true">
+                            币种
+                        </th>
+                        <th width="20%" class="hidden-sm-down">
+                            全称
+                        </th>
+                        <th width="20%">
+                            当前
+                        </th>
+                        <th width="20%" data-name="Date Of Birth">
+                            众筹
+                        </th>
+                        <th width="20%">
+                            涨幅
+                        </th>
+                    </tr>
+                  </thead>
+                  <tbody id="zhongchouTbody">
+                    
+                  </tbody>
+                  <tfoot class="hide-if-no-paging"><!-- hide-if-no-paging -->
+                    <tr>
+                        <td colspan="4" class="text-center">
+                            <ul class="pagination"></ul>
+                        </td>
+                    </tr>
+                  </tfoot>
+                </table>
+              </div>
+            </div>
+        </div>
+        <!-- ############ PAGE END-->
+    </div>
+    
+  </div>
+  <!-- ############ LAYOUT END-->
+</div>
+
+<!-- small modal -->
+<div id="m-sm" class="modal" data-backdrop="true">
+  <div class="row-col h-v">
+    <div class="row-cell v-m">
+      <div class="modal-dialog modal-sm">
+        <div class="modal-content" style="width: 200px;margin: 0 auto;">
+          <div class="modal-header text-center">
+            <h5 class="modal-title">加载中....</h5>
+          </div>
+        </div><!-- /.modal-content -->
+      </div>
+    </div>
+  </div>
+</div>
+<!-- / .modal -->
+
+<!-- build:js scripts/app.html.js --><!-- jQuery -->
+<script src="../libs/jquery/jquery/dist/jquery.js"></script>
+<!-- Bootstrap -->
+<script src="../libs/jquery/tether/dist/js/tether.min.js"></script>
+<script src="../libs/jquery/bootstrap/dist/js/bootstrap.js"></script>
+<script src="scripts/common.js?v=1.0.0.2892"></script>
+<!-- =========================框架文件===================== -->
+<!-- build:js scripts/app.html.js -->
+<!-- jQuery -->
+  <script src="../libs/jquery/jquery/dist/jquery.js"></script>
+<!-- Bootstrap -->
+  <script src="../libs/jquery/tether/dist/js/tether.min.js"></script>
+  <script src="../libs/jquery/bootstrap/dist/js/bootstrap.js"></script>
+<!-- core -->
+  <script src="../libs/jquery/underscore/underscore-min.js"></script>
+  <script src="../libs/jquery/jQuery-Storage-API/jquery.storageapi.min.js"></script>
+  <script src="../libs/jquery/PACE/pace.min.js"></script>
+
+  <script src="scripts/config.lazyload.js"></script>
+
+  <script src="scripts/palette.js"></script>
+  <script src="scripts/ui-load.js"></script>
+  <script src="scripts/ui-jp.js"></script>
+  <script src="scripts/ui-include.js"></script>
+  <script src="scripts/ui-device.js"></script>
+  <script src="scripts/ui-form.js"></script>
+  <script src="scripts/ui-nav.js"></script>
+  <script src="scripts/ui-screenfull.js"></script>
+  <script src="scripts/ui-scroll-to.js"></script>
+  <script src="scripts/ui-toggle-class.js"></script>
+
+  <script src="scripts/app.js"></script>
+
+  <!-- ajax -->
+  <script src="../libs/jquery/jquery-pjax/jquery.pjax.js"></script>
+  <script src="scripts/ajax.js"></script>
+<!-- endbuild -->
+  <script type="text/javascript">
+        $.getJSON('./topList.json',function(data){
+            var index = 0;//递归变量
+            function digui(n){
+                if (n==data.length-1) return;
+                $.get(`https://min-api.cryptocompare.com/data/pricemultifull?fsyms=${data[n].name}&tsyms=CNY`,function(res){
+                    //console.log(res.RAW[data[n].name].CNY.PRICE);
+                    var resPrice = res.RAW[data[n].name].CNY.PRICE; //当前价格
+                    var resPct = res.RAW[data[n].name].CNY.CHANGEPCTDAY; //当前价格涨幅百分比(比较前天)
+                    var currentPrice = (resPrice-data[n].indexPrice)/data[n].indexPrice; //涨幅
+                    var num = new Number(currentPrice);
+                    if (currentPrice>0) {
+                        $("#zhongchouTbody").append(`
+                          <tr>
+                              <td width="20%">${data[n].name}</td>
+                              <td width="20%" class="hidden-sm-down">
+                                  <a href="${data[n].www}" target="_blank">
+                                    ${data[n].fullName}
+                                  </a>
+                              </td>
+                              <td width="20%" data-value="${resPrice}" id="${data[n].fullName}">¥${Number(resPrice).toFixed(4)}</td>
+                              <td width="20%" data-value="${data[n].indexPrice}">¥${data[n].indexPrice}</td>
+                              <td width="20%" data-value="${currentPrice}"><span class="label warning" title="Active">
+                              ${num.toFixed(2)}倍
+                              </span></td>
+                          </tr>
+                        `);
+                    }else{
+                        $("#zhongchouTbody").append(`
+                          <tr>
+                              <td width="20%">${data[n].name}</td>
+                              <td width="20%" class="hidden-sm-down">${data[n].fullName}</td>
+                              <td width="20%" data-value="${resPrice}" id="${data[n].fullName}">¥${Number(resPrice).toFixed(4)}</td>
+                              <td width="20%" data-value="${data[n].indexPrice}">¥${data[n].indexPrice}</td>
+                              <td width="20%" data-value="${currentPrice}"><span class="label success" title="Active">
+                              ${(num*100).toFixed(2)}倍
+                              </span></td>
+                          </tr>
+                        `);
+                    }
+
+                    if (Number(resPct)>0) {
+                        var pct = $(`#${data[n].fullName}`).append(`
+                                <span class="text-warning">&nbsp;(${Number(resPct).toFixed(2)}%)</span>
+                          `);
+                    }else{
+                        var pct = $(`#${data[n].fullName}`).append(`
+                                <span class="text-success">&nbsp;(${Number(resPct).toFixed(2)}%)</span>
+                          `);
+                    }
+                    
+                });
+                digui(n+1);
+            };
+            digui(index)
+        });
+  </script>
+</body>
+</html>

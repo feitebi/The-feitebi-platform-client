@@ -1,0 +1,1670 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="utf-8"/>
+<title>飞特平台－数字行情</title>
+<meta name="description" content="社交化加密币投顾平台"/>
+<meta name="keywords" content="比特币, 飞特币, 飞特币, 以太坊, 虚拟币, 加密币，量子链, 区块链, 钱包, 跨链"/>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimal-ui"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<!-- for ios 7 style, multi-resolution icon of 152x152 -->
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-barstyle" content="black-translucent">
+<link rel="apple-touch-icon" href="../assets/images/logo.png">
+<meta name="apple-mobile-web-app-title" content="Feitebi">
+<!-- for Chrome on Android, multi-resolution icon of 196x196 -->
+<meta name="mobile-web-app-capable" content="yes">
+<link rel="shortcut icon" sizes="196x196" href="../assets/images/logo.png">
+<!-- style -->
+<link rel="stylesheet" href="../assets/animate.css/animate.min.css" type="text/css"/>
+<link rel="stylesheet" href="../assets/glyphicons/glyphicons.css" type="text/css"/>
+<link rel="stylesheet" href="../assets/font-awesome/css/font-awesome.min.css" type="text/css"/>
+<link rel="stylesheet" href="../assets/material-design-icons/material-design-icons.css" type="text/css"/>
+<link rel="stylesheet" href="../assets/bootstrap/dist/css/bootstrap.min.css" type="text/css"/>
+<!-- build:css ../assets/styles/app.min.css -->
+<link rel="stylesheet" href="../assets/styles/app.css" type="text/css"/>
+<!-- endbuild -->
+<link rel="stylesheet" href="../assets/styles/font.css" type="text/css"/>
+<link rel="stylesheet" type="text/css" href="./BE123.css">
+<base href="http:">
+<base target="_blank">
+<style>
+    span.logo{font-size: 16px;font-weight: 400}.paddingTop10{padding-top: 8px}.navbar-brand{font-weight: 200}
+    .wh120{width: 120px;height: 120px}.wh64{width: 64px;height: 64px} @media (min-width: 769px) {.push-left-160 {padding-left:160px !important; } }
+
+    .fa-exchange:before{
+      font-size:25px;
+    }
+</style>
+</head>
+<body>
+<div class="app" id="app">
+  <div id="aside" class="app-aside modal fade nav-dropdown">
+    <div class="left navside dark dk" layout="column">
+      <div class="navbar no-radius">
+        <!-- brand -->
+        <a class="navbar-brand">
+        <img src='./images/logo-c.png'/> 飞特平台
+        </a>
+        <!-- / brand -->
+      </div>
+      <div flex class="hide-scroll">
+        <nav class="scroll nav-light">
+        <ul class="nav listLi" ui-nav>
+          <li>
+            <a href="index.html" >
+              <span class="nav-icon">
+                <i class="material-icons">&#xe8b9;
+                  <span ui-include="'../assets/images/i_3.svg'"></span>
+                </i>
+              </span>
+              <span class="nav-text">数字行情</span>
+            </a>
+          </li>
+          <li>
+            <a href="./coin2coin.html">
+              <span class="nav-icon">
+                <i class="material-icons">&#xe850;
+                  <span ui-include="'../assets/images/i_0.svg'"></span>
+                </i>
+              </span>
+              <span class="nav-text">币币兑换</span>
+            </a>
+          </li>
+          <li>
+            <a href="./assetView.html">
+              <span class="nav-icon">
+                <i class="material-icons">&#xe850;
+                  <span ui-include="'../assets/images/i_1.svg'"></span>
+                </i>
+              </span>
+              <span class="nav-text">自选行情</span>
+            </a>
+          </li>
+          <li>
+            <a href="./topList.html">
+              <span class="nav-icon">
+                <i class="material-icons">&#xe850;
+                  <span ui-include="'../assets/images/i_1.svg'"></span>
+                </i>
+              </span>
+              <span class="nav-text">排行榜</span>
+            </a>
+          </li>
+          <li>
+            <a href="./BE123.html">
+              <span class="nav-icon">
+                <i class="material-icons">&#xe850;
+                  <span ui-include="'../assets/images/i_1.svg'"></span>
+                </i>
+              </span>
+              <span class="nav-text">区块链导航</span>
+            </a>
+          </li>
+        </ul>
+        </nav>
+      </div>
+    </div>
+  </div>
+  <!-- content -->
+  <div id="content" class="app-content box-shadow-z0" role="main">
+    <div class="app-header white box-shadow">
+      <div class="navbar" style="padding-right: 0">
+        <!-- Open side - Naviation on mobile -->
+        <a data-toggle="modal" data-target="#aside" class="navbar-item pull-left hidden-lg-up">
+        <i class="material-icons">&#xe5d2;</i>
+        </a>
+        <!-- / -->
+        <div class="navbar-item h6" ng-bind="$state.current.data.title" id="pageTitle">
+             <div class="pull-left">区块链导航</div>
+        </div>
+      </div>
+    </div>
+    <div ui-view class="app-body" id="view">
+        <!-- ############ PAGE START-->
+        <div class="padding">
+            <div class="">
+                <!-- 常用必备 -->
+                <div class="row overflowStyle" id="container11">
+                    <div class="col-xs-12 tit">
+                        <span class="">常用必备</span>
+                        <span class="pull-right moveFont" id="moveFont11">更多></span>
+                    </div>
+                    <div class="col-xs-6 col-md-3 baseA">
+                        <a href="https://www.feixiaohao.com/">
+                          <img src="http://www.bixingxing.com/images/feixiaohao.png">
+                          <div class="link-name">非小号</div>
+                          <div class="text">专业的数字货币行业大数据平台 </div>
+                        </a>
+                    </div>
+                    <div class="col-xs-6 col-md-3 baseA">
+                        <a href="https://gateio.io/signup/242088">
+                          <img src="http://www.bixingxing.com/images/gate.png">
+                          <div class="link-name">GATE</div>
+                          <div class="text">经典的区块链数字资产交易平台</div>
+                        </a>
+                    </div>
+                    <div class="col-xs-6 col-md-3 baseA">
+                        <a href="https://www.huobi.br.com">
+                          <img src="http://www.bixingxing.com/images/huobi.png">
+                          <div class="link-name">火币PRO</div>
+                          <div class="text">最专业的区块链资产及法币C2C交易平台</div>
+                        </a>
+                    </div>
+                    <div class="col-xs-6 col-md-3 baseA">
+                        <a href="https://www.aicoin.net.cn/">
+                          <img src="http://www.bixingxing.com/images/aicoin.png">
+                          <div class="link-name">AICOIN</div>
+                          <div class="text">全球数字资产行情数据领跑者</div>
+                        </a>
+                    </div>
+                    <div class="col-xs-6 col-md-3 baseA">
+                        <a href="https://coinmarketcap.com/">
+                          <img src="http://www.bixingxing.com/images/coinmarketcap.png">
+                          <div class="link-name">CoinMarketCap</div>
+                          <div class="text">权威的加密货币市值与排行工具</div>
+                        </a>
+                    </div>
+                    <div class="col-xs-6 col-md-3 baseA">
+                        <a href="https://www.okb.com">
+                          <img src="http://www.bixingxing.com/images/okex.png">
+                          <div class="link-name">OKEX</div>
+                          <div class="text">全球领先的数字资产及数字资产合约交易平台</div>
+                        </a>
+                    </div>
+                    <div class="col-xs-6 col-md-3 baseA">
+                        <a href="http://jinse.com/">
+                          <img src="http://www.bixingxing.com/images/jinse.png">
+                          <div class="link-name">金色财经</div>
+                          <div class="text">在这里，读懂区块链</div>
+                        </a>
+                    </div>
+                    <div class="col-xs-6 col-md-3 baseA">
+                        <a href="http://8btc.com/">
+                          <img src="http://www.bixingxing.com/images/8btcbbs.png">
+                          <div class="link-name">巴比特论坛</div>
+                          <div class="text">最活跃、干货最多的比特币及区块链论坛</div>
+                        </a>
+                    </div>
+                    <div class="col-xs-6 col-md-3 baseA">
+                        <a href="https://www.binance.top">
+                          <img src="http://www.bixingxing.com/images/binanceone.png">
+                          <div class="link-name">币安</div>
+                          <div class="text">高性能安全稳定多样化的数字资产交易平台</div>
+                        </a>
+                    </div>
+                    <div class="col-xs-6 col-md-3 baseA">
+                        <a href="https://token.im/">
+                          <img src="http://www.bixingxing.com/images/imtoken.png">
+                          <div class="link-name">IMTOKEN</div>
+                          <div class="text">简单易用的ETH及ERC20代币钱包</div>
+                        </a>
+                    </div>
+                    <div class="col-xs-6 col-md-3 baseA">
+                        <a href="https://block.cc/">
+                          <img src="http://www.bixingxing.com/images/blockcc.png">
+                          <div class="link-name">Blcok.cc</div>
+                          <div class="text">全方位的区块链大数据服务平台</div>
+                        </a>
+                    </div>
+                    <div class="col-xs-6 col-md-3 baseA">
+                        <a href="https://www.zb.cn">
+                          <img src="http://www.bixingxing.com/images/zbcom.png">
+                          <div class="link-name">ZB</div>
+                          <div class="text">自带法币渠道的老牌交易所，安全易用稳定</div>
+                        </a>
+                    </div>
+                </div>
+                <!-- 区块浏览器 -->
+                <div class="row m-t-md overflowStyle" id="container1">
+                    <div class="col-xs-12 tit">
+                        <span class="">区块浏览器</span>
+                        <span class="pull-right moveFont" id="moveFont1">更多></span>
+                    </div>
+                    <div class="col-xs-6 col-md-3 baseA">
+                        <a href="//btc.com/">
+                          <img src="//static.feixiaohao.com/themes/default/images/icon/btc_com.png">
+                          <div class="link-name">BTC区块浏览器</div>
+                          <div class="text">比特币区块查询</div>
+                        </a>
+                    </div>
+                    <div class="col-xs-6 col-md-3 baseA">
+                        <a href="//blockchain.info/">
+                          <img src="//static.feixiaohao.com/themes/default/images/icon/blockchain_info.png">
+                          <div class="link-name">BLOCKCHAIN</div>
+                          <div class="text">多功能实用BTC区块数据浏览</div>
+                        </a>
+                    </div>
+                    <div class="col-xs-6 col-md-3 baseA">
+                        <a href="//block.bitbank.com/">
+                          <img src="//static.feixiaohao.com/themes/default/images/icon/bitbank_com.png">
+                          <div class="link-name">BitBank</div>
+                          <div class="text">同时可查BTC、LTC、ETH、ETC区块</div>
+                        </a>
+                    </div>
+                    <div class="col-xs-6 col-md-3 baseA">
+                        <a href="//chainz.cryptoid.info/">
+                          <img src="//static.feixiaohao.com/themes/default/images/icon/cryptoid_info.png">
+                          <div class="link-name">cryptoID</div>
+                          <div class="text">同时可查多种区块链</div>
+                        </a>
+                    </div>
+                    <div class="col-xs-6 col-md-3 baseA">
+                        <a href="//etherscan.io/">
+                          <img src="//static.feixiaohao.com/themes/default/images/icon/etherscan_io.png">
+                          <div class="link-name">Etherscan</div>
+                          <div class="text">专业的以太坊浏览器</div>
+                        </a>
+                    </div>
+                    <div class="col-xs-6 col-md-3 baseA">
+                        <a href="//neotracker.io/">
+                          <img src="//static.feixiaohao.com/themes/default/images/icon/antcha_in.png">
+                          <div class="link-name">Neo Tracker</div>
+                          <div class="text">小蚁区块链浏览器</div>
+                        </a>
+                    </div>
+                    <div class="col-xs-6 col-md-3 baseA">
+                        <a href="//www.etherchain.org/">
+                          <img src="//static.feixiaohao.com/themes/default/images/icon/ethereum_org.png">
+                          <div class="link-name">Etherchain</div>
+                          <div class="text">以太坊浏览器</div>
+                        </a>
+                    </div>
+                    <div class="col-xs-6 col-md-3 baseA">
+                        <a href="//qtumexplorer.io/">
+                          <img src="//static.feixiaohao.com/themes/default/images/icon/qtum_org.png">
+                          <div class="link-name">量子链区块</div>
+                          <div class="text">QTUM区块链浏览器</div>
+                        </a>
+                    </div>
+                    <div class="col-xs-6 col-md-3 baseA">
+                        <a href="http://qukuai.com/">
+                          <img src="//static.feixiaohao.com/themes/default/images/icon/qukuai_com.png">
+                          <div class="link-name">区块链浏览器</div>
+                          <div class="text">qukuai.com致力于打造一所专业的区块链浏览器平台，支持BTC、BCC、ETH、LTC、ETC交易及地址查询</div>
+                        </a>
+                    </div>
+                    <div class="col-xs-6 col-md-3 baseA">
+                        <a href="http://chain.nem.ninja">
+                          <img src="//static.feixiaohao.com/themes/default/images/icon/nem_io.png">
+                          <div class="link-name">NEM浏览器</div>
+                          <div class="text"></div>
+                        </a>
+                    </div>
+                </div>
+                <!-- 中心化交易所 -->
+                <div class="row m-t-md overflowStyle" id="container12">
+                    <div class="col-xs-12 tit">
+                        <span class="">中心化交易所</span>
+                        <span class="pull-right moveFont" id="moveFont12">更多></span>
+                    </div>
+                    <div class="col-xs-6 col-md-3 baseA">
+                        <a href="https://www.huobi.br.com">
+                          <img src="http://www.bixingxing.com/images/huobi.png">
+                          <div class="link-name">火币PRO</div>
+                          <div class="text">最专业的区块链资产及法币C2C交易平台</div>
+                        </a>
+                    </div>
+                    <div class="col-xs-6 col-md-3 baseA">
+                        <a href="https://gateio.io/signup/242088">
+                          <img src="http://www.bixingxing.com/images/gate.png">
+                          <div class="link-name">GATE</div>
+                          <div class="text">经典的区块链数字资产交易平台</div>
+                        </a>
+                    </div>
+                    <div class="col-xs-6 col-md-3 baseA">
+                        <a href="https://www.zb.cn">
+                          <img src="http://www.bixingxing.com/images/zbcom.png">
+                          <div class="link-name">ZB</div>
+                          <div class="text">自带法币渠道的老牌交易所，安全易用稳定</div>
+                        </a>
+                    </div>
+                    <div class="col-xs-6 col-md-3 baseA">
+                        <a href="https://www.binance.top">
+                          <img src="http://www.bixingxing.com/images/binanceone.png">
+                          <div class="link-name">币安</div>
+                          <div class="text">高性能安全稳定多样化的数字资产交易平台</div>
+                        </a>
+                    </div>
+                    <div class="col-xs-6 col-md-3 baseA">
+                        <a href="https://www.okb.com">
+                          <img src="http://www.bixingxing.com/images/okex.png">
+                          <div class="link-name">OKEX</div>
+                          <div class="text">全球领先的数字资产及数字资产合约交易平台</div>
+                        </a>
+                    </div>
+                    <div class="col-xs-6 col-md-3 baseA">
+                        <a href="https://bitfinex.com/">
+                          <img src="http://www.bixingxing.com/images/bitfinex.png">
+                          <div class="link-name">BitFinex</div>
+                          <div class="text">全球比特币交易量第一的香港交易所</div>
+                        </a>
+                    </div>
+                    <div class="col-xs-6 col-md-3 baseA">
+                        <a href="https://www.coinw.com/newUser/register.html?r=93291">
+                          <img src="http://www.bixingxing.com/images/coinw.png">
+                          <div class="link-name">币赢</div>
+                          <div class="text">香港的比特币区块链资产交易平台</div>
+                        </a>
+                    </div>
+                    <div class="col-xs-6 col-md-3 baseA">
+                        <a href="http://www.hadax.com/zh-cn/">
+                          <img src="http://www.bixingxing.com/images/huobi.png">
+                          <div class="link-name">HADAX</div>
+                          <div class="text">火币全新子品牌火币自主数字资产交易所</div>
+                        </a>
+                    </div>
+                    <div class="col-xs-6 col-md-3 baseA">
+                        <a href="https://www.bibox.com">
+                          <img src="http://www.bixingxing.com/images/bibox.png">
+                          <div class="link-name">BiBox</div>
+                          <div class="text">全球首个人工智能数字资产交易平台</div>
+                        </a>
+                    </div>
+                    <div class="col-xs-6 col-md-3 baseA">
+                        <a href="https://www.aex-global.com">
+                          <img src="http://www.bixingxing.com/images/aex.png">
+                          <div class="link-name">AEX</div>
+                          <div class="text">BTC38比特时代国际站</div>
+                        </a>
+                    </div>
+                    <div class="col-xs-6 col-md-3 baseA">
+                        <a href="https://www.bitmex.com/register/ErdoV2">
+                          <img src="http://www.bixingxing.com/images/bitmex.png">
+                          <div class="link-name">BitMex</div>
+                          <div class="text">先进的比特币衍生品交易所,提供高达100倍杠杆</div>
+                        </a>
+                    </div>
+                    <div class="col-xs-6 col-md-3 baseA">
+                        <a href="https://www.okcoin.com/">
+                          <img src="http://www.bixingxing.com/images/okcoin.png">
+                          <div class="link-name">OkCoin</div>
+                          <div class="text">OK国际旗下品牌，已全面开放美元充提</div>
+                        </a>
+                    </div>
+                    <div class="col-xs-6 col-md-3 baseA">
+                        <a href="https://b1.run/">
+                          <img src="http://www.bixingxing.com/images/bigone.png">
+                          <div class="link-name">BigOne</div>
+                          <div class="text">硬币资本旗下全球区块链资产现货交易所</div>
+                        </a>
+                    </div>
+                    <div class="col-xs-6 col-md-3 baseA">
+                        <a href="https://ceo.bi/">
+                          <img src="http://www.bixingxing.com/images/ceo.png">
+                          <div class="link-name">CEO交易所</div>
+                          <div class="text">CEO定位于亚洲高端型安全交易所</div>
+                        </a>
+                    </div>
+                    <div class="col-xs-6 col-md-3 baseA">
+                        <a href="https://btcc.com/">
+                          <img src="http://www.bixingxing.com/images/btcc.png">
+                          <div class="link-name">BTCC</div>
+                          <div class="text">全球运营历史悠久的比特币交易平台</div>
+                        </a>
+                    </div>
+                    <div class="col-xs-6 col-md-3 baseA">
+                        <a href="https://www.cointiger.pro">
+                          <img src="http://www.bixingxing.com/images/cointiger.png">
+                          <div class="link-name">CoinTiger</div>
+                          <div class="text">致力于打造顶级区块链服务平台，为用户提供最极致的体验</div>
+                        </a>
+                    </div>
+                    <div class="col-xs-6 col-md-3 baseA">
+                        <a href="https://poloniex.com">
+                          <img src="http://www.bixingxing.com/images/poloniex.png">
+                          <div class="link-name">Poloniex</div>
+                          <div class="text">Poloniex成立于2014年，俗称P网，是世界领先的加密货币交易所之一</div>
+                        </a>
+                    </div>
+                    <div class="col-xs-6 col-md-3 baseA">
+                        <a href="https://www.bithumb.com/">
+                          <img src="http://www.bixingxing.com/images/bithumb.png">
+                          <div class="link-name">Bithumb</div>
+                          <div class="text">世界五大比特币交易所之一，每天交易量超过13,000比特币，约占全球比特币交易量的10％</div>
+                        </a>
+                    </div>
+                    <div class="col-xs-6 col-md-3 baseA">
+                        <a href="https://www.bcex.top">
+                          <img src="http://www.bixingxing.com/images/bcex.png">
+                          <div class="link-name">BCEX</div>
+                          <div class="text">元宝国际站，现办公地点在加拿大温哥华</div>
+                        </a>
+                    </div>
+                    <div class="col-xs-6 col-md-3 baseA">
+                        <a href="https://www.kucoin.com">
+                          <img src="http://www.bixingxing.com/images/kucoin.png">
+                          <div class="link-name">KuCoin</div>
+                          <div class="text">拥有可靠、具有扩展能力的技术架构、极优质的服务</div>
+                        </a>
+                    </div>
+                    <div class="col-xs-6 col-md-3 baseA">
+                        <a href="https://www.coinegg.im/?lang=zh_CN">
+                          <img src="http://www.bixingxing.com/images/coinegg.png">
+                          <div class="link-name">COINEGG</div>
+                          <div class="text">专业的区块链资产交易平台</div>
+                        </a>
+                    </div>
+                </div>
+                <!-- 国内媒体 -->
+                <div class="row m-t-md overflowStyle" id="container2">
+                    <div class="col-xs-12 tit">
+                        <span class="">国内媒体</span>
+                        <span class="pull-right moveFont" id="moveFont2">更多></span>
+                    </div>
+                    <div class="col-xs-6 col-md-3 baseA">
+                        <a href="http://www.8btc.com/">
+                          <img src="//static.feixiaohao.com/themes/default/images/icon/8btc_com.png">
+                          <div class="link-name">巴比特</div>
+                          <div class="text">巴比特始建于2011年，是国内最早的区块链（blockchain）资讯社区门户，为区块链创业者、投资者提供信息、交流与投融资服务。</div>
+                        </a>
+                    </div>
+                    <div class="col-xs-6 col-md-3 baseA">
+                        <a href="http://chainb.com/">
+                          <img src="//static.feixiaohao.com/themes/default/images/icon/chainb_com.png">
+                          <div class="link-name">铅笔</div>
+                          <div class="text">区块链•铅笔是一个介绍和讨论去中心化区块链技术的社区，并且探讨数字货币和数字金融对于未来经济的重大影响。</div>
+                        </a>
+                    </div>
+                    <div class="col-xs-6 col-md-3 baseA">
+                        <a href="http://www.jinse.com/">
+                          <img src="//static.feixiaohao.com/themes/default/images/icon/jinse_com.png">
+                          <div class="link-name">金色财经</div>
+                          <div class="text">金色财经是集行业新闻、资讯、行情、数据等一站式区块链产业服务平台，我们追求及时、全面、专业、准确的资讯与数据，致力于为区块链创业者以及数字货币投资者提供最好的产品和服务。</div>
+                        </a>
+                    </div>
+                    <div class="col-xs-6 col-md-3 baseA">
+                        <a href="http://www.huoxing24.com/">
+                          <img src="//static.feixiaohao.com/themes/default/images/icon/huoxincaijin.png">
+                          <div class="link-name">火星财经</div>
+                          <div class="text">火星财经-区块链先锋门户</div>
+                        </a>
+                    </div>
+                    <div class="col-xs-6 col-md-3 baseA">
+                        <a href="http://www.btc798.com/">
+                          <img src="//static.feixiaohao.com/themes/default/images/icon/btc798_com.png">
+                          <div class="link-name">比特币之家</div>
+                          <div class="text">比特币之家是中国最早也是最大的比特币(Bitcoin)门户网站。比特币之家立足于中国，分析研究比特币产业的时代演变趋势，全面把握比特币的市场脉搏，推动比特币在中国的生态系统建设与商业化和实用化进程。</div>
+                        </a>
+                    </div>
+                    <div class="col-xs-6 col-md-3 baseA">
+                        <a href="//www.coingogo.com/">
+                          <img src="//static.feixiaohao.com/themes/default/images/icon/coingogo.png">
+                          <div class="link-name">币源社区</div>
+                          <div class="text">区块链-数字货币-一站式门户</div>
+                        </a>
+                    </div>
+                    <div class="col-xs-6 col-md-3 baseA">
+                        <a href="//www.chainnews.com/">
+                          <img src="//static.feixiaohao.com/themes/default/images/icon/chinanews.png">
+                          <div class="link-name">链闻</div>
+                          <div class="text">链闻, 区块链新闻快讯, 区块链技术指南</div>
+                        </a>
+                    </div>
+                    <div class="col-xs-6 col-md-3 baseA">
+                        <a href="http://www.wanbizu.com/">
+                          <img src="//static.feixiaohao.com/themes/default/images/icon/wanbizu_com.png">
+                          <div class="link-name">玩币族</div>
+                          <div class="text">玩币族是专业的比特币媒体,数字货币行业先行者，重点关注炒币及区块链项目ICO，跟踪区块链项目众筹ICO新闻。</div>
+                        </a>
+                    </div>
+                    <div class="col-xs-6 col-md-3 baseA">
+                        <a href="http://news.btcfans.com/">
+                          <img src="//static.feixiaohao.com/themes/default/images/icon/btcfans_com.png">
+                          <div class="link-name">比特范</div>
+                          <div class="text">比特币中文资讯,比特币爱好者的精神家园</div>
+                        </a>
+                    </div>
+                    <div class="col-xs-6 col-md-3 baseA">
+                        <a href="http://www.weiyangx.com/tag/%E6%AF%94%E7%89%B9%E5%B8%81">
+                          <img src="//static.feixiaohao.com/themes/default/images/icon/weiyangx_com.png">
+                          <div class="link-name">未央网</div>
+                          <div class="text">互联网金融门户未央网比特币专题</div>
+                        </a>
+                    </div>
+                    <div class="col-xs-6 col-md-3 baseA">
+                        <a href="http://www.bitett.com/portal.php">
+                          <img src="//static.feixiaohao.com/themes/default/images/icon/bitett_com.png">
+                          <div class="link-name">比特头条</div>
+                          <div class="text">比特币标志着区块链时代的到来</div>
+                        </a>
+                    </div>
+                    <div class="col-xs-6 col-md-3 baseA">
+                        <a href="http://www.bishijie.com/kuaixun/">
+                          <img src="//static.feixiaohao.com/themes/default/images/icon/bishijie_com.png">
+                          <div class="link-name">币世界</div>
+                          <div class="text">币世界是专业的行业动态快讯，快人一步，尽览币圈事。</div>
+                        </a>
+                    </div>
+                    <div class="col-xs-6 col-md-3 baseA">
+                        <a href="//www.btc123.com/">
+                          <img src="//static.feixiaohao.com/themes/default/images/icon/btc123.png">
+                          <div class="link-name">BTC123</div>
+                          <div class="text">BTC123比特币导航</div>
+                        </a>
+                    </div>
+                    <div class="col-xs-6 col-md-3 baseA">
+                        <a href="http://www.weilaicaijing.com/">
+                          <img src="//static.feixiaohao.com/themes/default/images/icon/weilaicaijing_com.png">
+                          <div class="link-name">未来财经</div>
+                          <div class="text">未来财经是集行业新闻、资讯、行情、数据等一站式区块链产业服务平台。未来财经专注于区块链行业的媒体报道，致力于打造中国区块链领域权威媒体。</div>
+                        </a>
+                    </div>
+                    <div class="col-xs-6 col-md-3 baseA">
+                        <a href="http://news.blockchain.hk/">
+                          <img src="//static.feixiaohao.com/themes/default/images/icon/blockchain_hk.png">
+                          <div class="link-name">区块链财经</div>
+                          <div class="text">区块链资讯</div>
+                        </a>
+                    </div>
+                    <div class="col-xs-6 col-md-3 baseA">
+                        <a href="http://www.5bite.com/">
+                          <img src="//static.feixiaohao.com/themes/default/images/icon/5bite_com.png">
+                          <div class="link-name">区块链之家</div>
+                          <div class="text">定位为区块链产业链中内容分享及点评平台。</div>
+                        </a>
+                    </div>
+                    <div class="col-xs-6 col-md-3 baseA">
+                        <a href="http://www.bitcoin86.com/">
+                          <img src="//static.feixiaohao.com/themes/default/images/icon/bitcoin86_com.png">
+                          <div class="link-name">比特币资讯网</div>
+                          <div class="text">致力于为区块链创业者提供最好的信息服务</div>
+                        </a>
+                    </div>
+                    <div class="col-xs-6 col-md-3 baseA">
+                        <a href="http://www.bitecoin.com/">
+                          <img src="//static.feixiaohao.com/themes/default/images/icon/bitecoin_com.png">
+                          <div class="link-name">比特中文网</div>
+                          <div class="text">见证和记录区块链时代的到来</div>
+                        </a>
+                    </div>
+                    <div class="col-xs-6 col-md-3 baseA">
+                        <a href="http://biqushi.cn/update-report/">
+                          <img src="//static.feixiaohao.com/themes/default/images/icon/biqushi_cn.png">
+                          <div class="link-name">币趋势报告</div>
+                          <div class="text">根据多重大数据及趋势每日行情报告</div>
+                        </a>
+                    </div>
+                    <div class="col-xs-6 col-md-3 baseA">
+                        <a href="http://bitejie.net/">
+                          <img src="//static.feixiaohao.com/themes/default/images/icon/bitejie_net.png">
+                          <div class="link-name">比特街</div>
+                          <div class="text">区块链新闻资讯网,区块链技术,区块链项目应用,项目评级评测。</div>
+                        </a>
+                    </div>
+                    <div class="col-xs-6 col-md-3 baseA">
+                        <a href="http://www.qukuaiwang.com.cn/">
+                          <img src="//static.feixiaohao.com/themes/default/images/icon/qukuaiwang_com_cn.png">
+                          <div class="link-name">区块网</div>
+                          <div class="text">全球区块链项目发布导航网站，接纳优质的区块链项目发布及新闻，区块链行业信息的传播。</div>
+                        </a>
+                    </div>
+                    <div class="col-xs-6 col-md-3 baseA">
+                        <a href="http://www.cybtc.com/">
+                          <img src="//static.feixiaohao.com/themes/default/images/icon/cybtc_com.png">
+                          <div class="link-name">彩云比特币</div>
+                          <div class="text">比特币挖矿机首选网站</div>
+                        </a>
+                    </div>
+                    <div class="col-xs-6 col-md-3 baseA">
+                        <a href="http://www.gongxiangcj.com/">
+                          <img src="//static.feixiaohao.com/themes/default/images/icon/gongxiangcj_com.png">
+                          <div class="link-name">共享财经</div>
+                          <div class="text">定位于创新型产业链媒体,以区块链、互联网金融和创投等视角解读经济金融新动向</div>
+                        </a>
+                    </div>
+                    <div class="col-xs-6 col-md-3 baseA">
+                        <a href="//www.chainfor.com/">
+                          <img src="//static.feixiaohao.com/themes/default/images/icon/chainfor_com.png">
+                          <div class="link-name">链向财经</div>
+                          <div class="text">专业的区块链信息服务平台</div>
+                        </a>
+                    </div>
+                    <div class="col-xs-6 col-md-3 baseA">
+                        <a href="http://etc.so/">
+                          <img src="//static.feixiaohao.com/themes/default/images/icon/default.png">
+                          <div class="link-name">第一区块链</div>
+                          <div class="text"></div>
+                        </a>
+                    </div>
+                </div>
+                <!-- 海外媒体 -->
+                <div class="row m-t-md overflowStyle" id="container3">
+                    <div class="col-xs-12 tit">
+                        <span class="">海外媒体</span>
+                        <span class="pull-right moveFont" id="moveFont3">更多></span>
+                    </div>
+                    <div class="col-xs-6 col-md-3 baseA">
+                        <a href="//www.coindesk.com/">
+                          <img src="//static.feixiaohao.com/themes/default/images/icon/coindesk_com.png">
+                          <div class="link-name">Coindesk</div>
+                          <div class="text">比特币新闻领导者</div>
+                        </a>
+                    </div>
+                    <div class="col-xs-6 col-md-3 baseA">
+                        <a href="//bitcoinmagazine.com/">
+                          <img src="//static.feixiaohao.com/themes/default/images/icon/bitcoinmagazine_com.png">
+                          <div class="link-name">Bitcoin Magazine</div>
+                          <div class="text">比特币杂志成立于2011年，是比特币、以太坊、区块链技术、加密货币、暗网和其他分散技术的最古老、最受信赖的新闻、见解、评论、指南和价格分析的来源。</div>
+                        </a>
+                    </div>
+                    <div class="col-xs-6 col-md-3 baseA">
+                        <a href="//www.ethnews.com/">
+                          <img src="//static.feixiaohao.com/themes/default/images/icon/ethnews_com.png">
+                          <div class="link-name">Ethereum News</div>
+                          <div class="text">ETHNews.com是以太坊以及相关区块链平台和代币的新闻、价格、分析和信息的权威机构。</div>
+                        </a>
+                    </div>
+                    <div class="col-xs-6 col-md-3 baseA">
+                        <a href="//letstalkbitcoin.com/">
+                          <img src="//static.feixiaohao.com/themes/default/images/icon/letstalkbitcoin_com.png">
+                          <div class="link-name">lets Talk Bitcoin</div>
+                          <div class="text">LTB网络提供了关于构建新的数字经济和未来货币的想法、人员和项目的标准化信息平台。</div>
+                        </a>
+                    </div>
+                    <div class="col-xs-6 col-md-3 baseA">
+                        <a href="http://bitcoinweekly.com/">
+                          <img src="//static.feixiaohao.com/themes/default/images/icon/bitcoinweekly_com.png">
+                          <div class="link-name">Bitcoin Weekly</div>
+                          <div class="text">每周比特币和加密货币相关新闻文章汇集</div>
+                        </a>
+                    </div>
+                    <div class="col-xs-6 col-md-3 baseA">
+                        <a href="//thebitcoinnews.com/">
+                          <img src="//static.feixiaohao.com/themes/default/images/icon/thebitcoinnews_com.png">
+                          <div class="link-name">The Bitcoin News</div>
+                          <div class="text">自2012年以来，比特币的主要新闻来源</div>
+                        </a>
+                    </div>
+                    <div class="col-xs-6 col-md-3 baseA">
+                        <a href="//cointelegraph.com">
+                          <img src="//static.feixiaohao.com/themes/default/images/icon/cointelegraph_com.png">
+                          <div class="link-name">Cointelegraph Bitcoin</div>
+                          <div class="text">专注比特币及以太坊相关新闻、分析、技术评论、金融、区块链和市场。</div>
+                        </a>
+                    </div>
+                    <div class="col-xs-6 col-md-3 baseA">
+                        <a href="//www.newsbtc.com/">
+                          <img src="//static.feixiaohao.com/themes/default/images/icon/newsbtc_com.png">
+                          <div class="link-name">Bitcoin Industry News</div>
+                          <div class="text">NewsBTC是领先的比特币网络之一，你可以在那里阅读最新的行业新闻。</div>
+                        </a>
+                    </div>
+                    <div class="col-xs-6 col-md-3 baseA">
+                        <a href="//coincenter.org/">
+                          <img src="//static.feixiaohao.com/themes/default/images/icon/coincenter_org.png">
+                          <div class="link-name">Coin Center</div>
+                          <div class="text">让区块链像比特币一样自由开放。</div>
+                        </a>
+                    </div>
+                    <div class="col-xs-6 col-md-3 baseA">
+                        <a href="http://www.coinbuzz.com/">
+                          <img src="//static.feixiaohao.com/themes/default/images/icon/coinbuzz_com.png">
+                          <div class="link-name">CoinBuzz</div>
+                          <div class="text">不断更新的比特币新闻和信息来源。涵盖技术、市场、企业和其他加密货币。</div>
+                        </a>
+                    </div>
+                    <div class="col-xs-6 col-md-3 baseA">
+                        <a href="//bitcoininvestor.com/">
+                          <img src="//static.feixiaohao.com/themes/default/images/icon/bitcoininvestor_com.png">
+                          <div class="link-name">Bitcoin Investor</div>
+                          <div class="text"></div>
+                        </a>
+                    </div>
+                    <div class="col-xs-6 col-md-3 baseA">
+                        <a href="//bitcoinwarrior.net/">
+                          <img src="//static.feixiaohao.com/themes/default/images/icon/bitcoinwarrior_net.png">
+                          <div class="link-name">Bitcoin Warrior</div>
+                          <div class="text">访问更多的文章</div>
+                        </a>
+                    </div>
+                    <div class="col-xs-6 col-md-3 baseA">
+                        <a href="//99bitcoins.com/">
+                          <img src="//static.feixiaohao.com/themes/default/images/icon/99bitcoins_com.png">
+                          <div class="link-name">99Bitcoins</div>
+                          <div class="text">99Bitcoins提供视频和文本教程，介绍如何用Paypal、信用卡、借记卡等方式购买比特币。我们还会提供你的第一个比特币</div>
+                        </a>
+                    </div>
+                    <div class="col-xs-6 col-md-3 baseA">
+                        <a href="http://coinboard.org/">
+                          <img src="//static.feixiaohao.com/themes/default/images/icon/coinboard_org.png">
+                          <div class="link-name">Coinboard</div>
+                          <div class="text"></div>
+                        </a>
+                    </div>
+                    <div class="col-xs-6 col-md-3 baseA">
+                        <a href="//www.ccn.com/">
+                          <img src="//static.feixiaohao.com/themes/default/images/icon/ccn_com.png">
+                          <div class="link-name">CCN</div>
+                          <div class="text">在CCN，我们为你提供最新的比特币新闻，包括以太、NEO、Litecoin和ICOs等其他加密货币。</div>
+                        </a>
+                    </div>
+                    <div class="col-xs-6 col-md-3 baseA">
+                        <a href="http://bitcoinist.com/">
+                          <img src="//static.feixiaohao.com/themes/default/images/icon/bitcoinist_com.png">
+                          <div class="link-name">Bitcoinist</div>
+                          <div class="text">bitcobitcoin是一家比特币新闻门户网站，提供有关分散化数字货币、区块链技术和金融科技的爆炸性新闻。</div>
+                        </a>
+                    </div>
+                </div>
+                <!-- 区块链游戏 -->
+                <div class="row m-t-md overflowStyle" id="container4">
+                    <div class="col-xs-12 tit">
+                        <span class="">区块链游戏</span>
+                        <span class="pull-right moveFont" id="moveFont4">更多></span>
+                    </div>
+                    <div class="col-xs-6 col-md-3 baseA">
+                        <a href="//www.cryptokitties.co/">
+                          <img src="//static.feixiaohao.com/themes/default/images/icon/cryptokitties_co.jpg">
+                          <div class="link-name">谜恋猫</div>
+                          <div class="text">养成</div>
+                        </a>
+                    </div>
+                    <div class="col-xs-6 col-md-3 baseA">
+                        <a href="//pet-chain.baidu.com/">
+                          <img src="//static.feixiaohao.com/themes/default/images/icon/baidu_com.jpg">
+                          <div class="link-name">百度莱茨狗</div>
+                          <div class="text">养成</div>
+                        </a>
+                    </div>
+                    <div class="col-xs-6 col-md-3 baseA">
+                        <a href="//jiamitu.mi.com/home">
+                          <img src="//static.feixiaohao.com/themes/default/images/icon/mi_com.jpg">
+                          <div class="link-name">加密兔</div>
+                          <div class="text">养成</div>
+                        </a>
+                    </div>
+                    <div class="col-xs-6 col-md-3 baseA">
+                        <a href="//star.8.163.com/">
+                          <img src="//static.feixiaohao.com/themes/default/images/icon/163_com.jpg">
+                          <div class="link-name">网易星球</div>
+                          <div class="text">养成</div>
+                        </a>
+                    </div>
+                    <div class="col-xs-6 col-md-3 baseA">
+                        <a href="http://www.myhero9.com/">
+                          <img src="//static.feixiaohao.com/themes/default/images/icon/myhero9_com.jpg">
+                          <div class="link-name">我的英雄</div>
+                          <div class="text">TCG</div>
+                        </a>
+                    </div>
+                    <div class="col-xs-6 col-md-3 baseA">
+                        <a href="//cryptofighters.io/">
+                          <img src="//static.feixiaohao.com/themes/default/images/icon/cryptofighters_io.jpg">
+                          <div class="link-name">加密斗士</div>
+                          <div class="text">养成</div>
+                        </a>
+                    </div>
+                    <div class="col-xs-6 col-md-3 baseA">
+                        <a href="//aethia.co/BE123.css">
+                          <img src="//static.feixiaohao.com/themes/default/images/icon/aethia_co.jpg">
+                          <div class="link-name">以太蛋</div>
+                          <div class="text">养成</div>
+                        </a>
+                    </div>
+                    <div class="col-xs-6 col-md-3 baseA">
+                        <a href="//blockcity.gxb.io">
+                          <img src="//static.feixiaohao.com/themes/default/images/icon/gxb_io.jpg">
+                          <div class="link-name">布洛克城</div>
+                          <div class="text">放置</div>
+                        </a>
+                    </div>
+                </div>
+                <!-- 场外交易 -->
+                <div class="row m-t-md overflowStyle" id="container5">
+                    <div class="col-xs-12 tit">
+                        <span class="">场外交易</span>
+                        <span class="pull-right moveFont" id="moveFont5">更多></span>
+                    </div>
+                    <div class="col-xs-6 col-md-3 baseA">
+                        <a href="//localbitcoins.com/">
+                          <img src="//static.feixiaohao.com/themes/default/images/icon/localbitcoins_com.png">
+                          <div class="link-name">LocalBitcoins</div>
+                          <div class="text">世界最大的比特币场外交易平台</div>
+                        </a>
+                    </div>
+                    <div class="col-xs-6 col-md-3 baseA">
+                        <a href="//otcbtc.com/">
+                          <img src="//static.feixiaohao.com/themes/default/images/icon/otcbtc_com.png">
+                          <div class="link-name">OTCBTC</div>
+                          <div class="text">支持主流币种，让资产不需频繁搬迁</div>
+                        </a>
+                    </div>
+                    <div class="col-xs-6 col-md-3 baseA">
+                        <a href="//bitcoinworld.com/">
+                          <img src="//static.feixiaohao.com/themes/default/images/icon/bitcoinworld_com.png">
+                          <div class="link-name">Bitcoinworld</div>
+                          <div class="text">比特币世界快速点对点买卖比特币</div>
+                        </a>
+                    </div>
+                    <div class="col-xs-6 col-md-3 baseA">
+                        <a href="//otc.huobi.pro/">
+                          <img src="//static.feixiaohao.com/themes/default/images/icon/huobi_pro.png">
+                          <div class="link-name">火币 C2C</div>
+                          <div class="text">多币种场外交易 – 火币专业交易站</div>
+                        </a>
+                    </div>
+                    <div class="col-xs-6 col-md-3 baseA">
+                        <a href="//www.okex.com/c2c/trade/trade.do">
+                          <img src="//static.feixiaohao.com/themes/default/images/icon/okex_com.png">
+                          <div class="link-name">Okex C2C</div>
+                          <div class="text">OK公司提供的BTC及BTH场外交易</div>
+                        </a>
+                    </div>
+                    <div class="col-xs-6 col-md-3 baseA">
+                        <a href="//gate.io/c2c/usdt_cny">
+                          <img src="//static.feixiaohao.com/themes/default/images/icon/gate_io.png">
+                          <div class="link-name">Gate C2C</div>
+                          <div class="text">Gate.io是一个区块链数字资产交易平台，支持比特币Bitcoin, 以太坊, Ethereum,莱特币, Litecoin，Qtum 等币种交易，其特点是快捷，安全。</div>
+                        </a>
+                    </div>
+                    <div class="col-xs-6 col-md-3 baseA">
+                        <a href="//www.coincola.com/">
+                          <img src="//static.feixiaohao.com/themes/default/images/icon/coincola_com.png">
+                          <div class="link-name">可盈可乐</div>
+                          <div class="text">安全可信赖的香港场外交易平台</div>
+                        </a>
+                    </div>
+                    <div class="col-xs-6 col-md-3 baseA">
+                        <a href="//vip.zb.com/exchange/">
+                          <img src="//static.feixiaohao.com/themes/default/images/icon/zb_com.png">
+                          <div class="link-name">ZB C2C</div>
+                          <div class="text">ZB C2C交易</div>
+                        </a>
+                    </div>
+                    <div class="col-xs-6 col-md-3 baseA">
+                        <a href="//www.linkcoin.pro">
+                          <img src="//static.feixiaohao.com/themes/default/images/icon/linkcoin_pro.png">
+                          <div class="link-name">Linkcoin</div>
+                          <div class="text">最值得信赖，可自由交换数字资产的保管平台</div>
+                        </a>
+                    </div>
+                    <div class="col-xs-6 col-md-3 baseA">
+                        <a href="//www.coinw.com/newTrade/coin.html">
+                          <img src="//static.feixiaohao.com/themes/default/images/icon/coinw_com.png">
+                          <div class="link-name">币赢网 C2C</div>
+                          <div class="text">币赢网（www.coinw.com）是中国国企在香港开设的全球数字资产交易平台，主要面向全球用户提供以太币、HSR等数字资产的交易服务。</div>
+                        </a>
+                    </div>
+                    <div class="col-xs-6 col-md-3 baseA">
+                        <a href="//www.quadrigacx.com/">
+                          <img src="//static.feixiaohao.com/themes/default/images/icon/quadrigacx_com.png">
+                          <div class="link-name">Quadrigacx</div>
+                          <div class="text">加拿大最大的比特币交易平台</div>
+                        </a>
+                    </div>
+                    <div class="col-xs-6 col-md-3 baseA">
+                        <a href="//www.itbit.com/">
+                          <img src="//static.feixiaohao.com/themes/default/images/icon/itbit_com.png">
+                          <div class="link-name">itBit</div>
+                          <div class="text">美国交易所，支持OTC</div>
+                        </a>
+                    </div>
+                </div>
+                <!-- 数字钱包 -->
+                <div class="row m-t-md overflowStyle" id="container6">
+                    <div class="col-xs-12 tit">
+                        <span class="">数字钱包</span>
+                        <span class="pull-right moveFont" id="moveFont6">更多></span>
+                    </div>
+                    <div class="col-xs-6 col-md-3 baseA">
+                        <a href="//bitcoin.org/en/">
+                          <img src="//static.feixiaohao.com/themes/default/images/icon/bitcoin_org.png">
+                          <div class="link-name">比特币官网钱包</div>
+                          <div class="text">比特币是一个创新的支付网络，也是一种新型货币。了解你必须知道的内容后你就可以开始与比特币和 bitcoin.org 建立关系了。</div>
+                        </a>
+                    </div>
+                    <div class="col-xs-6 col-md-3 baseA">
+                        <a href="//www.ethereum.org/">
+                          <img src="//static.feixiaohao.com/themes/default/images/icon/ethereum_org.png">
+                          <div class="link-name">以太坊官方钱包</div>
+                          <div class="text">官方的以太坊钱包，安全可靠。以太坊钱包是在以太坊区块链上分散应用的门户。 它允许您保持和保护建立在以太坊上的以太网和其他加密资产，以及编写，部署和使用智能合约。</div>
+                        </a>
+                    </div>
+                    <div class="col-xs-6 col-md-3 baseA">
+                        <a href="//cobo.com/">
+                          <img src="//static.feixiaohao.com/themes/default/images/icon/cobo.png">
+                          <div class="link-name">cobo钱包</div>
+                          <div class="text">专业的数字资产管理钱包</div>
+                        </a>
+                    </div>
+                    <div class="col-xs-6 col-md-3 baseA">
+                        <a href="//jaxx.io/">
+                          <img src="//static.feixiaohao.com/themes/default/images/icon/jaxx_io.png">
+                          <div class="link-name">JAXX</div>
+                          <div class="text">支持30余种资产的优秀钱包</div>
+                        </a>
+                    </div>
+                    <div class="col-xs-6 col-md-3 baseA">
+                        <a href="//www.parity.io/">
+                          <img src="//static.feixiaohao.com/themes/default/images/icon/parity_io.png">
+                          <div class="link-name">Parity</div>
+                          <div class="text">开源以太坊轻钱包无需同步区块</div>
+                        </a>
+                    </div>
+                    <div class="col-xs-6 col-md-3 baseA">
+                        <a href="//token.im/">
+                          <img src="//static.feixiaohao.com/themes/default/images/icon/imtoken.png">
+                          <div class="link-name">ImToken 钱包</div>
+                          <div class="text">imToken是一款移动端轻钱包应用程序,它旨在为普通用户提供一款安全放心,简单好用,功能强大的数字资产钱包应用。</div>
+                        </a>
+                    </div>
+                    <div class="col-xs-6 col-md-3 baseA">
+                        <a href="//bixin.com/">
+                          <img src="//static.feixiaohao.com/themes/default/images/icon/bixin_com.png">
+                          <div class="link-name">币信</div>
+                          <div class="text">币信是全球领先的比特币钱包平台，提供便捷、安全、专业的比特币交易服务。</div>
+                        </a>
+                    </div>
+                    <div class="col-xs-6 col-md-3 baseA">
+                        <a href="http://bitpie.com/">
+                          <img src="//static.feixiaohao.com/themes/default/images/icon/bitpie_com.png">
+                          <div class="link-name">比特派 Bitpie</div>
+                          <div class="text">Bitpie 数字钱包是比特币钱包简单和安全。 bitpie,您可以轻松地发送和接收比特币立即支付。 因为bitpie内置托管函数基于Multisig技术,你可以购买和出售比特币的P2P世界各地的经销商在一个安全的环境。</div>
+                        </a>
+                    </div>
+                    <div class="col-xs-6 col-md-3 baseA">
+                        <a href="//hyperpay.tech/zh-cn">
+                          <img src="//static.feixiaohao.com/themes/default/images/icon/hpyerpay.png">
+                          <div class="link-name">HyperPay</div>
+                          <div class="text">HyperPay是一款支持80余种数字货币手机钱包</div>
+                        </a>
+                    </div>
+                    <div class="col-xs-6 col-md-3 baseA">
+                        <a href="//www.atoken.com/">
+                          <img src="//static.feixiaohao.com/themes/default/images/icon/atoken.png">
+                          <div class="link-name">AToken 钱包</div>
+                          <div class="text">AToken移动端数字货币钱包轻便安全，支持19个币种&跨链互换。旨在为广大数字货币用户提供更轻便、更安全、更多币种的多维度服务，旨在打造数字资产存储类APP领跑者。</div>
+                        </a>
+                    </div>
+                    <div class="col-xs-6 col-md-3 baseA">
+                        <a href="//po.im/">
+                          <img src="//static.feixiaohao.com/themes/default/images/icon/po_im.png">
+                          <div class="link-name">PO.IM</div>
+                          <div class="text">币信海外版，支持BTC以及ETH</div>
+                        </a>
+                    </div>
+                    <div class="col-xs-6 col-md-3 baseA">
+                        <a href="//wallet.btc.com/#/setup/register">
+                          <img src="//static.feixiaohao.com/themes/default/images/icon/btc_com.png">
+                          <div class="link-name">比特现价钱包</div>
+                          <div class="text">BTC.COM提供的BTH网页钱包</div>
+                        </a>
+                    </div>
+                    <div class="col-xs-6 col-md-3 baseA">
+                        <a href="http://download.ripplefox.com/">
+                          <img src="//static.feixiaohao.com/themes/default/images/icon/ripplefox_com.png">
+                          <div class="link-name">瑞波币官网钱包</div>
+                          <div class="text">瑞狐网关是一个基于Ripple的网关、做市商，提供人民币CNY的充值和提现的入口。可以交易瑞波币XRP、恒星币STR、XLM、比特币BTC等电子货币。</div>
+                        </a>
+                    </div>
+                    <div class="col-xs-6 col-md-3 baseA">
+                        <a href="//litecoin.org/cn/">
+                          <img src="//static.feixiaohao.com/themes/default/images/icon/litecoin_org.png">
+                          <div class="link-name">莱特币官网钱包</div>
+                          <div class="text">莱特币官方钱包</div>
+                        </a>
+                    </div>
+                    <div class="col-xs-6 col-md-3 baseA">
+                        <a href="//electrum-ltc.org/BE123.css">
+                          <img src="//static.feixiaohao.com/themes/default/images/icon/electrum-ltc_org.png">
+                          <div class="link-name">莱特币轻钱包</div>
+                          <div class="text">无需同步臃肿的区块即可快速使用</div>
+                        </a>
+                    </div>
+                    <div class="col-xs-6 col-md-3 baseA">
+                        <a href="//neo.org/download">
+                          <img src="//static.feixiaohao.com/themes/default/images/icon/neo_org.png">
+                          <div class="link-name">小蚁官方钱包</div>
+                          <div class="text">NEO是一个非盈利的社区化的区块链项目，是利用区块链技术和数字身份进行资产数字化，利用智能合约对数字资产进行自动化管理，实现“智能经济”的一种分布式网络。</div>
+                        </a>
+                    </div>
+                    <div class="col-xs-6 col-md-3 baseA">
+                        <a href="//eco.qtum.org/wallet">
+                          <img src="//static.feixiaohao.com/themes/default/images/icon/qtum_org.png">
+                          <div class="link-name">量子链钱包</div>
+                          <div class="text">基于量子链的Qtum官方钱包</div>
+                        </a>
+                    </div>
+                    <div class="col-xs-6 col-md-3 baseA">
+                        <a href="//bitshares.org/download/">
+                          <img src="//static.feixiaohao.com/themes/default/images/icon/bitshares_org.png">
+                          <div class="link-name">比特股官网钱包</div>
+                          <div class="text">比特股（BTS）的官方钱包 | 比特股（BitShares）是用来实现一个理想自由市场金融体系的比特币扩展协议。在比特股网络当中，创造了一种新的名为多态数字资产（Polymorphic Digital Asset，PDA）的金融产品。它能够跟踪黄金、白银、美元或者其他货币的价值，并且让持有者获得红利的同时避免所有的交易对手风险。</div>
+                        </a>
+                    </div>
+                    <div class="col-xs-6 col-md-3 baseA">
+                        <a href="//www.oklink.com/">
+                          <img src="//static.feixiaohao.com/themes/default/images/icon/oklink_com.png">
+                          <div class="link-name">OKLink</div>
+                          <div class="text">使用OKlink以最快、最安全、最便宜的方式将资金转移到国外。</div>
+                        </a>
+                    </div>
+                    <div class="col-xs-6 col-md-3 baseA">
+                        <a href="//www.bitbank.com/">
+                          <img src="//static.feixiaohao.com/themes/default/images/icon/bitbank_com.png">
+                          <div class="link-name">Bitbank</div>
+                          <div class="text">比银集团旗下的比特币ONCHAIN钱包</div>
+                        </a>
+                    </div>
+                    <div class="col-xs-6 col-md-3 baseA">
+                        <a href="//blockchain.info/zh-cn/wallet/#/">
+                          <img src="//static.feixiaohao.com/themes/default/images/icon/blockchain_info.png">
+                          <div class="link-name">BLOCKCHAIN</div>
+                          <div class="text">多功能实用BTC区块数据浏览</div>
+                        </a>
+                    </div>
+                    <div class="col-xs-6 col-md-3 baseA">
+                        <a href="//trezor.io/">
+                          <img src="//static.feixiaohao.com/themes/default/images/icon/trezor_io.png">
+                          <div class="link-name">TREZOR</div>
+                          <div class="text">加密的比特币硬件钱包</div>
+                        </a>
+                    </div>
+                    <div class="col-xs-6 col-md-3 baseA">
+                        <a href="//www.bifubao.com/">
+                          <img src="//static.feixiaohao.com/themes/default/images/icon/bifubao_com.png">
+                          <div class="link-name">币付宝</div>
+                          <div class="text">币付宝是中国领先、专业的比特币管理平台。</div>
+                        </a>
+                    </div>
+                    <div class="col-xs-6 col-md-3 baseA">
+                        <a href="//www.coldlar.com">
+                          <img src="//static.feixiaohao.com/themes/default/images/icon/coldlar_com.png">
+                          <div class="link-name">库神钱包</div>
+                          <div class="text">库神钱包由硬件冷钱包及联网端APP两个部分组成。</div>
+                        </a>
+                    </div>
+                    <div class="col-xs-6 col-md-3 baseA">
+                        <a href="//hoo.com/">
+                          <img src="//static.feixiaohao.com/themes/default/images/icon/hoo.jpg">
+                          <div class="link-name">Hoo虎符钱包</div>
+                          <div class="text">区块链资产管理服务平台</div>
+                        </a>
+                    </div>
+                </div>
+                <!-- 矿池及矿机 -->
+                <div class="row m-t-md overflowStyle" id="container7">
+                    <div class="col-xs-12 tit">
+                        <span class="">矿池及矿机</span>
+                        <span class="pull-right moveFont" id="moveFont7">更多></span>
+                    </div>
+                    <div class="col-xs-6 col-md-3 baseA">
+                        <a href="//antpool.com/">
+                          <img src="//static.feixiaohao.com/themes/default/images/icon/antpool_com.png">
+                          <div class="link-name">AntPool蚁池</div>
+                          <div class="text">蚂蚁矿池，是比特大陆旗下的比特币矿池，是比特币矿机和蚂蚁矿机挖矿的选择，蚂蚁矿池支持 pps,pplns,solo模式，为您提供稳定高效的挖矿体验。</div>
+                        </a>
+                    </div>
+                    <div class="col-xs-6 col-md-3 baseA">
+                        <a href="//www.f2pool.com/">
+                          <img src="//static.feixiaohao.com/themes/default/images/icon/f2pool_com.png">
+                          <div class="link-name">F2Pool鱼池</div>
+                          <div class="text">比特币矿池，莱特币、以太坊矿池</div>
+                        </a>
+                    </div>
+                    <div class="col-xs-6 col-md-3 baseA">
+                        <a href="//pool.btcc.com/">
+                          <img src="//static.feixiaohao.com/themes/default/images/icon/btcc_com.png">
+                          <div class="link-name">国池</div>
+                          <div class="text">保护比特币网络,凭借其运营稳定、数据公开透明且费用低等优势,深受广大矿工的支持与信赖</div>
+                        </a>
+                    </div>
+                    <div class="col-xs-6 col-md-3 baseA">
+                        <a href="//www.bw.com/">
+                          <img src="//static.feixiaohao.com/themes/default/images/icon/bw_com.png">
+                          <div class="link-name">BW币网</div>
+                          <div class="text">币网（BW.COM）提供比特币全产业链服务及解决方案。拥有全网最专业的比特币矿池；提供多种专业比特币理财服务；比特币挖出后即生息，让您的财富不断增殖。</div>
+                        </a>
+                    </div>
+                    <div class="col-xs-6 col-md-3 baseA">
+                        <a href="//pool.bixin.com">
+                          <img src="//static.feixiaohao.com/themes/default/images/icon/pool_bixin_com.png">
+                          <div class="link-name">币信矿池</div>
+                          <div class="text">Bixin矿池是全球知名比特币矿池之一，运营稳定、数据公开透明且费用低，口碑极佳。</div>
+                        </a>
+                    </div>
+                    <div class="col-xs-6 col-md-3 baseA">
+                        <a href="//pool.viabtc.com">
+                          <img src="//static.feixiaohao.com/themes/default/images/icon/pool_viabtc_com.png">
+                          <div class="link-name">Viabtc</div>
+                          <div class="text">全球领先的比特币矿池、莱特币、以太坊、零币、达世币矿池，提供安全稳定、公开透明的专业挖矿服务。低手续费及PPS+分配模式，保证用户更高挖矿收益。</div>
+                        </a>
+                    </div>
+                    <div class="col-xs-6 col-md-3 baseA">
+                        <a href="http://www.91pool.com/">
+                          <img src="//static.feixiaohao.com/themes/default/images/icon/91pool_com.png">
+                          <div class="link-name">91矿池</div>
+                          <div class="text">一个最专业、最稳定的矿池</div>
+                        </a>
+                    </div>
+                    <div class="col-xs-6 col-md-3 baseA">
+                        <a href="//slushpool.com/home/">
+                          <img src="//static.feixiaohao.com/themes/default/images/icon/slushpool_com.png">
+                          <div class="link-name">SLUSHPOOL</div>
+                          <div class="text">世界上第一个比特币矿池</div>
+                        </a>
+                    </div>
+                    <div class="col-xs-6 col-md-3 baseA">
+                        <a href="//www.batpool.com/">
+                          <img src="//static.feixiaohao.com/themes/default/images/icon/batpool_com.png">
+                          <div class="link-name">Batpool</div>
+                          <div class="text">BATPOOL.COM，比特币挖矿、莱特币挖矿最优选择，可使用蚂蚁S4、蚂蚁S5、蚂蚁s7、蚂蚁S9、蚂蚁L3，阿瓦隆A6、A7，翼比特E9矿机，莱特币A4等矿机型号</div>
+                        </a>
+                    </div>
+                    <div class="col-xs-6 col-md-3 baseA">
+                        <a href="http://p2pool.info/">
+                          <img src="//static.feixiaohao.com/themes/default/images/icon/p2pool_info.png">
+                          <div class="link-name">P2pool</div>
+                          <div class="text"></div>
+                        </a>
+                    </div>
+                    <div class="col-xs-6 col-md-3 baseA">
+                        <a href="//www.bitmain.com/">
+                          <img src="//static.feixiaohao.com/themes/default/images/icon/bitmain_com.png">
+                          <div class="link-name">比特大陆</div>
+                          <div class="text">蚂蚁矿机（AntMiner）是由比特大陆（Bitmain）研发并销售的比特币矿机，致力于打造最好的比特币挖矿机</div>
+                        </a>
+                    </div>
+                    <div class="col-xs-6 col-md-3 baseA">
+                        <a href="http://www.sfards.com/">
+                          <img src="//static.feixiaohao.com/themes/default/images/icon/sfards_com.png">
+                          <div class="link-name">SFARDS理安科技</div>
+                          <div class="text"></div>
+                        </a>
+                    </div>
+                    <div class="col-xs-6 col-md-3 baseA">
+                        <a href="//www.pandaminer.com/">
+                          <img src="//static.feixiaohao.com/themes/default/images/icon/pandaminer_com.png">
+                          <div class="link-name">熊猫矿机</div>
+                          <div class="text">PandaMiner的团队包括了芯片设计、图形卡、互联网商务和资本管理领域的资深人士和专业人士。基于地理优势，我们汇集了顶尖的专业人才和生产资源，以支持我们的核心竞争力。</div>
+                        </a>
+                    </div>
+                    <div class="col-xs-6 col-md-3 baseA">
+                        <a href="http://www.unminer.com/">
+                          <img src="//static.feixiaohao.com/themes/default/images/icon/unminer_com.png">
+                          <div class="link-name">优联矿业</div>
+                          <div class="text">UNMiner-国内首款数字货币挖矿运维系统</div>
+                        </a>
+                    </div>
+                    <div class="col-xs-6 col-md-3 baseA">
+                        <a href="http://bitfury.com/">
+                          <img src="//static.feixiaohao.com/themes/default/images/icon/bitfury_com.png">
+                          <div class="link-name">Bitfury</div>
+                          <div class="text"></div>
+                        </a>
+                    </div>
+                    <div class="col-xs-6 col-md-3 baseA">
+                        <a href="//canaan.io/">
+                          <img src="//static.feixiaohao.com/themes/default/images/icon/canaan_io.png">
+                          <div class="link-name">阿瓦隆矿机</div>
+                          <div class="text"></div>
+                        </a>
+                    </div>
+                    <div class="col-xs-6 col-md-3 baseA">
+                        <a href="http://qukuai.com/pools">
+                          <img src="//static.feixiaohao.com/themes/default/images/icon/qukuai_com.png">
+                          <div class="link-name">区块矿池统计</div>
+                          <div class="text">比特币区块查询工具，可浏览并查询任意比特币区块、交易、地址的详细信息。</div>
+                        </a>
+                    </div>
+                    <div class="col-xs-6 col-md-3 baseA">
+                        <a href="//www.hashnest.com/">
+                          <img src="//static.feixiaohao.com/themes/default/images/icon/hashnest_com.png">
+                          <div class="link-name">算力巢(蚂蚁)</div>
+                          <div class="text"></div>
+                        </a>
+                    </div>
+                    <div class="col-xs-6 col-md-3 baseA">
+                        <a href="http://www.cybtc.com/thread-11412-1-1.html">
+                          <img src="//static.feixiaohao.com/themes/default/images/icon/cybtc_com.png">
+                          <div class="link-name">彩云挖矿汇总</div>
+                          <div class="text">关于比特币挖矿，何必东奔西跑</div>
+                        </a>
+                    </div>
+                    <div class="col-xs-6 col-md-3 baseA">
+                        <a href="http://www.cybtc.com/thread-11762-1-1.html">
+                          <img src="//static.feixiaohao.com/themes/default/images/icon/cybtc_com.png">
+                          <div class="link-name">P2Pool矿池教程综合篇</div>
+                          <div class="text"></div>
+                        </a>
+                    </div>
+                    <div class="col-xs-6 col-md-3 baseA">
+                        <a href="http://pieifo.com/">
+                          <img src="//static.feixiaohao.com/themes/default/images/icon/pieifo_com.png">
+                          <div class="link-name">比特币分叉汇总</div>
+                          <div class="text">M比特派运营的专业分叉信息站</div>
+                        </a>
+                    </div>
+                    <div class="col-xs-6 col-md-3 baseA">
+                        <a href="http://miner.tools/">
+                          <img src="//static.feixiaohao.com/themes/default/images/icon/default.png">
+                          <div class="link-name">Miner.Tools</div>
+                          <div class="text">Miner tools 显卡挖矿 教程 软件 ZEC ETH ETC Zcash</div>
+                        </a>
+                    </div>
+                    <div class="col-xs-6 col-md-3 baseA">
+                        <a href="//bitcoinwisdom.com/bitcoin/difficulty">
+                          <img src="//static.feixiaohao.com/themes/default/images/icon/default.png">
+                          <div class="link-name">算力难度信息</div>
+                          <div class="text">比特币难度的hash费率表，准确的估计下一个难度。</div>
+                        </a>
+                    </div>
+                    <div class="col-xs-6 col-md-3 baseA">
+                        <a href="//bitcoinwisdom.com/bitcoin/calculator">
+                          <img src="//static.feixiaohao.com/themes/default/images/icon/default.png">
+                          <div class="link-name">收益计算</div>
+                          <div class="text">比特币挖掘计算器是一种先进的计算器，估计比特币将以成本、权力、难度增加为基础。</div>
+                        </a>
+                    </div>
+                    <div class="col-xs-6 col-md-3 baseA">
+                        <a href="http://bitcoinclock.com/">
+                          <img src="//static.feixiaohao.com/themes/default/images/icon/default.png">
+                          <div class="link-name">减半时间表</div>
+                          <div class="text"></div>
+                        </a>
+                    </div>
+                </div>
+                <!-- 投资机构  -->
+                <div class="row m-t-md overflowStyle" id="container8">
+                    <div class="col-xs-12 tit">
+                        <span class="">投资机构</span>
+                        <span class="pull-right moveFont" id="moveFont8">更多></span>
+                    </div>
+                    <div class="col-xs-6 col-md-3 baseA">
+                        <a href="http://fenbushi.vc/index_en.html">
+                          <img src="//static.feixiaohao.com/themes/default/images/icon/fenbushi_vc.png">
+                          <div class="link-name">Fenbushi Capital</div>
+                          <div class="text"></div>
+                        </a>
+                    </div>
+                    <div class="col-xs-6 col-md-3 baseA">
+                        <a href="http://www.longling.com/">
+                          <img src="//static.feixiaohao.com/themes/default/images/icon/longling_com.png">
+                          <div class="link-name">隆领资本</div>
+                          <div class="text">由著名天使投资人蔡文胜先生创办的股权投资机构。</div>
+                        </a>
+                    </div>
+                    <div class="col-xs-6 col-md-3 baseA">
+                        <a href="http://www.zhenfund.com/">
+                          <img src="//static.feixiaohao.com/themes/default/images/icon/zhenfund_com.png">
+                          <div class="link-name">真格基金</div>
+                          <div class="text">真格基金是由新东方联合创始人徐小平、王强和红杉资本中国在2011年联合创立的天使投资基金，旨在鼓励青年人创业、创新、创富、创造。</div>
+                        </a>
+                    </div>
+                    <div class="col-xs-6 col-md-3 baseA">
+                        <a href="http://www.danhuacap.com/">
+                          <img src="//static.feixiaohao.com/themes/default/images/icon/danhuacap_com.png">
+                          <div class="link-name">丹华资本</div>
+                          <div class="text"></div>
+                        </a>
+                    </div>
+                    <div class="col-xs-6 col-md-3 baseA">
+                        <a href="http://metropolisvc.com/">
+                          <img src="//static.feixiaohao.com/themes/default/images/icon/metropolisvc_com.png">
+                          <div class="link-name">大都会资本</div>
+                          <div class="text"></div>
+                        </a>
+                    </div>
+                    <div class="col-xs-6 col-md-3 baseA">
+                        <a href="http://www.nodecap.com/">
+                          <img src="//static.feixiaohao.com/themes/default/images/icon/nodecap_com.png">
+                          <div class="link-name">节点资本</div>
+                          <div class="text">一家专注于区块链产业的风险投资公司。</div>
+                        </a>
+                    </div>
+                    <div class="col-xs-6 col-md-3 baseA">
+                        <a href="http://www.linkvc.com/">
+                          <img src="//static.feixiaohao.com/themes/default/images/icon/linkvc_com.png">
+                          <div class="link-name">连接资本</div>
+                          <div class="text">专注区块链投资</div>
+                        </a>
+                    </div>
+                    <div class="col-xs-6 col-md-3 baseA">
+                        <a href="http://www.preangelfund.cn/">
+                          <img src="//static.feixiaohao.com/themes/default/images/icon/preangelfund_cn.png">
+                          <div class="link-name">PreAngle</div>
+                          <div class="text">PreAngel天使投资基金官方网站</div>
+                        </a>
+                    </div>
+                    <div class="col-xs-6 col-md-3 baseA">
+                        <a href="//www.sequoiacap.com/china/">
+                          <img src="//static.feixiaohao.com/themes/default/images/icon/sequoiacap_com.png">
+                          <div class="link-name">红杉资本中国基金</div>
+                          <div class="text">创业者背后的创业者</div>
+                        </a>
+                    </div>
+                    <div class="col-xs-6 col-md-3 baseA">
+                        <a href="http://www.qfvc.cn/">
+                          <img src="//static.feixiaohao.com/themes/default/images/icon/qfvc_cn.png">
+                          <div class="link-name">启赋资本</div>
+                          <div class="text">专注于私募股权投资的专业基金管理公司</div>
+                        </a>
+                    </div>
+                    <div class="col-xs-6 col-md-3 baseA">
+                        <a href="http://www.chuangxin.com/">
+                          <img src="//static.feixiaohao.com/themes/default/images/icon/chuangxin_com.png">
+                          <div class="link-name">创新工场</div>
+                          <div class="text">创新工场由李开复博士创办，致力于打造集创业平台、资金支持、投后服务等的全方位生态投资服务平台。</div>
+                        </a>
+                    </div>
+                    <div class="col-xs-6 col-md-3 baseA">
+                        <a href="http://www.cgcvc.com/">
+                          <img src="//static.feixiaohao.com/themes/default/images/icon/cgcvc_com.png">
+                          <div class="link-name">华创资本</div>
+                          <div class="text">专注于新金融、新实业、新消费领域的早期投资。</div>
+                        </a>
+                    </div>
+                    <div class="col-xs-6 col-md-3 baseA">
+                        <a href="http://cn.idgcapital.com/">
+                          <img src="//static.feixiaohao.com/themes/default/images/icon/idgcapital_com.png">
+                          <div class="link-name">IDG资本</div>
+                          <div class="text"></div>
+                        </a>
+                    </div>
+                    <div class="col-xs-6 col-md-3 baseA">
+                        <a href="http://www.apluscap.com/">
+                          <img src="//static.feixiaohao.com/themes/default/images/icon/apluscap_com.png">
+                          <div class="link-name">洪泰基金Aplus</div>
+                          <div class="text"></div>
+                        </a>
+                    </div>
+                    <div class="col-xs-6 col-md-3 baseA">
+                        <a href="http://www.rootscap.com/">
+                          <img src="//static.feixiaohao.com/themes/default/images/icon/rootscap_com.png">
+                          <div class="link-name">起源资本</div>
+                          <div class="text"></div>
+                        </a>
+                    </div>
+                    <div class="col-xs-6 col-md-3 baseA">
+                        <a href="http://www.ventureslab.com/index-cn.html">
+                          <img src="//static.feixiaohao.com/themes/default/images/icon/ventureslab_com.png">
+                          <div class="link-name">创业工场</div>
+                          <div class="text">致力于投资并帮助--格守诚信、坚忍不拔、具备远见卓识的互联网及无线服务的早期创业型企业</div>
+                        </a>
+                    </div>
+                    <div class="col-xs-6 col-md-3 baseA">
+                        <a href="http://www.linear.vc/">
+                          <img src="//static.feixiaohao.com/themes/default/images/icon/linear_vc.png">
+                          <div class="link-name">线性资本</div>
+                          <div class="text"></div>
+                        </a>
+                    </div>
+                    <div class="col-xs-6 col-md-3 baseA">
+                        <a href="http://www.inblockchain.com/">
+                          <img src="//static.feixiaohao.com/themes/default/images/icon/inblockchain_com.png">
+                          <div class="link-name">硬币资本</div>
+                          <div class="text">中国区块链领域最具影响力的投资集团。</div>
+                        </a>
+                    </div>
+                    <div class="col-xs-6 col-md-3 baseA">
+                        <a href="http://www.manzivc.com/">
+                          <img src="//static.feixiaohao.com/themes/default/images/icon/manzivc_com.png">
+                          <div class="link-name">蛮子基金</div>
+                          <div class="text">天使投资薛蛮子创立</div>
+                        </a>
+                    </div>
+                </div>
+                <!-- 微博大咖 -->
+                <div class="row m-t-md overflowStyle" id="container9">
+                    <div class="col-xs-12 tit">
+                        <span class="">微博大咖</span>
+                        <span class="pull-right moveFont" id="moveFont9">更多></span>
+                    </div>
+                    <div class="col-xs-6 col-md-3 baseA">
+                        <a href="//www.weibo.com/bylixiaolai">
+                          <img src="//static.feixiaohao.com/themes/default/images/icon/weibo_com_bylixiaolai.png">
+                          <div class="link-name">李笑来</div>
+                          <div class="text">币圈大佬</div>
+                        </a>
+                    </div>
+                    <div class="col-xs-6 col-md-3 baseA">
+                        <a href="//weibo.com/tokenok">
+                          <img src="//static.feixiaohao.com/themes/default/images/icon/weibo_yicheng.jpg">
+                          <div class="link-name">一尘大话区块链</div>
+                          <div class="text">让你有逻辑的投资，不再迷茫！</div>
+                        </a>
+                    </div>
+                    <div class="col-xs-6 col-md-3 baseA">
+                        <a href="//weibo.com/Superbitcoin">
+                          <img src="//static.feixiaohao.com/themes/default/images/icon/weibo_superbtc.jpg">
+                          <div class="link-name">超级比特币</div>
+                          <div class="text">币信COO、区块链布道者</div>
+                        </a>
+                    </div>
+                    <div class="col-xs-6 col-md-3 baseA">
+                        <a href="//www.weibo.com/u/1305473650">
+                          <img src="//static.feixiaohao.com/themes/default/images/icon/weibo_com_1305473650.png">
+                          <div class="link-name">数字货币趋势狂人</div>
+                          <div class="text">币圈知名大v</div>
+                        </a>
+                    </div>
+                    <div class="col-xs-6 col-md-3 baseA">
+                        <a href="//weibo.com/changjia">
+                          <img src="//static.feixiaohao.com/themes/default/images/icon/weibo_com_changjia.png">
+                          <div class="link-name">长铗</div>
+                          <div class="text">巴比特创始人</div>
+                        </a>
+                    </div>
+                    <div class="col-xs-6 col-md-3 baseA">
+                        <a href="//www.weibo.com/fngm">
+                          <img src="//static.feixiaohao.com/themes/default/images/icon/weibo_com_fngm.png">
+                          <div class="link-name">我是老猫</div>
+                          <div class="text">币圈大佬</div>
+                        </a>
+                    </div>
+                    <div class="col-xs-6 col-md-3 baseA">
+                        <a href="//weibo.com/u/5941645212">
+                          <img src="//static.feixiaohao.com/themes/default/images/icon/weibo_com_5941645212.png">
+                          <div class="link-name">Bitangel宝二爷</div>
+                          <div class="text">币圈大佬</div>
+                        </a>
+                    </div>
+                    <div class="col-xs-6 col-md-3 baseA">
+                        <a href="//www.weibo.com/btc007">
+                          <img src="//static.feixiaohao.com/themes/default/images/icon/weibo_com_btc007.png">
+                          <div class="link-name">比特币战车</div>
+                          <div class="text">币圈知名大v</div>
+                        </a>
+                    </div>
+                    <div class="col-xs-6 col-md-3 baseA">
+                        <a href="//weibo.com/bagetanbi">
+                          <img src="//static.feixiaohao.com/themes/default/images/icon/weibo_com_bagetanbi.png">
+                          <div class="link-name">八哥谈币</div>
+                          <div class="text">币圈知名大v，新韭菜的指路明灯，只要跟八哥做相反操作就有机会。</div>
+                        </a>
+                    </div>
+                    <div class="col-xs-6 col-md-3 baseA">
+                        <a href="//www.weibo.com/zhaodong1982">
+                          <img src="//static.feixiaohao.com/themes/default/images/icon/weibo_com_zhaodong1982.png">
+                          <div class="link-name">赵乐天</div>
+                          <div class="text">币圈知名大佬</div>
+                        </a>
+                    </div>
+                    <div class="col-xs-6 col-md-3 baseA">
+                        <a href="//weibo.com/u/6367051967">
+                          <img src="//static.feixiaohao.com/themes/default/images/icon/weibo_com_6367051967.png">
+                          <div class="link-name">比特币康先森</div>
+                          <div class="text">币圈知名大v</div>
+                        </a>
+                    </div>
+                    <div class="col-xs-6 col-md-3 baseA">
+                        <a href="//weibo.com/hqle">
+                          <img src="//static.feixiaohao.com/themes/default/images/icon/weibo_com_hqle.png">
+                          <div class="link-name">比特币37度</div>
+                          <div class="text">A网创始人</div>
+                        </a>
+                    </div>
+                    <div class="col-xs-6 col-md-3 baseA">
+                        <a href="//www.weibo.com/u/5353317892">
+                          <img src="//static.feixiaohao.com/themes/default/images/icon/weibo_com_5353317892.png">
+                          <div class="link-name">炒币_先锋团</div>
+                          <div class="text">炒币大v</div>
+                        </a>
+                    </div>
+                    <div class="col-xs-6 col-md-3 baseA">
+                        <a href="//weibo.com/u/3262086202">
+                          <img src="//static.feixiaohao.com/themes/default/images/icon/weibo_com_3262086202.png">
+                          <div class="link-name">赛博鱼</div>
+                          <div class="text">炒币大v,3万本金到3000万</div>
+                        </a>
+                    </div>
+                </div>
+                <!-- 入门文档 -->
+                <div class="row m-t-md overflowStyle" id="container10">
+                    <div class="col-xs-12 tit">
+                        <span class="">入门文档</span>
+                        <span class="pull-right moveFont" id="moveFont10">更多></span>
+                    </div>
+                    <div class="col-xs-6 col-md-3 baseA">
+                        <a href="//baike.baidu.com/item/%E6%AF%94%E7%89%B9%E5%B8%81/4143690">
+                          <img src="//static.feixiaohao.com/themes/default/images/icon/baidu_com.png">
+                          <div class="link-name">比特币百度百科</div>
+                          <div class="text"></div>
+                        </a>
+                    </div>
+                    <div class="col-xs-6 col-md-3 baseA">
+                        <a href="//zh.wikipedia.org/wiki/%E6%AF%94%E7%89%B9%E5%B8%81">
+                          <img src="//static.feixiaohao.com/themes/default/images/icon/wikipedia_org.png">
+                          <div class="link-name">比特币维基百科</div>
+                          <div class="text"></div>
+                        </a>
+                    </div>
+                    <div class="col-xs-6 col-md-3 baseA">
+                        <a href="//bitcoin.org/zh_CN/getting-started">
+                          <img src="//static.feixiaohao.com/themes/default/images/icon/bitcoin_org.png">
+                          <div class="link-name">比特币入门指南</div>
+                          <div class="text">比特币官网指南</div>
+                        </a>
+                    </div>
+                    <div class="col-xs-6 col-md-3 baseA">
+                        <a href="//bitcoin.org/zh_CN/faq">
+                          <img src="//static.feixiaohao.com/themes/default/images/icon/bitcoin_org.png">
+                          <div class="link-name">比特币常见问题</div>
+                          <div class="text">比特币官网指南</div>
+                        </a>
+                    </div>
+                    <div class="col-xs-6 col-md-3 baseA">
+                        <a href="http://www.ethdocs.org/en/latest/">
+                          <img src="//static.feixiaohao.com/themes/default/images/icon/ethdocs_org.png">
+                          <div class="link-name">以太坊入门文档</div>
+                          <div class="text"></div>
+                        </a>
+                    </div>
+                    <div class="col-xs-6 col-md-3 baseA">
+                        <a href="http://v.youku.com/v_show/id_XNjQ1NTY0NjQ4.html">
+                          <img src="//static.feixiaohao.com/themes/default/images/icon/default.png">
+                          <div class="link-name">原理和机制</div>
+                          <div class="text"></div>
+                        </a>
+                    </div>
+                    <div class="col-xs-6 col-md-3 baseA">
+                        <a href="//www.udemy.com/bitcoin-or-how-i-learned-to-stop-worrying-and-love-crypto/">
+                          <img src="//static.feixiaohao.com/themes/default/images/icon/default.png">
+                          <div class="link-name">比特币教学</div>
+                          <div class="text"></div>
+                        </a>
+                    </div>
+                    <div class="col-xs-6 col-md-3 baseA">
+                        <a href="http://www.8btc.com/wiki/bitcoin-a-peer-to-peer-electronic-cash-system">
+                          <img src="//static.feixiaohao.com/themes/default/images/icon/default.png">
+                          <div class="link-name">比特币白皮书</div>
+                          <div class="text"></div>
+                        </a>
+                    </div>
+                    <div class="col-xs-6 col-md-3 baseA">
+                        <a href="//img2.btc123.com/file/0/2016-2017EthereumDevReport.pdf">
+                          <img src="//static.feixiaohao.com/themes/default/images/icon/default.png">
+                          <div class="link-name">以太坊发展趋势分析</div>
+                          <div class="text"></div>
+                        </a>
+                    </div>
+                    <div class="col-xs-6 col-md-3 baseA">
+                        <a href="//img2.btc123.com/file/0/chinabolckchaindevwhitepage2016.pdf">
+                          <img src="//static.feixiaohao.com/themes/default/images/icon/default.png">
+                          <div class="link-name">中国区块链白皮书</div>
+                          <div class="text"></div>
+                        </a>
+                    </div>
+                    <div class="col-xs-6 col-md-3 baseA">
+                        <a href="http://www.8btc.com/bitcoin-contract">
+                          <img src="//static.feixiaohao.com/themes/default/images/icon/default.png">
+                          <div class="link-name">比特币协议(上)</div>
+                          <div class="text"></div>
+                        </a>
+                    </div>
+                    <div class="col-xs-6 col-md-3 baseA">
+                        <a href="http://www.8btc.com/bitcoin-contract2">
+                          <img src="//static.feixiaohao.com/themes/default/images/icon/default.png">
+                          <div class="link-name">比特币协议(下)</div>
+                          <div class="text"></div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- ############ PAGE END-->
+    </div>
+    
+  </div>
+  <!-- ############ LAYOUT END-->
+</div>
+
+<!-- small modal -->
+<div id="m-sm" class="modal" data-backdrop="true">
+  <div class="row-col h-v">
+    <div class="row-cell v-m">
+      <div class="modal-dialog modal-sm">
+        <div class="modal-content" style="width: 200px;margin: 0 auto;">
+          <div class="modal-header text-center">
+            <h5 class="modal-title">加载中....</h5>
+          </div>
+        </div><!-- /.modal-content -->
+      </div>
+    </div>
+  </div>
+</div>
+<!-- / .modal -->
+
+<!-- build:js scripts/app.html.js --><!-- jQuery -->
+<script src="../libs/jquery/jquery/dist/jquery.js"></script>
+<!-- Bootstrap -->
+<script src="../libs/jquery/tether/dist/js/tether.min.js"></script>
+<script src="../libs/jquery/bootstrap/dist/js/bootstrap.js"></script>
+<script src="scripts/common.js?v=1.0.0.2892"></script>
+<!-- =========================框架文件===================== -->
+<!-- build:js scripts/app.html.js -->
+<!-- jQuery -->
+  <script src="../libs/jquery/jquery/dist/jquery.js"></script>
+<!-- Bootstrap -->
+  <script src="../libs/jquery/tether/dist/js/tether.min.js"></script>
+  <script src="../libs/jquery/bootstrap/dist/js/bootstrap.js"></script>
+<!-- core -->
+  <script src="../libs/jquery/underscore/underscore-min.js"></script>
+  <script src="../libs/jquery/jQuery-Storage-API/jquery.storageapi.min.js"></script>
+  <script src="../libs/jquery/PACE/pace.min.js"></script>
+
+  <script src="scripts/config.lazyload.js"></script>
+
+  <script src="scripts/palette.js"></script>
+  <script src="scripts/ui-load.js"></script>
+  <script src="scripts/ui-jp.js"></script>
+  <script src="scripts/ui-include.js"></script>
+  <script src="scripts/ui-device.js"></script>
+  <script src="scripts/ui-form.js"></script>
+  <script src="scripts/ui-nav.js"></script>
+  <script src="scripts/ui-screenfull.js"></script>
+  <script src="scripts/ui-scroll-to.js"></script>
+  <script src="scripts/ui-toggle-class.js"></script>
+
+  <script src="scripts/app.js"></script>
+
+  <!-- ajax -->
+  <script src="../libs/jquery/jquery-pjax/jquery.pjax.js"></script>
+  <script src="scripts/ajax.js"></script>
+
+  <script type="text/javascript" src="./BE123.js"></script>
+<!-- endbuild -->
+
+</body>
+</html>
