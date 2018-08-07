@@ -1,0 +1,71 @@
+/*样式*/
+    .tit{
+      background: #f7f7f7;
+      font-weight: 900;
+      font-size: 16px;
+      padding: 14px;
+      border:1px solid #ccc;
+    }
+    .baseA:hover{
+      background: #DDD7D7;
+    }
+    .baseA a{
+      display: block;
+      position: relative;
+    }
+    .baseA a img{
+      width: 25px;
+      height: 25px;
+      border-radius: 50%;
+      display: inline-block;
+      background: #f1f1f1;
+      position: absolute;
+      top: 9px;
+    }
+    .baseA{
+      padding-top:13px;
+      height: 68px;
+      background: #FFF;
+      border-bottom: 1px solid #ccc;
+    }
+    .baseA:nth-of-type(even){
+        border-left: 1px solid #ccc;
+    }
+    .baseA:nth-of-type(odd){
+        border-left: 1px solid #ccc;
+    }
+    .baseA:last-child{
+        border-right: 1px solid #ccc;
+    }
+    .baseA a div{
+        width: 100%;
+        padding-left: 35px;
+    }
+    .baseA a div:nth-of-type(1){
+      font-size: 15px;
+      font-weight: 900;
+    }
+    .baseA a div:nth-of-type(2){
+      font-size: 13px;
+      color: #999;
+      overflow:hidden; 
+      white-space: nowrap;
+      text-overflow: ellipsis;
+    }
+    .moveFont{
+      color: #999;
+      font-size: 14px;
+      font-weight: normal;
+      cursor: pointer;
+    }
+    .overflowStyle{
+      height: 190px;
+      overflow: hidden;
+    }
+    .moveFont{
+      -webkit-user-select: none;
+       -moz-user-select: none;
+       -ms-user-select: none;
+       -o-user-select: none;
+       user-select: none; 
+    }
