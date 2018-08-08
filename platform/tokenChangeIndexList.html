@@ -1,0 +1,586 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="utf-8"/>
+<title>飞特平台－币币兑换</title>
+<meta name="description" content="社交化加密币投顾平台"/>
+<meta name="keywords" content="比特币, 飞特币, 飞特币, 以太坊, 虚拟币, 加密币，量子链, 区块链, 钱包, 跨链"/>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimal-ui"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<!-- for ios 7 style, multi-resolution icon of 152x152 -->
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-barstyle" content="black-translucent">
+<link rel="apple-touch-icon" href="../assets/images/logo.png">
+<meta name="apple-mobile-web-app-title" content="Feitebi">
+<!-- for Chrome on Android, multi-resolution icon of 196x196 -->
+<meta name="mobile-web-app-capable" content="yes">
+<link rel="shortcut icon" sizes="196x196" href="../assets/images/logo.png">
+<!-- style -->
+<link rel="stylesheet" href="../assets/animate.css/animate.min.css" type="text/css"/>
+<link rel="stylesheet" href="../assets/glyphicons/glyphicons.css" type="text/css"/>
+<link rel="stylesheet" href="../assets/font-awesome/css/font-awesome.min.css" type="text/css"/>
+<link rel="stylesheet" href="../assets/material-design-icons/material-design-icons.css" type="text/css"/>
+<link rel="stylesheet" href="../assets/bootstrap/dist/css/bootstrap.min.css" type="text/css"/>
+<!-- build:css ../assets/styles/app.min.css -->
+<link rel="stylesheet" href="../assets/styles/app.css" type="text/css"/>
+<!-- endbuild -->
+<link rel="stylesheet" href="../assets/styles/font.css" type="text/css"/>
+<style>
+    span.logo{font-size: 16px;font-weight: 400}.paddingTop10{padding-top: 8px}.navbar-brand{font-weight: 200}
+    .wh120{width: 120px;height: 120px}.wh64{width: 64px;height: 64px} @media (min-width: 769px) {.push-left-160 {padding-left:160px !important; } }
+
+    .fa-exchange:before{
+      font-size:25px;
+    }
+</style>
+</head>
+<body>
+<div class="app" id="app">
+  <div id="aside" class="app-aside modal fade nav-dropdown">
+    <div class="left navside dark dk" layout="column">
+      <div class="navbar no-radius">
+        <!-- brand -->
+        <a class="navbar-brand">
+        <img src='./images/logo-c.png'/> 飞特平台
+        </a>
+        <!-- / brand -->
+      </div>
+      <div flex class="hide-scroll">
+        <nav class="scroll nav-light">
+        <ul class="nav listLi" ui-nav>
+            <li>
+              <a href="index.html" >
+                <span class="nav-icon">
+                  <i class="material-icons">&#xe8b9;
+                    <span ui-include="'../assets/images/i_3.svg'"></span>
+                  </i>
+                </span>
+                <span class="nav-text">数字行情</span>
+              </a>
+            </li>
+            <li>
+              <a href="./coin2coin.html">
+                <span class="nav-icon">
+                  <i class="material-icons">&#xe850;
+                    <span ui-include="'../assets/images/i_0.svg'"></span>
+                  </i>
+                </span>
+                <span class="nav-text">币币兑换</span>
+              </a>
+            </li>
+            <li>
+              <a href="assetView.html" >
+                <span class="nav-icon">
+                  <i class="material-icons">&#xe8b9;
+                    <span ui-include="'../assets/images/i_1.svg'"></span>
+                  </i>
+                </span>
+                <span class="nav-text">自选行情</span>
+              </a>
+            </li>
+        </ul>
+        </nav>
+      </div>
+      <div flex-no-shrink>
+        <nav ui-nav>
+       <!--  <ul class="nav">
+          <li>
+          <div class="b-b b m-t-sm">
+          </div>
+          </li>
+          <li class="no-bg">
+          <a href="javascript:void()" onclick="logout()">
+          <span class="nav-icon">
+          <i class="material-icons">&#xe8ac;</i>
+          </span>
+          <span class="nav-text">退出</span>
+          </a>
+          </li>
+        </ul> -->
+        </nav>
+      </div>
+    </div>
+  </div>
+  <!-- content -->
+  <div id="content" class="app-content box-shadow-z0" role="main">
+    <div class="app-header white box-shadow">
+      <div class="navbar">
+        <!-- Open side - Naviation on mobile -->
+        <a data-toggle="modal" data-target="#aside" class="navbar-item pull-left hidden-lg-up">
+        <i class="material-icons">&#xe5d2;</i>
+        </a>
+        <!-- / -->
+        
+        <div class="navbar-item h6" ng-bind="$state.current.data.title" id="pageTitle">
+             <div class="pull-left">币币兑换</div>
+             <!-- <img src="logo/list.png"> -->
+             <!-- <span class="pull-right">
+             <a href="./step5.html" style="color: #ccc;font-size: 13px">
+             清单列表</a>
+             </span> -->
+        </div>
+      </div>
+    </div>
+    <div ui-view class="app-body" id="view">
+      <div class="padding">
+        <div class="">
+          <div class="row">
+            <div class="col-md-12">
+                <div class="box">
+                  <div class="box-header">
+                    <h2>币币兑换清单</h2>
+                  </div>
+                  <table class="table m-b-none" ui-jp="footable" data-filter="#filter" data-page-size="5">
+                    <thead>
+                      <tr>
+                          <th class="text-center"> <!-- data-toggle="true" -->
+                              兑换
+                          </th>
+                          <th class="text-center hidden-sm-down">
+                          <!-- data-hide="phone,tablet" -->
+                              订单号
+                          </th>
+                          <th class="text-center hidden-sm-down">
+                          <!-- data-hide="phone,tablet" -->
+                              充币地址
+                          </th>
+                          <th class="text-center">
+                          <!-- data-hide="phone,tablet" -->
+                              兑换商
+                          </th>
+                          <th class="text-center">
+                          <!-- data-hide="phone,tablet" -->
+                              状态
+                          </th>
+                          <th class="text-center hidden-sm-down">
+                          <!-- data-hide="phone,tablet" -->
+                              详情
+                          </th>
+                      </tr>
+                    </thead>
+                    <tbody id="tableBody">
+                        
+                    </tbody>
+                    <tfoot class="hide-if-no-paging">
+                      <tr>
+                          <td colspan="5" class="text-center">
+                              <ul class="pagination"></ul>
+                          </td>
+                      </tr>
+                    </tfoot>
+                  </table>
+                </div>
+            </div>
+          </div>
+          
+          <!-- 合作伙伴 -->
+          <div class="row p-t-lg" id="footer">
+              <div class="col-xs-12 col-md-12 text-center p-t-lg p-b-md">
+                <p class="h4">合作伙伴</p>
+              </div>
+              <div class="col-xs-6 col-md-2 col-md-offset-2 text-center">
+                 <div style="height: 40px;line-height: 40px;">
+                    <img src="./svg/changelly.svg" style="width: 120px;">
+                 </div>
+              </div>
+              <div class="col-xs-6 col-md-2 text-center">
+                 <div style="height: 40px;line-height: 40px;">
+                    <img src="./svg/shapeshift.svg" style="width: 120px;">
+                 </div>
+              </div>
+              <div class="col-xs-6 col-md-2 text-center">
+                 <div style="height: 40px;line-height: 40px;">
+                    <img src="./svg/apple-icon-180x180.png" style="height: 40px;">
+                 </div>
+              </div>
+              <div class="col-xs-6 col-md-2 text-center">
+                 <div style="height: 40px;line-height: 40px;">
+                    <img src="./svg/changer.png" style="width: 120px;">
+                 </div>
+              </div>
+          </div>
+          <div class="row" style="color: gray">
+            <hr>
+            <div class="col-md-8 col-md-offset-2 text-center" style="color: grey;font-size: 10px;">
+                <p class="">币币兑换，是飞特平台的智能搬砖重要部分，旨在免费帮助用户挑选价格最高的承兑商，目前已经对接的知名承兑商，包括shapshift，changelly等，同时本应用是去中心化的Dapp，不会往服务器端发送/存储任何订单信息，也不会收取额外的手续费，如遇兑换超时或者失败，请记录您的订单号，与兑换商或官方客服联系。</p>
+                <p>特此声明：如果是用户自己输入错误的接收地址，或者发送到错误的兑币地址，导致币的丢失，责任自担！</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+  </div>
+  <!-- ############ LAYOUT END-->
+</div>
+
+<!-- small modal -->
+<div id="m-sm" class="modal" data-backdrop="true">
+  <div class="row-col h-v">
+    <div class="row-cell v-m">
+      <div class="modal-dialog modal-sm">
+        <div class="modal-content" style="width: 200px;margin: 0 auto;">
+          <div class="modal-header text-center">
+            <h5 class="modal-title">加载中....</h5>
+          </div>
+        </div><!-- /.modal-content -->
+      </div>
+    </div>
+  </div>
+</div>
+<!-- / .modal -->
+
+<!-- build:js scripts/app.html.js --><!-- jQuery -->
+<script src="../libs/jquery/jquery/dist/jquery.js"></script>
+<!-- Bootstrap -->
+<script src="../libs/jquery/tether/dist/js/tether.min.js"></script>
+<script src="../libs/jquery/bootstrap/dist/js/bootstrap.js"></script>
+<script src="scripts/common.js?v=1.0.0.2892"></script>
+<!-- =========================框架文件===================== -->
+<!-- build:js scripts/app.html.js -->
+<!-- jQuery -->
+  <script src="../libs/jquery/jquery/dist/jquery.js"></script>
+<!-- Bootstrap -->
+  <script src="../libs/jquery/tether/dist/js/tether.min.js"></script>
+  <script src="../libs/jquery/bootstrap/dist/js/bootstrap.js"></script>
+<!-- core -->
+  <script src="../libs/jquery/underscore/underscore-min.js"></script>
+  <script src="../libs/jquery/jQuery-Storage-API/jquery.storageapi.min.js"></script>
+  <script src="../libs/jquery/PACE/pace.min.js"></script>
+
+  <script src="scripts/config.lazyload.js"></script>
+
+  <script src="scripts/palette.js"></script>
+  <script src="scripts/ui-load.js"></script>
+  <script src="scripts/ui-jp.js"></script>
+  <script src="scripts/ui-include.js"></script>
+  <script src="scripts/ui-device.js"></script>
+  <script src="scripts/ui-form.js"></script>
+  <script src="scripts/ui-nav.js"></script>
+  <script src="scripts/ui-screenfull.js"></script>
+  <script src="scripts/ui-scroll-to.js"></script>
+  <script src="scripts/ui-toggle-class.js"></script>
+
+  <script src="scripts/app.js"></script>
+
+  <!-- ajax -->
+  <script src="../libs/jquery/jquery-pjax/jquery.pjax.js"></script>
+
+<script type="text/javascript">
+    //加载changelly本地存储
+    if (JSON.parse(localStorage.getItem("AllWebStorage"))) {
+
+      var webObj = JSON.parse(localStorage.getItem("AllWebStorage"));
+      
+      for (var i = 0; i < webObj.length; i++) {
+          //读取本地交易详情数据
+          var webcreateTransaction = JSON.parse(webObj[i].createTransaction);
+          var html = $(`
+                <tr>
+                  <td class="text-center">
+                      ${webObj[i].symbolForm} --> ${webObj[i].symbolTo}
+                      <br>
+                      <span style="font-size:12px;">
+                        ${webObj[i].time}
+                      </span>
+                  </td>
+                  <td class="text-center hidden-sm-down" style="line-height:40px;">${webcreateTransaction.id}</td>
+                  <td class="text-center hidden-sm-down" style="line-height:40px;">${webcreateTransaction.payinAddress}</td>
+                  <td class="text-center text-info" style="line-height:40px;" onclick='getdetail(${i})'>${webObj[i].changellyExName}</td>
+                  <td class="text-center statusCom" style="line-height:40px;" id="${webcreateTransaction.id}"></td>
+                  <td style="cursor:pointer;line-height:40px;" class="text-center hidden-sm-down">
+                      <span onclick='getdetailChangelly(${i})' style="color:red">查看</span>&nbsp;|&nbsp;
+                      <span onclick='delItemChangelly(${i},this)'>删除</span>
+                  </td>
+                </tr>
+          `)
+          $("#tableBody").append(html);
+          $('#m-sm').modal('show');//加载....
+          //订单状态
+          $.ajax({
+            async:true,
+            type:"get",
+            url:"/api/changelly/viewTable/",
+            data:{id:webcreateTransaction.id},
+            success:function(data){
+                //添加状态 进对象里
+                if (data.currentStatus=="waiting") {
+                    $('#m-sm').modal('hide');//加载....
+                    $(`#${data.TDid}`).html("未打币");
+                }else if (data.currentStatus=="confirming") {
+                    $('#m-sm').modal('hide');//加载....
+                    $(`#${data.TDid}`).html("区块确认中");
+                }else if (data.currentStatus=="finished") {
+                    $('#m-sm').modal('hide');//加载....
+                    //webcreateTransaction.status = "已兑换"
+                    $(`#${data.TDid}`).html("已兑换");
+                    $(`#${data.TDid}`).next().find('span').last().remove();
+                    //兑换成功 清除删除键
+                }else if (data.currentStatus=="failed") {
+                    $('#m-sm').modal('hide');//加载....
+                    //webcreateTransaction.status = "兑换失败"
+                    $(`#${data.TDid}`).html("兑换失败");
+                }else if (data.currentStatus=="refunded") {
+                    $('#m-sm').modal('hide');//加载....
+                    //webcreateTransaction.status = "已退回"
+                    $(`#${data.TDid}`).html("已退回");
+                }else if (data.currentStatus=="exchanging") {
+                    $('#m-sm').modal('hide');//加载....
+                    //webcreateTransaction.status = "已退回"
+                    $(`#${data.TDid}`).html("兑换中");
+                }else if (data.currentStatus=="sending") {
+                    $('#m-sm').modal('hide');//加载....
+                    //webcreateTransaction.status = "已退回"
+                    $(`#${data.TDid}`).html("发送中");
+                }else if (data.currentStatus=="overdue") {
+                    $('#m-sm').modal('hide');//加载....
+                    //webcreateTransaction.status = data.currentStatus;
+                    $(`#${data.TDid}`).html("超时");
+                }else{
+                    $('#m-sm').modal('hide');//加载....
+                    //webcreateTransaction.status = data.currentStatus;
+                    $(`#${data.TDid}`).html(data.currentStatus);
+                }
+            }
+          });
+      }
+
+      //刪除 changelly
+      function delItemChangelly(i,thi){
+        webObj.splice(i,1);
+        localStorage.setItem("AllWebStorage",JSON.stringify(webObj));
+        location.reload();
+      }
+
+      //查看 changelly
+      function getdetailChangelly(i){
+        var viewObj = webObj[i];
+        localStorage.setItem("exchangeView",JSON.stringify(viewObj));
+        window.location.href="changellyStep6.html";
+      };
+    }
+
+    //加载shapeshift本地存储
+    if (JSON.parse(localStorage.getItem("AllOrderObj"))) {
+      var webObj2 = JSON.parse(localStorage.getItem("AllOrderObj"));
+      
+      for (var i = 0; i < webObj2.length; i++) {
+          
+          var orderId = JSON.parse(webObj2[i].orderId);
+          //"2018-06-03 16:18:58" 分割字符串 去除引号
+          var times = webObj2[i].time.split("\"");
+
+              var html = $(`
+                    <tr>
+                      <td class="text-center">
+                          ${webObj2[i].shapeshiftFromName} --> ${webObj2[i].shapeshiftToName}
+                          <br>
+                          <span style="font-size:12px;">
+                            ${times[1]}
+                          </span>
+                      </td>
+                      <td class="text-center hidden-sm-down" style="line-height:40px;">${orderId.orderId}</td>
+                      <td class="text-center hidden-sm-down" style="line-height:40px;">${orderId.deposit}</td>
+                      <td class="text-center text-info" style="line-height:40px;" onclick='getdetail2(${i})'>${webObj2[i].shapeshiftExName}</td>
+                      <td class="text-center" style="line-height:40px;" id="${orderId.deposit}"></td>
+                      <td style="cursor:pointer;line-height:40px;" class="text-center hidden-sm-down">
+                          <span onclick='getdetailShapeshift(${i})' style="color:red">查看</span>&nbsp;|&nbsp;
+                          <span onclick='delItemShapeshift(${i},this)'>删除</span>
+                      </td>
+                    </tr>
+              `)
+
+              $("#tableBody").append(html);
+              $("#m-sm").modal('show');
+
+              //订单状态
+              $.ajax({
+                  async:true,
+                  type:"get",
+                  url:"https://cors.shapeshift.io/txStat/"+orderId.deposit,
+                  data:{},
+                  dataType:'json',
+                  success:function(data){
+                    console.log(data)
+                    if(data.status=="no_deposits"){
+                      $('#m-sm').modal('hide');//加载....
+                      $(`#${data.address}`).html("未打币");
+                    }else if(data.status=="received"){
+                      $('#m-sm').modal('hide');//加载....
+                      $(`#${data.address}`).html("兑换中");
+                    }else if(data.status=="complete"){
+                      $('#m-sm').modal('hide');//加载....
+                      $(`#${data.address}`).html("已兑换");
+                      $(`#${data.address}`).next().find('span').last().remove();
+                    //兑换成功 清除删除键
+                    }else{
+                      $('#m-sm').modal('hide');//加载....
+                      $(`#${data.address}`).html("兑换失败");
+                    }
+                  }
+                });
+      }
+
+      //查看 shapeshift
+      function getdetailShapeshift(data){
+        var viewObj = webObj2[data];
+        localStorage.setItem("exchangedetail",JSON.stringify(viewObj));
+        window.location.href="shapeshiftStep6.html";
+      };
+
+      //刪除 shapeshift
+      function delItemShapeshift(i,thi){
+        webObj2.splice(i,1);
+        localStorage.setItem("AllOrderObj",JSON.stringify(webObj2));
+        location.reload();
+      }
+    }
+
+    //加载changer本地存储
+    if (JSON.parse(localStorage.getItem("AllchangerArr"))) {
+
+      var webObj3 = JSON.parse(localStorage.getItem("AllchangerArr"));
+      
+      for (var i = 0; i < webObj3.length; i++) {
+          //读取本地交易详情数据
+          var webcreateTransaction = JSON.parse(webObj3[i].createTransaction);
+          var webcreateTransaction2 = JSON.parse(webcreateTransaction);
+          //console.log(webcreateTransaction2)
+          var html = $(`
+                <tr>
+                  <td class="text-center">
+                      ${webObj3[i].symbolForm} --> ${webObj3[i].symbolTo}
+                      <br>
+                      <span style="font-size:12px;">
+                        ${webObj3[i].time}
+                      </span>
+                  </td>
+                  <td class="text-center hidden-sm-down" style="line-height:40px;">${webcreateTransaction2.exchange_id}</td>
+                  <td class="text-center hidden-sm-down" style="line-height:40px;">${webcreateTransaction2.payee}</td>
+                  <td class="text-center text-info" style="line-height:40px;" onclick='getdetail(${i})'>${webObj3[i].changellyExName}</td>
+                  <td class="text-center statusCom" style="line-height:40px;" id="${webcreateTransaction2.exchange_id}"></td>
+                  <td style="cursor:pointer;line-height:40px;" class="text-center hidden-sm-down">
+                      <span onclick='getdetailChanger(${i})' style="color:red">查看</span>&nbsp;|&nbsp;
+                      <span onclick='delItemChanger(${i},this)'>删除</span>
+                  </td>
+                </tr>
+          `)
+          $("#tableBody").append(html);
+          $('#m-sm').modal('show');//加载....
+          //订单状态
+          $.ajax({
+            async:true,
+            type:"get",
+            url:`https://www.changer.com/api/v2/exchange/${webcreateTransaction2.exchange_id}`,
+            data:{},
+            success:function(data){
+                var sessionID = JSON.parse(data).exchange_id
+                if (JSON.parse(data).status=="new") {
+                    $('#m-sm').modal('hide');//加载....
+                    $(`#${sessionID}`).html("未打币");
+                }else if (JSON.parse(data).status=="processing"){
+                    $('#m-sm').modal('hide');//加载....
+                    $(`#${sessionID}`).html("兑换中");
+                }else{
+                    $('#m-sm').modal('hide');//加载....
+                    $(`#${sessionID}`).html("已兑换");
+                    $(`#${sessionID}`).next().find('span').last().remove();
+                    //兑换成功 清除删除键
+                }
+                //添加状态 进对象里 
+                // status: "processing",
+            }
+          });
+      }
+
+      //刪除 changer
+      function delItemChanger(i,thi){
+            webObj3.splice(i,1);
+            
+            localStorage.setItem("AllchangerArr",JSON.stringify(webObj3));
+            location.reload();
+          }
+
+      //查看 changer
+      function getdetailChanger(i){
+        var viewObj = webObj3[i];
+        localStorage.setItem("exchangeView",JSON.stringify(viewObj));
+        window.location.href="changerStep6.html";
+      };
+    }
+
+    //加载changenow本地存储
+    if (JSON.parse(localStorage.getItem("AllchangenowArr"))) {
+
+      var webObj4 = JSON.parse(localStorage.getItem("AllchangenowArr"));
+      
+      for (var i = 0; i < webObj4.length; i++) {
+          //读取本地交易详情数据
+          var webcreateTransaction = JSON.parse(webObj4[i].createTransaction);
+          //console.log(webcreateTransaction)
+          var html = $(`
+                <tr>
+                  <td class="text-center">
+                      ${webObj4[i].symbolForm} --> ${webObj4[i].symbolTo}
+                      <br>
+                      <span style="font-size:12px;">
+                        ${webObj4[i].time}
+                      </span>
+                  </td>
+                  <td class="text-center hidden-sm-down" style="line-height:40px;">${webcreateTransaction.id}</td>
+                  <td class="text-center hidden-sm-down" style="line-height:40px;">${webcreateTransaction.payinAddress}</td>
+                  <td class="text-center text-info" style="line-height:40px;" onclick='getdetail(${i})'>${webObj4[i].changenowExName}</td>
+                  <td class="text-center statusCom" style="line-height:40px;" id="${webcreateTransaction.id}"></td>
+                  <td style="cursor:pointer;line-height:40px;" class="text-center hidden-sm-down">
+                      <span onclick='getdetailChangenow(${i})' style="color:red">查看</span>&nbsp;|&nbsp;
+                      <span onclick='delItemChangenow(${i},this)'>删除</span>
+                  </td>
+                </tr>
+          `)
+          $("#tableBody").append(html);
+          $('#m-sm').modal('show');//加载....
+          console.log(webcreateTransaction.id)
+          //订单状态
+          $.ajax({
+            async:true,
+            type:"get",
+            url:`/api/changelly/changenowStatus`,
+            data:{
+              id:webcreateTransaction.id
+            },
+            success:function(data){
+                var currentStatus = JSON.parse(data.msg);
+                if (currentStatus.status=="waiting") {
+                    $('#m-sm').modal('hide');//加载....
+                    $(`#${currentStatus.id}`).html("未打币");
+                }else{
+                    $('#m-sm').modal('hide');//加载....
+                    $(`#${currentStatus.id}`).html(currentStatus.status);
+                    $(`#${currentStatus.id}`).next().find('span').last().remove();
+                    //兑换成功 清除删除键
+                }
+                //添加状态 进对象里 
+                // status: "processing",
+            }
+          });
+      }
+
+      //刪除 changenow
+      function delItemChangenow(i,thi){
+            webObj4.splice(i,1);
+            
+            localStorage.setItem("AllchangenowArr",JSON.stringify(webObj4));
+            location.reload();
+          }
+
+      //查看 changenow
+      function getdetailChangenow(i){
+        var viewObj = webObj4[i];
+        localStorage.setItem("exchangeView",JSON.stringify(viewObj));
+        window.location.href="changenowStep6.html";
+      };
+    }
+
+</script>
+</body>
+</html>
