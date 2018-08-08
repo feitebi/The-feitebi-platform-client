@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="utf-8"/>
+<title>币币兑换</title>
+<meta name="description" content="社交化加密币投顾平台"/>
+<meta name="keywords" content="比特币, 飞特币, 飞特币, 以太坊, 虚拟币, 加密币，量子链, 区块链, 钱包, 跨链"/>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimal-ui"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<!-- for ios 7 style, multi-resolution icon of 152x152 -->
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-barstyle" content="black-translucent">
+<link rel="apple-touch-icon" href="../assets/images/logo.png">
+<meta name="apple-mobile-web-app-title" content="Feitebi">
+<!-- for Chrome on Android, multi-resolution icon of 196x196 -->
+<meta name="mobile-web-app-capable" content="yes">
+<link rel="shortcut icon" sizes="196x196" href="../assets/images/logo.png">
+<!-- style -->
+<link rel="stylesheet" href="../assets/animate.css/animate.min.css" type="text/css"/>
+<link rel="stylesheet" href="../assets/glyphicons/glyphicons.css" type="text/css"/>
+<link rel="stylesheet" href="../assets/font-awesome/css/font-awesome.min.css" type="text/css"/>
+<link rel="stylesheet" href="../assets/material-design-icons/material-design-icons.css" type="text/css"/>
+<link rel="stylesheet" href="../assets/bootstrap/dist/css/bootstrap.min.css" type="text/css"/>
+<!-- build:css ../assets/styles/app.min.css -->
+<link rel="stylesheet" href="../assets/styles/app.css" type="text/css"/>
+<!-- endbuild -->
+<link rel="stylesheet" href="../assets/styles/font.css" type="text/css"/>
+<link rel="stylesheet" type="text/css" href="./myCss.css">
+<style>
+    span.logo{font-size: 16px;font-weight: 400}.paddingTop10{padding-top: 8px}.navbar-brand{font-weight: 200}
+    .wh120{width: 120px;height: 120px}.wh64{width: 64px;height: 64px} @media (min-width: 769px) {.push-left-160 {padding-left:160px !important; } }
+
+    #tbl{
+        table-layout:fixed;
+      }
+      .address{
+        width: 18rem;
+        display: inline-block;
+      }
+      #mycoin,#exCoin{
+        width: 2rem;
+        height: 2rem;;
+      }
+</style>
+</head>
+<body>
+<div class="app" id="app">
+  <div id="aside" class="app-aside modal fade nav-dropdown">
+    <div class="left navside dark dk" layout="column">
+      <div class="navbar no-radius">
+        <!-- brand -->
+        <a class="navbar-brand">
+        <img src='./images/logo-c.png'/> 飞特平台
+        </a>
+        <!-- / brand -->
+      </div>
+      <div flex class="hide-scroll">
+        <nav class="scroll nav-light">
+        <ul class="nav listLi" ui-nav>
+            <li>
+              <a href="index.html" >
+                <span class="nav-icon">
+                  <i class="material-icons">&#xe8b9;
+                    <span ui-include="'../assets/images/i_3.svg'"></span>
+                  </i>
+                </span>
+                <span class="nav-text">数字行情</span>
+              </a>
+            </li>
+            <li>
+              <a href="./coin2coin.html">
+                <span class="nav-icon">
+                  <i class="material-icons">&#xe850;
+                    <span ui-include="'../assets/images/i_0.svg'"></span>
+                  </i>
+                </span>
+                <span class="nav-text">币币兑换</span>
+              </a>
+            </li>
+        </ul>
+        </nav>
+      </div>
+      <div flex-no-shrink>
+        <nav ui-nav>
+        <!-- <ul class="nav">
+          <li>
+          <div class="b-b b m-t-sm">
+          </div>
+          </li>
+          <li class="no-bg">
+          <a href="javascript:void()" onclick="logout()">
+          <span class="nav-icon">
+          <i class="material-icons">&#xe8ac;</i>
+          </span>
+          <span class="nav-text">退出</span>
+          </a>
+          </li>
+        </ul> -->
+        </nav>
+      </div>
+    </div>
+  </div>
+  <!-- content -->
+  <div id="content" class="app-content box-shadow-z0" role="main">
+    <div class="app-header white box-shadow">
+      <div class="navbar">
+        <!-- Open side - Naviation on mobile -->
+        <a data-toggle="modal" data-target="#aside" class="navbar-item pull-left hidden-lg-up">
+        <i class="material-icons">&#xe5d2;</i>
+        </a>
+        <!-- / -->
+        
+        <div class="navbar-item h6" ng-bind="$state.current.data.title" id="pageTitle">
+             币币兑换
+        </div>
+      </div>
+    </div>
+    <div ui-view class="app-body" id="view">
+      <div class="padding">
+        <div class="row">
+            <div class="col-xs-12 col-md-12 text-center p-t-md">
+                 <h6><span id="oneCoin" class="p-r-sm"></span>兑换<span id="twoCoin" class="p-l-sm"></span></h6>
+            </div>
+            <div class="col-xs-12 col-md-12 text-center p-t-md">
+                <div class="col-xs-4 col-md-4 text-center">
+                    <span>最高限额</span>
+                </div>
+                <div class="col-xs-4 col-md-4 text-center">
+                    <span>最低限额</span>
+                </div>
+                <div class="col-xs-4 col-md-4 text-center">
+                    <span>矿工费</span>
+                </div>
+            </div>
+            <div class="col-xs-12 col-md-12 text-center p-t-sm">
+                <div class="col-xs-4 col-md-4 text-center">
+                    <span id="limit"></span>
+                </div>
+                <div class="col-xs-4 col-md-4 text-center">
+                    <span id="min"></span>
+                </div>
+                <div class="col-xs-4 col-md-4 text-center">
+                    <span id="mineFree"></span>
+                </div>
+            </div>
+            <div class="col-xs-12 col-md-12 text-center p-t-lg">
+                <!-- <span><img id="exCoin" src=""></span> -->
+                <input type="email" id="sendEmail" class="address form-control rounded text-sm" placeholder="您的邮箱地址">
+            </div>
+            <div class="col-xs-12 col-md-12 text-center p-t-md">
+                <!-- <span><img id="mycoin" src=""></span> -->
+                  <input id="receiveAddress" class="address form-control rounded text-sm" type="text" placeholder="成功接收地址">
+            </div>
+            </div>
+            <div class="col-xs-12 col-md-12 text-center p-t-md">
+                <!-- <span><img id="exCoin" src=""></span> -->
+                <input id="sendAddress" class="address form-control rounded text-sm" type="text" placeholder="失败退回地址">
+            </div>
+            <div class="col-xs-12 col-md-12 text-center p-t-lg">
+                    <button id="Prev" class="btn btn-outline b-black text-black m-r-md">上一步</button>
+                    <button id="Next" class="btn grey-400" disabled="disabled">下一步</button>
+            </div>
+        </div>
+      </div>
+    </div>
+    
+  </div>
+  <!-- ############ LAYOUT END-->
+</div>
+
+<!-- small modal -->
+<div id="m-sm" class="modal" data-backdrop="true">
+  <div class="row-col h-v">
+    <div class="row-cell v-m">
+      <div class="modal-dialog modal-sm">
+        <div class="modal-content" style="width: 200px;margin: 0 auto;">
+          <div class="modal-header text-center">
+            <h5 class="modal-title">加载中....</h5>
+          </div>
+          
+        </div><!-- /.modal-content -->
+      </div>
+    </div>
+  </div>
+</div>
+<!-- / .modal -->
+
+<!-- build:js scripts/app.html.js --><!-- jQuery -->
+<script src="../libs/jquery/jquery/dist/jquery.js"></script>
+<!-- Bootstrap -->
+<script src="../libs/jquery/tether/dist/js/tether.min.js"></script>
+<script src="../libs/jquery/bootstrap/dist/js/bootstrap.js"></script>
+<script src="scripts/common.js?v=1.0.0.2892"></script>
+<script type="text/javascript">
+$('#m-sm').modal('show');//加载完成....
+//提取上页的2个代币名称
+var mycoin = localStorage.getItem("symbolForm");
+var exCoin = localStorage.getItem("symbolTo");
+//加载输入框图片
+$('#receiveAddress').css({   //兑换成功接收地址图标
+    "background-image":`url(${localStorage.getItem('changerToSrc')})`,
+    "background-size":"30px 30px",
+    "background-position":"2px 3px",
+    "background-repeat":"no-repeat",
+    "padding-left":'32px'
+})
+$('#sendAddress').css({  //兑换失败退回地址图标
+    "background-image":`url(${localStorage.getItem('changerFromSrc')})`,
+    "background-size":"30px 30px",
+    "background-position":"2px 3px",
+    "background-repeat":"no-repeat",
+    "padding-left":'32px'
+})
+
+var name1 = localStorage.getItem('changerSend1');
+var name2 = localStorage.getItem('changerSend2');
+//加载最高 最低 旷工费
+$.ajax({
+  type:"get",
+  url:`https://www.changer.com/api/v2/limits/${name1}/${name2}`,
+  data:{},
+  success:function(result){
+    var returnData = JSON.parse(result);
+    //console.log(returnData)
+    $('#m-sm').modal('hide');//加载完成....
+    $("#limit").html(Number(returnData.limits.max_amount).toFixed(4)+"   "+mycoin);
+    $("#min").html(Number(returnData.limits.min_amount).toFixed(8)+"   "+mycoin);
+    $("#mineFree").html(Number(JSON.parse(localStorage.getItem("exchangeRightCount"))*0.005).toFixed(8)+"   "+exCoin);
+  }
+});
+
+//加载标题 如：用btc兑换eth
+$("#oneCoin").html(mycoin);
+$("#twoCoin").html(exCoin);
+
+//当前輸入框正確与否 状态变量
+var currentStatus1 = false;
+var currentStatus2 = false;
+
+//监听输入框 一
+$('#receiveAddress').bind("input propertychange change",function(event){
+    $("#m-sm").modal('show');//模态框加载。。。。
+    var sessionText1 = $(this).val();
+
+    //如果是输入内容为空 则停止执行代码
+    if (!sessionText1) {
+        $("#m-sm").modal('hide');
+        return;
+    }else{
+        $.ajax({
+          type:"get",
+          url:`https://cors.shapeshift.io/validateAddress/${sessionText1}/${localStorage.getItem("changerToName").toLowerCase()}`,
+          data:{},
+          success:function(data){  //地址正确 返回data.isvalid==true 地址错误data.isvalid==false
+              if (data.isvalid) {  //地址正确走向
+                $("#receiveAddress").css("border",'1px solid #ccc');
+                currentStatus1 = true;
+                if (currentStatus2) {  //如果地址二也是正确 则解除禁用下一步
+                    $("#Next").removeAttr('disabled');
+                    $("#Next").removeClass('grey-400');
+                    $("#Next").addClass('blue-600');
+                    $('#m-sm').modal('hide');//加载完成....
+                }else{
+                    $("#Next").attr('disabled',true);
+                    $("#Next").removeClass('blue-600');
+                    $("#Next").addClass('grey-400');
+                    $('#m-sm').modal('hide');//加载完成....
+                }
+              }else{   //地址错误走向
+                $("#receiveAddress").css("border",'1px solid red');
+                currentStatus1 = false;
+                $("#Next").attr('disabled',true);
+                $("#Next").removeClass('blue-600');
+                $("#Next").addClass('grey-400');
+                $('#m-sm').modal('hide');//加载完成....
+              }
+          }
+        });
+    }
+});
+
+//监听输入框 二
+$('#sendAddress').bind("input propertychange change",function(event){
+    $("#m-sm").modal('show');//模态框加载。。。。
+    var sessionText1 = $(this).val();
+
+    //如果是输入内容为空 则停止执行代码
+    if (!sessionText1) {
+        $("#m-sm").modal('hide');
+        return;
+    }else{
+        $.ajax({
+          type:"get",
+          url:`https://cors.shapeshift.io/validateAddress/${sessionText1}/${localStorage.getItem("changerFromName").toLowerCase()}`,
+          data:{},
+          success:function(data){  //地址正确 返回data.isvalid==true 地址错误data.isvalid==false
+              if (data.isvalid) {  //地址正确走向
+                  $("#sendAddress").css("border",'1px solid #ccc');
+                  currentStatus2 = true;
+                  if (currentStatus1) {  //如果地址一也是正确 则解除禁用下一步
+                      $("#Next").removeAttr('disabled');
+                      $("#Next").removeClass('grey-400');
+                      $("#Next").addClass('blue-600');
+                      $('#m-sm').modal('hide');//加载完成....
+                  }else{
+                      $("#Next").removeAttr('disabled',true);
+                      $("#Next").removeClass('blue-600');
+                      $("#Next").addClass('grey-400');
+                      $('#m-sm').modal('hide');//加载完成....
+                  }
+              }else{   //地址错误走向
+                  $("#sendAddress").css("border",'1px solid red');
+                  currentStatus2 = false;
+                  $("#Next").attr('disabled',true);
+                  $("#Next").removeClass('blue-600');
+                  $("#Next").addClass('grey-400');
+                  $('#m-sm').modal('hide');//加载完成....
+                }
+          }
+        });
+    }
+});
+
+//监听输入框 三 邮箱验证
+$('#sendEmail').bind("input propertychange change",function(event){
+    $('#m-sm').modal('show');//加载完成....
+    var myemail=$(this).val();
+　  var myReg=/^[a-zA-Z0-9_-]+@([a-zA-Z0-9]+\.)+(com|cn|net|org)$/;
+    if (myReg.test(myemail)) {
+        $("#sendEmail").css("border",'1px solid #ccc');
+        $('#m-sm').modal('hide');//加载完成....
+    }else{
+        $("#sendEmail").css("border",'1px solid red');
+        $('#m-sm').modal('hide');//加载完成....
+    }
+});
+
+//下一步
+$("#Next").click(function(){
+  localStorage.setItem('email',$('#sendEmail').val());
+  localStorage.setItem("max",$('#limit').html());
+  localStorage.setItem("min",$('#min').html());
+  localStorage.setItem("mineFree",$('#mineFree').html());
+  localStorage.setItem("sendAddres",$('#receiveAddress').val());
+  localStorage.setItem("returnAddres",$('#sendAddress').val());
+  window.location.href="changerStep3.html";
+});
+
+$('#Prev').click(function(){
+  window.location.href="changerIndex.html";
+});
+
+</script>
+</body>
+</html>
