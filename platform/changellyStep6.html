@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="utf-8"/>
+<title>币币兑换</title>
+<meta name="description" content="社交化加密币投顾平台"/>
+<meta name="keywords" content="比特币, 飞特币, 飞特币, 以太坊, 虚拟币, 加密币，量子链, 区块链, 钱包, 跨链"/>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimal-ui"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<!-- for ios 7 style, multi-resolution icon of 152x152 -->
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-barstyle" content="black-translucent">
+<link rel="apple-touch-icon" href="../assets/images/logo.png">
+<meta name="apple-mobile-web-app-title" content="Feitebi">
+<!-- for Chrome on Android, multi-resolution icon of 196x196 -->
+<meta name="mobile-web-app-capable" content="yes">
+<link rel="shortcut icon" sizes="196x196" href="../assets/images/logo.png">
+<!-- style -->
+<link rel="stylesheet" href="../assets/animate.css/animate.min.css" type="text/css"/>
+<link rel="stylesheet" href="../assets/glyphicons/glyphicons.css" type="text/css"/>
+<link rel="stylesheet" href="../assets/font-awesome/css/font-awesome.min.css" type="text/css"/>
+<link rel="stylesheet" href="../assets/material-design-icons/material-design-icons.css" type="text/css"/>
+<link rel="stylesheet" href="../assets/bootstrap/dist/css/bootstrap.min.css" type="text/css"/>
+<!-- build:css ../assets/styles/app.min.css -->
+<link rel="stylesheet" href="../assets/styles/app.css" type="text/css"/>
+<!-- endbuild -->
+<link rel="stylesheet" href="../assets/styles/font.css" type="text/css"/>
+<link rel="stylesheet" type="text/css" href="./myCss.css">
+<style>
+    span.logo{font-size: 16px;font-weight: 400}.paddingTop10{padding-top: 8px}.navbar-brand{font-weight: 200}
+    .wh120{width: 120px;height: 120px}.wh64{width: 64px;height: 64px} @media (min-width: 769px) {.push-left-160 {padding-left:160px !important; } }
+
+    #tbl{
+        table-layout:fixed;
+      }
+      .address{
+        width: 19rem;
+        display: inline-block;
+      }
+      #mycoin,#exCoin{
+        width: 2rem;
+        height: 2rem;;
+      }
+</style>
+</head>
+<body>
+<div class="app" id="app">
+  <div id="aside" class="app-aside modal fade nav-dropdown">
+    <div class="left navside dark dk" layout="column">
+      <div class="navbar no-radius">
+        <!-- brand -->
+        <a class="navbar-brand">
+        <img src='./images/logo-c.png'/> 飞特平台
+        </a>
+        <!-- / brand -->
+      </div>
+      <div flex class="hide-scroll">
+        <nav class="scroll nav-light">
+        <ul class="nav listLi" ui-nav>
+            <li>
+              <a href="index.html" >
+                <span class="nav-icon">
+                  <i class="material-icons">&#xe8b9;
+                    <span ui-include="'../assets/images/i_3.svg'"></span>
+                  </i>
+                </span>
+                <span class="nav-text">数字行情</span>
+              </a>
+            </li>
+            <li>
+              <a href="./coin2coin.html">
+                <span class="nav-icon">
+                  <i class="material-icons">&#xe850;
+                    <span ui-include="'../assets/images/i_0.svg'"></span>
+                  </i>
+                </span>
+                <span class="nav-text">币币兑换</span>
+              </a>
+            </li>
+        </ul>
+        </nav>
+      </div>
+      <div flex-no-shrink>
+        <nav ui-nav>
+        <!-- <ul class="nav">
+          <li>
+          <div class="b-b b m-t-sm">
+          </div>
+          </li>
+          <li class="no-bg">
+          <a href="javascript:void()" onclick="logout()">
+          <span class="nav-icon">
+          <i class="material-icons">&#xe8ac;</i>
+          </span>
+          <span class="nav-text">退出</span>
+          </a>
+          </li>
+        </ul> -->
+        </nav>
+      </div>
+    </div>
+  </div>
+  <!-- content -->
+  <div id="content" class="app-content box-shadow-z0" role="main">
+    <div class="app-header white box-shadow">
+      <div class="navbar">
+        <!-- Open side - Naviation on mobile -->
+        <a data-toggle="modal" data-target="#aside" class="navbar-item pull-left hidden-lg-up">
+        <i class="material-icons">&#xe5d2;</i>
+        </a>
+        <!-- / -->
+        
+        <div class="navbar-item text-center h5" ng-bind="$state.current.data.title" id="pageTitle">
+             币币兑换
+        </div>
+      </div>
+    </div>
+    <div ui-view class="app-body" id="view">
+      <div class="padding">
+        <div class="row p-t-md">
+            <div class="col-xs-12 col-md-12 text-center">
+                订单号：<span id="orderId"></span>
+            </div>
+        </div>
+        <div class="row p-t-md">
+            <div class="col-xs-12 col-md-12 text-center">
+                <div id="qrcode"></div>
+            </div>
+        </div>
+        <div class="row p-t-sm">
+            <div class="col-xs-12 col-md-12 text-center">
+                兑换接收地址：<span id="receiveAddress"></span>
+            </div>
+        </div>
+        <div class="row p-t-md">
+            <div class="col-xs-12 col-md-12 text-center">
+                失败退币地址：<span id="returnAddress"></span>
+            </div>
+        </div>
+        <div class="row p-t-md">
+            <div class="col-xs-12 col-md-12 text-center">
+                <button id="finish" class="btn blue-600" onclick="finish()">完成</button>
+            </div>
+        </div>
+            
+      </div>
+    </div>
+    
+  </div>
+  <!-- ############ LAYOUT END-->
+</div>
+
+<!-- small modal -->
+<div id="m-sm" class="modal" data-backdrop="true">
+  <div class="row-col h-v">
+    <div class="row-cell v-m">
+      <div class="modal-dialog modal-sm">
+        <div class="modal-content" style="width: 200px;margin: 0 auto;">
+          <div class="modal-header text-center">
+            <h5 class="modal-title">加载中....</h5>
+          </div>
+        </div><!-- /.modal-content -->
+      </div>
+    </div>
+  </div>
+</div>
+<!-- / .modal -->
+
+<!-- build:js scripts/app.html.js --><!-- jQuery -->
+<script src="../libs/jquery/jquery/dist/jquery.js"></script>
+<!-- Bootstrap -->
+<script src="../libs/jquery/tether/dist/js/tether.min.js"></script>
+<script src="../libs/jquery/bootstrap/dist/js/bootstrap.js"></script>
+<script src="scripts/qrcode.js"></script>
+<script src="scripts/common.js?v=1.0.0.2892"></script>
+<script type="text/javascript">
+var orderdetail = JSON.parse(localStorage.getItem("exchangeView"));
+
+console.log(orderdetail);
+
+$("#orderId").html(JSON.parse(orderdetail.createTransaction).id);
+$("#receiveAddress").html(orderdetail.receivedAddress);
+$("#returnAddress").html(orderdetail.returnAddress);
+
+function finish(){
+    window.location.href="./coin2coin.html";
+  };
+
+function produceQrcode(){
+  $('#qrcode').html('').qrcode({
+    text: JSON.parse(orderdetail.createTransaction).payinAddress
+  });
+  if (window.screen.width<=768){
+    var html = '<p class="breakpoint" style="margin-top:1rem;">'+JSON.parse(orderdetail.createTransaction).payinAddress+'<p>';
+  }else{
+    var html = '<h5 class="breakpoint" style="margin-top:1rem;">'+JSON.parse(orderdetail.createTransaction).payinAddress+'<h5>';
+  };
+  
+  $('#qrcode').append(html);
+  };
+
+window.onload = produceQrcode;
+</script>
+</body>
+</html>
