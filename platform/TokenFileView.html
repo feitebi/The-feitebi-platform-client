@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="utf-8"/>
+<title>飞特平台</title>
+<meta name="description" content="社交化加密币投顾平台"/>
+<meta name="keywords" content="比特币, 飞特币, 飞特币, 以太坊, 虚拟币, 加密币，量子链, 区块链, 钱包, 跨链"/>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimal-ui"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<!-- for ios 7 style, multi-resolution icon of 152x152 -->
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-barstyle" content="black-translucent">
+<link rel="apple-touch-icon" href="../assets/images/logo.png">
+<meta name="apple-mobile-web-app-title" content="Feitebi">
+<!-- for Chrome on Android, multi-resolution icon of 196x196 -->
+<meta name="mobile-web-app-capable" content="yes">
+<link rel="shortcut icon" sizes="196x196" href="../assets/images/logo.png">
+  
+<!-- style -->
+<link rel="stylesheet" href="../assets/animate.css/animate.min.css" type="text/css" />
+<link rel="stylesheet" href="../assets/glyphicons/glyphicons.css" type="text/css" />
+<link rel="stylesheet" href="../assets/font-awesome/css/font-awesome.min.css" type="text/css" />
+<link rel="stylesheet" href="../assets/material-design-icons/material-design-icons.css" type="text/css" />
+<link rel="stylesheet" href="../assets/bootstrap/dist/css/bootstrap.min.css" type="text/css" />
+<!-- build:css ../assets/styles/app.min.css -->
+<link rel="stylesheet" href="../assets/styles/app.css" type="text/css" />
+<!-- endbuild -->
+<link rel="stylesheet" href="../assets/styles/font.css" type="text/css" />
+<link rel="stylesheet" type="text/css" href="base.css">
+<link rel="stylesheet" type="text/css" href="TokenFileView.css">
+</head>
+<body>
+<div class="app" id="app">
+  <div id="aside" class="app-aside modal fade nav-dropdown">
+    <div class="left navside dark dk" layout="column">
+      <div class="navbar no-radius">
+        <!-- brand -->
+        <a class="navbar-brand">
+        <img src='./images/logo-c.png'/> 飞特平台
+        </a>
+        <!-- / brand -->
+      </div>
+      <div flex class="hide-scroll">
+        <nav class="scroll nav-light">
+        <ul class="nav listLi" ui-nav>
+            <li>
+              <a href="index.html" >
+                <span class="nav-icon">
+                  <i class="material-icons">&#xe8b9;
+                    <span ui-include="'../assets/images/i_3.svg'"></span>
+                  </i>
+                </span>
+                <span class="nav-text">数字行情</span>
+              </a>
+            </li>
+            <li>
+              <a href="./coin2coin.html">
+                <span class="nav-icon">
+                  <i class="material-icons">&#xe850;
+                    <span ui-include="'../assets/images/i_0.svg'"></span>
+                  </i>
+                </span>
+                <span class="nav-text">币币兑换</span>
+              </a>
+            </li>
+          <li>
+            <a href="assetView.html" >
+              <span class="nav-icon">
+                <i class="material-icons">&#xe8b9;
+                  <span ui-include="'../assets/images/i_1.svg'"></span>
+                </i>
+              </span>
+              <span class="nav-text">自选行情</span>
+            </a>
+          </li>
+        </ul>
+        </nav>
+      </div>
+      <div flex-no-shrink>
+        <nav ui-nav>
+        <!-- <ul class="nav">
+          <li>
+          <div class="b-b b m-t-sm">
+          </div>
+          </li>
+          <li class="no-bg">
+          <a href="javascript:void()" onclick="logout()">
+          <span class="nav-icon">
+          <i class="material-icons">&#xe8ac;</i>
+          </span>
+          <span class="nav-text">退出</span>
+          </a>
+          </li>
+        </ul> -->
+        </nav>
+      </div>
+    </div>
+  </div>
+  <div id="content" class="app-content box-shadow-z0" role="main">
+    <div class="app-header white box-shadow">
+      <div class="navbar">
+        <!-- Open side - Naviation on mobile -->
+        <a data-toggle="modal" data-target="#aside" class="navbar-item pull-left hidden-lg-up">
+        <i class="material-icons">&#xe5d2;</i>
+        </a>
+        <!-- / -->
+        <div class="navbar-item text-center h6" ng-bind="$state.current.data.title" id="pageTitle">
+             糖果空投
+        </div>
+      </div>
+    </div>
+    <div ui-view class="app-body" id="view">
+        <div class="padding">
+            <div class="row">
+                <div class="col-xs-12">
+                    <div id="box" class="white text-center">
+                      <!-- <h4 class="m-t-lg m-b-md text-center">拖拽或点击上传CSV文件</h4> -->
+                          <!-- <span class="text-muted block m-b-lg">(This is just a demo dropzone. Selected files are <strong>not</strong> actually uploaded.)</span> -->
+                      <!-- <input type="file" name="" multiple onchange="readFile(this)" class="text-center"> -->
+                      <div class="fileBox">
+                          <p class="fileInputP vm">
+                            <i>选择文件</i>
+                            <input type="file" multiple id="fileInput" />
+                          </p>
+                          <span id="fileSpan" class="vm">或者将文件拖到此处</span>
+                          <div class="mask"></div>
+                      </div>
+
+                      <table width="50%" border="1" class="fileList_parent">
+                      <thead>
+                      <tr>
+                          <th class="text-center">名称</th>
+                          <th class="text-center">类型</th>
+                          <th class="text-center">大小</th>
+                          <th class="text-center hide">选中</th>
+                          <th class="text-center hide">进度</th>
+                          <th class="text-center">操作</th>                                       
+                      </tr>
+                      </thead>
+
+                      <tbody class="fileList">
+                      <!--<tr>
+                          <td><cite title="彭作洪">彭作洪</cite></td>
+                            <td>pdf</td>
+                            <td>5K</td>
+                          <td><input type="radio" /></td>
+                          <td>
+                              <div class="progressParent">
+                                  <p class="progress"></p>
+                                    <span class="progressNum">0%</span>
+                                </div>
+                            </td>
+                          <td><a href="javascript:;">删除</a></td>
+                        </tr>-->
+                      </tbody>
+
+                      </table>
+
+                      <input type="button" value="上传" id="fileBtn" class="btn btn-info w-md" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+  </div>
+</div>
+<!-- jQuery -->
+  <script src="../libs/jquery/jquery/dist/jquery.js"></script>
+<!-- Bootstrap -->
+  <script src="../libs/jquery/tether/dist/js/tether.min.js"></script>
+  <script src="../libs/jquery/bootstrap/dist/js/bootstrap.js"></script>
+<!-- core -->
+  <script src="../libs/jquery/underscore/underscore-min.js"></script>
+  <script src="../libs/jquery/jQuery-Storage-API/jquery.storageapi.min.js"></script>
+  <script src="../libs/jquery/PACE/pace.min.js"></script>
+
+  <script src="scripts/config.lazyload.js"></script>
+
+  <script src="scripts/palette.js"></script>
+  <script src="scripts/ui-load.js"></script>
+  <script src="scripts/ui-jp.js"></script>
+  <script src="scripts/ui-include.js"></script>
+  <script src="scripts/ui-device.js"></script>
+  <script src="scripts/ui-form.js"></script>
+  <script src="scripts/ui-nav.js"></script>
+  <script src="scripts/ui-screenfull.js"></script>
+  <script src="scripts/ui-scroll-to.js"></script>
+  <script src="scripts/ui-toggle-class.js"></script>
+
+  <script src="scripts/app.js"></script>
+
+  <!-- ajax -->
+  <script src="../libs/jquery/jquery-pjax/jquery.pjax.js"></script>
+  <script src="scripts/ajax.js"></script>
+
+  <script type="text/javascript" src="TokenFileView.js"></script>
+
+</body>
+</html>

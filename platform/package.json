@@ -1,0 +1,28 @@
+{
+  "name": "token-ftb",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@alicloud/sms-sdk": "^1.0.8",
+    "babel-runtime": "^6.26.0",
+    "express": "^4.16.3",
+    "iconv-lite": "^0.4.23",
+    "jayson": "^2.0.1",
+    "request": "^2.87.0",
+    "socket.io-client": "^1.4.6"
+  },
+  "devDependencies": {
+    "express": "^4.16.3",
+    "gbk": "^0.1.0",
+    "jsdom": "^11.6.2",
+    "request": "^2.87.0"
+  }
+}
