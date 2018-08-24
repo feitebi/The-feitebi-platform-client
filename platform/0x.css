@@ -1,0 +1,16 @@
+.inlineCommon{
+	width: 18%;
+	display: inline-block;
+	box-sizing: border-box;
+}
+.inlineCommon2{
+	display: inline-block;
+	cursor: pointer;
+}
+.inlineCommon3{
+	display: inline-block;
+	cursor: pointer;
+}
+.borderCommon{
+	border-bottom: 3px solid #ccc;
+}

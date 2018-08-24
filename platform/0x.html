@@ -1,0 +1,679 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="utf-8"/>
+<title>飞特平台－数字行情</title>
+<meta name="description" content="社交化加密币投顾平台"/>
+<meta name="keywords" content="比特币, 飞特币, 飞特币, 以太坊, 虚拟币, 加密币，量子链, 区块链, 钱包, 跨链"/>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimal-ui"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<!-- for ios 7 style, multi-resolution icon of 152x152 -->
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-barstyle" content="black-translucent">
+<link rel="apple-touch-icon" href="../assets/images/logo.png">
+<meta name="apple-mobile-web-app-title" content="Feitebi">
+<!-- for Chrome on Android, multi-resolution icon of 196x196 -->
+<meta name="mobile-web-app-capable" content="yes">
+<link rel="shortcut icon" sizes="196x196" href="../assets/images/logo.png">
+<!-- style -->
+<link rel="stylesheet" href="../assets/animate.css/animate.min.css" type="text/css"/>
+<link rel="stylesheet" href="../assets/glyphicons/glyphicons.css" type="text/css"/>
+<link rel="stylesheet" href="../assets/font-awesome/css/font-awesome.min.css" type="text/css"/>
+<link rel="stylesheet" href="../assets/material-design-icons/material-design-icons.css" type="text/css"/>
+<link rel="stylesheet" href="../assets/bootstrap/dist/css/bootstrap.min.css" type="text/css"/>
+<!-- build:css ../assets/styles/app.min.css -->
+<link rel="stylesheet" href="../assets/styles/app.css" type="text/css"/>
+<!-- endbuild -->
+<link rel="stylesheet" href="../assets/styles/font.css" type="text/css"/>
+<link rel="stylesheet" type="text/css" href="./0x.css">
+<style>
+    span.logo{font-size: 16px;font-weight: 400}.paddingTop10{padding-top: 8px}.navbar-brand{font-weight: 200}
+    .wh120{width: 120px;height: 120px}.wh64{width: 64px;height: 64px} @media (min-width: 769px) {.push-left-160 {padding-left:160px !important; } }
+
+    .fa-exchange:before{
+      font-size:25px;
+    }
+</style>
+</head>
+<body>
+<div class="app" id="app">
+  <div id="aside" class="app-aside modal fade nav-dropdown">
+    <div class="left navside dark dk" layout="column">
+      <div class="navbar no-radius">
+        <!-- brand -->
+        <a class="navbar-brand">
+        <img src='./images/logo-c.png'/> 飞特平台
+        </a>
+        <!-- / brand -->
+      </div>
+      <div flex class="hide-scroll">
+        <nav class="scroll nav-light">
+        <ul class="nav listLi" ui-nav>
+          <li>
+            <a href="index.html" >
+              <span class="nav-icon">
+                <i class="material-icons">&#xe8b9;
+                  <span ui-include="'../assets/images/i_3.svg'"></span>
+                </i>
+              </span>
+              <span class="nav-text">数字行情</span>
+            </a>
+          </li>
+          <li>
+            <a href="./coin2coin.html">
+              <span class="nav-icon">
+                <i class="material-icons">&#xe850;
+                  <span ui-include="'../assets/images/i_0.svg'"></span>
+                </i>
+              </span>
+              <span class="nav-text">币币兑换</span>
+            </a>
+          </li>
+          <li>
+            <a href="./assetView.html">
+              <span class="nav-icon">
+                <i class="material-icons">&#xe850;
+                  <span ui-include="'../assets/images/i_1.svg'"></span>
+                </i>
+              </span>
+              <span class="nav-text">自选行情</span>
+            </a>
+          </li>
+          <li>
+            <a href="javascript:location.href='topList.html'">
+              <span class="nav-icon">
+                <i class="material-icons">&#xe850;
+                  <span ui-include="'../assets/images/i_1.svg'"></span>
+                </i>
+              </span>
+              <span class="nav-text">排行榜</span>
+            </a>
+          </li>
+          <li>
+            <a href="javascript:location.href='BE123.html'">
+              <span class="nav-icon">
+                <i class="material-icons">&#xe850;
+                  <span ui-include="'../assets/images/i_1.svg'"></span>
+                </i>
+              </span>
+              <span class="nav-text">区块链导航</span>
+            </a>
+          </li>
+        </ul>
+        </nav>
+      </div>
+    </div>
+  </div>
+  <!-- content -->
+  <div id="content" class="app-content box-shadow-z0" role="main">
+    <div class="app-header white box-shadow">
+      <div class="navbar" style="padding-right: 0">
+        <!-- Open side - Naviation on mobile -->
+        <a data-toggle="modal" data-target="#aside" class="navbar-item pull-left hidden-lg-up">
+        <i class="material-icons">&#xe5d2;</i>
+        </a>
+        <!-- / -->
+        <div class="navbar-item h6" ng-bind="$state.current.data.title" id="pageTitle">
+             <div class="pull-left">0xChange</div>
+             <div class="pull-right">
+                <div class="inlineCommon2" data-toggle="modal" data-target="#m-a-f" id="btnWallet"><span class="glyphicon glyphicon-lock" style="vertical-align:text-top;"></span> 钱包 </div>
+                <div class="inlineCommon2"><span class="glyphicon glyphicon-question-sign" style="vertical-align:text-top;"></span> 帮助 </div>
+             </div>
+        </div>
+      </div>
+    </div>
+    <div ui-view class="app-body" id="view">
+        <!-- ############ PAGE START-->
+        <div class="padding row">
+            <div class="col-md-3">
+                <div class="box">
+                    <div class="box-header">
+                      <h2>Token行情</h2>
+                      <!-- <small>Make HTML tables on smaller devices look awesome</small> -->
+                    </div>
+                    <div class="box-body getTokenListBox">
+                      Search: <input id="filter1" type="text" class="form-control input-sm w-auto inline m-r"/>
+                    </div>
+                    <div class="getTokenListBox">
+                      <table class="table m-b-none" ui-jp="footable" data-filter="#filter1" data-page-size="50">
+                        <thead>
+                          <tr>
+                              <th data-toggle="true">
+                                  币种
+                              </th>
+                              <th>
+                                  价格
+                              </th>
+                              <th>
+                                  change
+                              </th>
+                          </tr>
+                        </thead>
+                        <tbody id="tbodyBox">
+                          
+                        </tbody>
+                        <tfoot class="hide-if-no-paging">
+                          <tr>
+                              <td colspan="5" class="text-center">
+                                  <ul class="pagination"></ul>
+                              </td>
+                          </tr>
+                        </tfoot>
+                      </table>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-9">
+                <div class="row">
+                    <div class="col-md-4">
+                        <span class="h1">FTB/WETH</span>
+                    </div>
+                    <div class="col-md-8 text-right">
+                        <div class="inlineCommon">
+                            <div>LAST PRICE</div>
+                            <div>0.00002890 $ 0.0075</div>
+                        </div>
+                        <div class="inlineCommon">
+                            <div>24 HR CHANGE</div>
+                            <div>0.00002890 $ 0.0075</div>
+                        </div>
+                        <div class="inlineCommon">
+                            <div>24 HR HIGH</div>
+                            <div>0.00002890 $ 0.0075</div>
+                        </div>
+                        <div class="inlineCommon">
+                            <div>24 HR LOW</div>
+                            <div>0.00002890 $ 0.0075</div>
+                        </div>
+                        <div class="inlineCommon">
+                            <div>24 HR VOLUME</div>
+                            <div>9.281 WETH</div>
+                            <div>&nbsp;</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <span class="p-l-sm">FTBV2.0 ERC20 Standard Token/Ether</span>
+                </div>
+                <div class="row m-b-md">
+                    <span class="p-l-sm">0x71c25dd74a8bf4fb393cb06623aa43a5376d1431Not Verified</span>
+                </div>
+                <div class="row m-b-md" style="height: 300px;background-color: #ccc">
+                    chart
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="box">
+                          <div class="box-header">
+                            <h2>买单 FTB</h2>
+                          </div>
+                          <div class="box-divider m-a-0"></div>
+                          <div class="box-body">
+                            <form role="form">
+                              <div class="form-group row">
+                                <label for="inputPrice1" class="col-sm-2 form-control-label">Price:</label>
+                                <div class="col-sm-10">
+                                  <input type="text" class="form-control" id="inputPrice1" placeholder="价格">
+                                </div>
+                              </div>
+                              <div class="form-group row">
+                                <label for="inputAmount1" class="col-sm-2 form-control-label">Amount:</label>
+                                <div class="col-sm-10">
+                                  <input type="text" class="form-control" id="inputAmount1" placeholder="数量">
+                                </div>
+                              </div>
+                              <div class="form-group row">
+                                <label for="inputTotal1" class="col-sm-2 form-control-label">Total:</label>
+                                <div class="col-sm-10">
+                                  <input type="text" class="form-control" id="inputTotal1" placeholder="合计">
+                                </div>
+                              </div>
+                              <!-- <div class="form-group row">
+                                <label for="inputTrading1" class="col-sm-2 form-control-label">Trading Fee:</label>
+                                <div class="col-sm-10">
+                                  <input type="password" class="form-control" id="inputTrading1" placeholder="Password">
+                                </div>
+                              </div> -->
+                              <div class="form-group row">
+                                <label for="inputGasPrice1" class="col-sm-2 form-control-label">Gas Price:</label>
+                                <div class="col-sm-10">
+                                  <input type="password" class="form-control" id="inputGasPrice1" placeholder="Password">
+                                </div>
+                              </div>
+                              <div class="form-group row m-t-md">
+                                <div class="col-sm-offset-2 col-sm-10">
+                                  <button type="submit" class="btn white">提交订单</button>
+                                </div>
+                              </div>
+                            </form>
+                          </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="box">
+                          <div class="box-header">
+                            <h2>卖单 FTB</h2>
+                          </div>
+                          <div class="box-divider m-a-0"></div>
+                          <div class="box-body">
+                            <form role="form">
+                              <div class="form-group row">
+                                <label for="inputPrice2" class="col-sm-2 form-control-label">Price:</label>
+                                <div class="col-sm-10">
+                                  <input type="text" class="form-control" id="inputPrice2" placeholder="价格">
+                                </div>
+                              </div>
+                              <div class="form-group row">
+                                <label for="inputAmount2" class="col-sm-2 form-control-label">Amount:</label>
+                                <div class="col-sm-10">
+                                  <input type="text" class="form-control" id="inputAmount2" placeholder="数量">
+                                </div>
+                              </div>
+                              <div class="form-group row">
+                                <label for="inputTotal2" class="col-sm-2 form-control-label">Total:</label>
+                                <div class="col-sm-10">
+                                  <input type="text" class="form-control" id="inputTotal2" placeholder="合计">
+                                </div>
+                              </div>
+                              <!-- <div class="form-group row">
+                                <label for="inputTrading2" class="col-sm-2 form-control-label">Trading Fee:</label>
+                                <div class="col-sm-10">
+                                  <input type="password" class="form-control" id="inputTrading2" placeholder="Password">
+                                </div>
+                              </div> -->
+                              <div class="form-group row">
+                                <label for="inputGasPrice2" class="col-sm-2 form-control-label">Gas Price:</label>
+                                <div class="col-sm-10">
+                                  <input type="password" class="form-control" id="inputGasPrice2" placeholder="Password">
+                                </div>
+                              </div>
+                              <div class="form-group row m-t-md">
+                                <div class="col-sm-offset-2 col-sm-10">
+                                  <button type="submit" class="btn white">提交订单</button>
+                                </div>
+                              </div>
+                            </form>
+                          </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="box">
+                          <div class="box-header">
+                            <h2>挂单(买)</h2>
+                            <!-- <small>Make HTML tables on smaller devices look awesome</small> -->
+                          </div>
+                          <div class="box-body">
+                            Search: <input id="filter2" type="text" class="form-control input-sm w-auto inline m-r"/>
+                          </div>
+                          <div>
+                            <table class="table m-b-none table-hover" ui-jp="footable" data-filter="#filter2" data-page-size="5">
+                              <thead>
+                                <tr>
+                                    <th data-toggle="true">
+                                        Price
+                                    </th>
+                                    <th>
+                                        FTB
+                                    </th>
+                                    <th>
+                                        WETH
+                                    </th>
+                                </tr>
+                              </thead>
+                              <tbody id="buyTbody">
+                                <tr>
+                                    <td><span class="buyPrice">0.00000100</span></td>
+                                    <td class="buyMoount">50000.00000000</td>
+                                    <td class="buyWETH">0.05000000</td>
+                                </tr>
+                                <tr>
+                                    <td><span class="buyPrice">0.00000280</span></td>
+                                    <td class="buyMoount">2456.00000000</td>
+                                    <td class="buyWETH">0.125000000</td>
+                                </tr>
+                                <tr>
+                                    <td><span class="buyPrice">0.00000300</span></td>
+                                    <td class="buyMoount">14500.00000000</td>
+                                    <td class="buyWETH">0.45000000</td>
+                                </tr>
+                                <tr>
+                                    <td><span class="buyPrice">0.00000420</span></td>
+                                    <td class="buyMoount">1000.00000000</td>
+                                    <td class="buyWETH">0.1000000</td>
+                                </tr>
+                              </tbody>
+                              <tfoot class="hide-if-no-paging">
+                                <tr>
+                                    <td colspan="5" class="text-center">
+                                        <ul class="pagination"></ul>
+                                    </td>
+                                </tr>
+                              </tfoot>
+                            </table>
+                          </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="box">
+                          <div class="box-header">
+                            <h2>挂单(卖)</h2>
+                            <!-- <small>Make HTML tables on smaller devices look awesome</small> -->
+                          </div>
+                          <div class="box-body">
+                            Search: <input id="filter3" type="text" class="form-control input-sm w-auto inline m-r"/>
+                          </div>
+                          <div>
+                            <table class="table m-b-none table-hover" ui-jp="footable" data-filter="#filter3" data-page-size="5">
+                              <thead>
+                                <tr>
+                                    <th data-toggle="true">
+                                        Price
+                                    </th>
+                                    <th>
+                                        FTB
+                                    </th>
+                                    <th>
+                                        WETH
+                                    </th>
+                                </tr>
+                              </thead>
+                              <tbody id="sellTbody">
+                                <tr>
+                                    <td><span class="buyPrice">0.00000100</span></td>
+                                    <td class="buyMoount">50000.00000000</td>
+                                    <td class="buyWETH">0.05000000</td>
+                                </tr>
+                                <tr>
+                                    <td><span class="buyPrice">0.00000280</span></td>
+                                    <td class="buyMoount">2456.00000000</td>
+                                    <td class="buyWETH">0.125000000</td>
+                                </tr>
+                                <tr>
+                                    <td><span class="buyPrice">0.00000300</span></td>
+                                    <td class="buyMoount">14500.00000000</td>
+                                    <td class="buyWETH">0.45000000</td>
+                                </tr>
+                                <tr>
+                                    <td><span class="buyPrice">0.00000420</span></td>
+                                    <td class="buyMoount">1000.00000000</td>
+                                    <td class="buyWETH">0.1000000</td>
+                                </tr>
+                              </tbody>
+                              <tfoot class="hide-if-no-paging">
+                                <tr>
+                                    <td colspan="5" class="text-center">
+                                        <ul class="pagination"></ul>
+                                    </td>
+                                </tr>
+                              </tfoot>
+                            </table>
+                          </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="box">
+                          <div class="box-header">
+                            <h2>订单交易历史</h2>
+                            <!-- <small>Make HTML tables on smaller devices look awesome</small> -->
+                          </div>
+                          <div class="box-body">
+                            Search: <input id="filter4" type="text" class="form-control input-sm w-auto inline m-r"/>
+                          </div>
+                          <div>
+                            <table class="table m-b-none table-hover" ui-jp="footable" data-filter="#filter4" data-page-size="5">
+                              <thead>
+                                <tr>
+                                    <th data-toggle="true">
+                                        Time
+                                    </th>
+                                    <th>
+                                        Type
+                                    </th>
+                                    <th>
+                                        Price
+                                    </th>
+                                    <th>
+                                        FTB
+                                    </th>
+                                    <th>
+                                        WETH
+                                    </th>
+                                </tr>
+                              </thead>
+                              <tbody>
+                                <tr>
+                                    <td>2018/8/14 上午5:16:24</td>
+                                    <td>买</td>
+                                    <td>0.000000090</td>
+                                    <td>2000.00000000</td>
+                                    <td>0.00500000</td>
+                                </tr>
+                                <tr>
+                                    <td>2018/8/14 上午6:16:24</td>
+                                    <td>买</td>
+                                    <td>0.00000100</td>
+                                    <td>50000.00000000</td>
+                                    <td>0.05000000</td>
+                                </tr>
+                                <tr>
+                                    <td>2018/8/14 上午8:46:24</td>
+                                    <td>卖</td>
+                                    <td>0.00000280</td>
+                                    <td>2456.00000000</td>
+                                    <td>0.125000000</td>
+                                </tr>
+                                <tr>
+                                    <td>2018/8/15 上午8:46:24</td>
+                                    <td>卖</td>
+                                    <td>0.00000300</td>
+                                    <td>14500.00000000</td>
+                                    <td>0.45000000</td>
+                                </tr>
+                                <tr>
+                                    <td>2018/8/22 上午18:13:11</td>
+                                    <td>买</td>
+                                    <td>0.00000420</td>
+                                    <td>1000.00000000</td>
+                                    <td>0.1000000</td>
+                                </tr>
+                              </tbody>
+                              <tfoot class="hide-if-no-paging">
+                                <tr>
+                                    <td colspan="5" class="text-center">
+                                        <ul class="pagination"></ul>
+                                    </td>
+                                </tr>
+                              </tfoot>
+                            </table>
+                          </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- ############ PAGE END-->
+    </div>
+    
+  </div>
+  <!-- ############ LAYOUT END-->
+</div>
+
+<!-- small modal -->
+<div id="m-a-f" class="modal fade" data-backdrop="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">钱包</h5>
+        <small id="smallContent"></small>
+      </div>
+      <div class="modal-body text-left p-lg">
+          <div>
+              <div class="inlineCommon3 borderCommon">
+                <span>兑换</span>
+              </div>
+              <div class="inlineCommon3">
+                <span>兑换ETHER</span>
+                <span class="glyphicon glyphicon-question-sign" style="vertical-align:text-top;"></span>
+              </div>
+          </div>
+          <div id="stylePage1">
+              <div id="stylePage1Context">
+                  
+              </div>
+          </div>
+      </div>
+      <div class="modal-footer">
+        <!-- <button type="button" class="btn dark-white p-x-md" data-dismiss="modal">No</button> -->
+        <button type="button" class="btn danger p-x-md" data-dismiss="modal">OK</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div>
+</div>
+<!-- / .modal -->
+
+<!-- build:js scripts/app.html.js --><!-- jQuery -->
+<script src="../libs/jquery/jquery/dist/jquery.js"></script>
+<!-- Bootstrap -->
+<script src="../libs/jquery/tether/dist/js/tether.min.js"></script>
+<script src="../libs/jquery/bootstrap/dist/js/bootstrap.js"></script>
+<script src="scripts/common.js?v=1.0.0.2892"></script>
+<!-- =========================框架文件===================== -->
+<!-- build:js scripts/app.html.js -->
+<!-- jQuery -->
+  <script src="../libs/jquery/jquery/dist/jquery.js"></script>
+<!-- Bootstrap -->
+  <script src="../libs/jquery/tether/dist/js/tether.min.js"></script>
+  <script src="../libs/jquery/bootstrap/dist/js/bootstrap.js"></script>
+<!-- core -->
+  <script src="../libs/jquery/underscore/underscore-min.js"></script>
+  <script src="../libs/jquery/jQuery-Storage-API/jquery.storageapi.min.js"></script>
+  <script src="../libs/jquery/PACE/pace.min.js"></script>
+
+  <script src="scripts/config.lazyload.js"></script>
+
+  <script src="scripts/palette.js"></script>
+  <script src="scripts/ui-load.js"></script>
+  <script src="scripts/ui-jp.js"></script>
+  <script src="scripts/ui-include.js"></script>
+  <script src="scripts/ui-device.js"></script>
+  <script src="scripts/ui-form.js"></script>
+  <script src="scripts/ui-nav.js"></script>
+  <script src="scripts/ui-screenfull.js"></script>
+  <script src="scripts/ui-scroll-to.js"></script>
+  <script src="scripts/ui-toggle-class.js"></script>
+
+  <script src="scripts/app.js"></script>
+
+  <!-- ajax -->
+  <script src="../libs/jquery/jquery-pjax/jquery.pjax.js"></script>
+  <script src="scripts/ajax.js"></script>
+  <script src="https://cdn.jsdelivr.net/gh/ethereum/web3.js/dist/web3.min.js"></script>
+  <script src="eth2.js"></script>
+<!-- endbuild -->
+  <script type="text/javascript">
+        
+        //点击钱包
+        $('#btnWallet').click(function(){
+            if (typeof web3 !== 'undefined') {
+              web3 = new Web3(web3.currentProvider);
+            } else {
+              // set the provider you want from Web3.providers 从web3.提供者中设置您想要的提供者
+              web3 = new Web3(new Web3.providers.HttpProvider("http://localhost:8545"));
+            }
+            //调取metamask 地址和余额
+            web3.eth.getAccounts(function(error, accounts) {
+                  if (!error) {
+                    web3.eth.getBalance(accounts[0], function(error, balance) {
+                      if (!error) {
+                          $("#stylePage1Context").append(`
+                              <div class="token-image inlineCommon3 p-r-sm">
+                                  <img src="https://app.ercdex.com/images/tokens/32/white/eth.png" alt="" / style="background-color:gray;vertical-align:inherit">
+                              </div>
+                              <div class="inlineCommon3">
+                                  <div>
+                                      <span class="token-symbol">ETH</span>
+                                      <span class="token-name">Ether</span>
+                                  </div>
+                                  <div>
+                                      <span>${balance.toNumber() / 1000000000000000000}</span>
+                                      <span class="currency-symbol">余额</span>
+                                  </div>
+                              </div>
+                              
+                            `);
+                           $('#smallContent').html(accounts[0]);
+                        console.log(
+                          "Your account: " +
+                            accounts[0] +
+                            " has a balance of: " +
+                            balance.toNumber() / 1000000000000000000 +
+                            "Ether"
+                        );
+                      } else {
+                        console.error(error);
+                      }
+                    });
+                  } else {
+                    console.error(error);
+                  }
+            });
+        });
+
+        //点击挂单(买)list
+        $('#buyTbody').on('click','tr',function(){
+            var sessionP = $(this).find('.buyPrice').html();
+            var sessionM = $(this).find('.buyMoount').html();
+            var sessionW = $(this).find('.buyWETH').html();
+            $('#inputPrice1').val(sessionP);
+            $('#inputAmount1').val(sessionM);
+            $('#inputTotal1').val(sessionW);
+        });
+
+        //点击挂单(卖)list
+        $('#sellTbody').on('click','tr',function(){
+            var sessionP = $(this).find('.buyPrice').html();
+            var sessionM = $(this).find('.buyMoount').html();
+            var sessionW = $(this).find('.buyWETH').html();
+            $('#inputPrice2').val(sessionP);
+            $('#inputAmount2').val(sessionM);
+            $('#inputTotal2').val(sessionW);
+        });
+        // $.getJSON('./topList.json',function(data){
+        //     var index = 0;//递归变量
+        //     function digui(n){
+        //         if (n==data.length-1) return;
+        //         $.get(`https://min-api.cryptocompare.com/data/pricemultifull?fsyms=${data[n].name}&tsyms=CNY`,function(res){
+        //             //console.log(res.RAW[data[n].name].CNY.PRICE);
+        //             var resPrice = res.RAW[data[n].name].CNY.PRICE; //当前价格
+        //             var resPct = res.RAW[data[n].name].CNY.CHANGEPCTDAY; //当前价格涨幅百分比(比较前天)
+        //             var currentPrice = (resPrice-data[n].indexPrice)/data[n].indexPrice; //涨幅
+        //                 $("#tbodyBox").append(`
+        //                   <tr>
+        //                       <td width="20%">${data[n].name}</td>
+        //                       <td width="20%" data-value="${resPrice}">¥${Number(resPrice).toFixed(4)}</td>
+        //                       <td width="20%" data-value="${data[n].indexPrice}" id="${data[n].fullName}"></td>
+        //                   </tr>
+        //                 `);
+
+        //             if (Number(resPct)>0) {
+        //                 var pct = $(`#${data[n].fullName}`).append(`
+        //                         <span class="text-warning">&nbsp;(${Number(resPct).toFixed(2)}%)</span>
+        //                   `);
+        //             }else{
+        //                 var pct = $(`#${data[n].fullName}`).append(`
+        //                         <span class="text-success">&nbsp;(${Number(resPct).toFixed(2)}%)</span>
+        //                   `);
+        //             }
+                    
+        //         });
+        //         digui(n+1);
+        //     };
+        //     digui(index)
+        // });
+  </script>
+</body>
+</html>
